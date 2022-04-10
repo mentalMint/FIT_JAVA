@@ -24,5 +24,17 @@ class SubTest {
         sub.execute(null, context);
 
         assertEquals(1., context.stack.peek());
+
+        context.parameters = new HashMap<>();
+        stack = new Stack<>();
+        context.stack = stack;
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            sub.execute(null, context);
+        });
+
+        String expectedMessage = "Sub. Less then 2 numbers in the stack. Too few for Sub.";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }

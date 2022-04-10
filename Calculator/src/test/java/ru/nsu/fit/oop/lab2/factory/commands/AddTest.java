@@ -24,5 +24,17 @@ class AddTest {
         add.execute(null, context);
 
         assertEquals(5., context.stack.peek());
+
+        context.parameters = new HashMap<>();
+        stack = new Stack<>();
+        context.stack = stack;
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            add.execute(null, context);
+        });
+
+        String expectedMessage = "Add. Less then 2 numbers in the stack. Too few for Add.";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }
