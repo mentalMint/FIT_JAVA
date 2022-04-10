@@ -4,16 +4,97 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d7934a5-9db1-41d0-903c-5282ec2ac913" name="Changes" comment="" />
+    <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Calculator/src/main/java/ru/nsu/fit/oop/lab2/factory/CommandObjectsCreator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Calculator/src/main/java/ru/nsu/fit/oop/lab2/factory/ConfigParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Calculator/src/main/java/ru/nsu/fit/oop/lab2/factory/ProgramParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_18_ea_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_18_ea_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_18_ea_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_win_18_ea_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_18_ea_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_win_18_ea_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_18_ea_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_18_ea_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tetris.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Block.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Cell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Color.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/HelloApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/HelloController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/observer/Observable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/observer/Observer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/IShape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/Shape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/SquareShape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/hello-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tetris1/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/main/java/ru/nsu/fit/oop/lab2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/src/main/java/ru/nsu/fit/oop/lab2/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/main/java/ru/nsu/fit/oop/lab2/exceptions/EmptyStackException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/main/java/ru/nsu/fit/oop/lab2/exceptions/NoSuchParameterException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/main/java/ru/nsu/fit/oop/lab2/exceptions/WrongFileException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/main/java/ru/nsu/fit/oop/lab2/factory/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/src/main/java/ru/nsu/fit/oop/lab2/factory/Calculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/main/java/ru/nsu/fit/oop/lab2/factory/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/src/main/java/ru/nsu/fit/oop/lab2/factory/Interpreter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/AddTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/AddTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/CalculatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/CalculatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/DivideTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/DivideTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/MultiplyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/MultiplyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/PrintTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/PrintTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/SqrtTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/SqrtTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/SubTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/SubTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Calculator$ExecutionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Calculator$ExecutionContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Calculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Calculator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Interpreter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/src/main/resources/ru/nsu/fit/oop/lab2/factory/config.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/AddTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/AddTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/CalculatorTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/DivideTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/DivideTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/MultiplyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/MultiplyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/PrintTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/PrintTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/SqrtTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/SqrtTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/SubTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/SubTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectId" id="276rhr0MvkwfyDRounv78rTueTY" />
+  <component name="ProjectId" id="27EULUWZt9aOsQQ77kopcg1GEVH" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -21,16 +102,80 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\1_Programming\Java\Projects\Tetris\src\main\resources\ru\nsu\fit\oop\tetris" />
+      <recent name="D:\1_Programming\Java\Projects\Tetris\target\classes\ru\nsu\fit\oop\tetris" />
+      <recent name="D:\1_Programming\Java\Projects\Tetris\src\main\java" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\1_Programming\Java\Projects\Tetris\src\main\resources\ru\nsu\fit\oop\tetris" />
+      <recent name="D:\1_Programming\Java\Projects\Tetris\target\classes\ru\nsu\fit\oop\tetris" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ru.nsu.fit.oop.tetris" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.nsu.fit.oop.tetris.HelloApplication" />
+      <module name="Tetris" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.nsu.fit.oop.tetris.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.nsu.fit.oop.tetris.Main" />
+      <module name="Tetris" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.nsu.fit.oop.tetris.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.HelloApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7d7934a5-9db1-41d0-903c-5282ec2ac913" name="Changes" comment="" />
-      <created>1648651501922</created>
+      <changelist id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="" />
+      <created>1648884687213</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1648651501922</updated>
+      <updated>1648884687213</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

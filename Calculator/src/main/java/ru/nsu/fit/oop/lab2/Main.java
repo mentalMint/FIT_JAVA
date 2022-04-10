@@ -1,15 +1,17 @@
 package ru.nsu.fit.oop.lab2;
 
-import ru.nsu.fit.oop.lab2.factory.Calculator;
+import javafx.util.Pair;
+import ru.nsu.fit.oop.lab2.factory.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
 
 public class Main {
+    private final static Logger logger = Logger.getLogger(Calculator.class.getName());
+
     public static void main(String[] args) {
         BufferedReader reader = null;
         if (args.length > 0) {
@@ -39,8 +41,26 @@ public class Main {
                 }
             }
 
+            ProgramParser programParser = new ProgramParser();
+            List<Pair<String, List<String>>> commands = programParser.parseProgram(program);
+
+            InputStream config = Calculator.class.getResourceAsStream("config.txt");
+            if (config == null) {
+                logger.warning("config.txt is not found");
+                System.err.println("config.txt is not found");
+                return;
+            }
+
+            ConfigParser configParser = new ConfigParser();
+
+            Map<String, String> commandClasses;
+            commandClasses = configParser.parseConfig(config);
+
+            CommandObjectsCreator commandObjectsCreator = new CommandObjectsCreator();
+            List<Pair<Command, List<String>>> commandObjects = commandObjectsCreator.create(commands, commandClasses);
+
             Calculator calculator = new Calculator();
-            calculator.execute(program);
+            calculator.execute(commandObjects);
         }
     }
 }

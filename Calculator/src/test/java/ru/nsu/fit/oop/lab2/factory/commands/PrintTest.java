@@ -1,7 +1,6 @@
 package ru.nsu.fit.oop.lab2.factory.commands;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import ru.nsu.fit.oop.lab2.exceptions.EmptyStackException;
 import ru.nsu.fit.oop.lab2.factory.Calculator;
 

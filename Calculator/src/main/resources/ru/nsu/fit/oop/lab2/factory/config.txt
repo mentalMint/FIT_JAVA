@@ -1,0 +1,9 @@
+PUSH ru.nsu.fit.oop.lab2.factory.commands.Push
+POP ru.nsu.fit.oop.lab2.factory.commands.Pop
+DEFINE ru.nsu.fit.oop.lab2.factory.commands.Define
+PRINT ru.nsu.fit.oop.lab2.factory.commands.Print
+SQRT ru.nsu.fit.oop.lab2.factory.commands.Sqrt
++ ru.nsu.fit.oop.lab2.factory.commands.Add
+- ru.nsu.fit.oop.lab2.factory.commands.Sub
+* ru.nsu.fit.oop.lab2.factory.commands.Multiply
+/ ru.nsu.fit.oop.lab2.factory.commands.Divide
