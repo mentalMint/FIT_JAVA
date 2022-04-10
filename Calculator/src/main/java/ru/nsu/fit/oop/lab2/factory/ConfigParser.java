@@ -20,12 +20,12 @@ public class ConfigParser {
             while ((line = reader.readLine()) != null) {
                 String[] words = line.split(" ");
                 if (words.length != 2) {
-                    logger.warning("\"COMMAND CommandClassName\" was expected");
+                    logger.warning("\"COMMAND CommandClassName\" was expected.");
                 }
                 commandClasses.put(words[0], words[1]);
             }
         } catch (IOException e) {
-            logger.severe("Error while reading file: " + e.getLocalizedMessage());
+            logger.severe("Error while reading file.");
         } finally {
             try {
                 reader.close();

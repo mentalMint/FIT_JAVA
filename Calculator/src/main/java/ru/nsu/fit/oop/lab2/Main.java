@@ -18,7 +18,7 @@ public class Main {
             try {
                 reader = new BufferedReader(new FileReader(args[0]));
             } catch (IOException e) {
-                logger.severe("Error while reading file: " + e.getLocalizedMessage());
+                logger.severe("Error while reading file.");
             }
         } else {
             reader = new BufferedReader(new InputStreamReader(System.in));
@@ -32,22 +32,22 @@ public class Main {
                     program.add(line);
                 }
             } catch (IOException e) {
-                logger.severe("Error while reading file: " + e.getLocalizedMessage());
+                logger.severe("Error while reading file.");
 
             } finally {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    logger.severe("Error while closing file: " + e.getLocalizedMessage());
+                    logger.severe("Error while closing file.");
                 }
             }
 
             ProgramParser programParser = new ProgramParser();
             List<Pair<String, List<String>>> commands = programParser.parseProgram(program);
 
-            InputStream config = Calculator.class.getResourceAsStream("1config.txt");
+            InputStream config = Calculator.class.getResourceAsStream("config.txt");
             if (config == null) {
-                logger.severe("config.txt is not found");
+                logger.severe("config.txt is not found.");
                 return;
             }
 

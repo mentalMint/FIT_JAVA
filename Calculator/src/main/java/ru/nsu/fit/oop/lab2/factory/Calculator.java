@@ -15,7 +15,7 @@ public class Calculator implements Interpreter {
             try {
                 commandObject.getKey().execute(commandObject.getValue(), context);
             } catch (Exception e) {
-                logger.warning("Error while executing command: " + e.getLocalizedMessage() + " Command will be skipped.");
+                logger.warning("Error while executing command. Command will be skipped.");
             }
         }
     }
