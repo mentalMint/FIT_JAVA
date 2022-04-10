@@ -8,6 +8,10 @@ import java.util.List;
 public class Define implements Command {
     @Override
     public void execute(List<String> arguments, Calculator.ExecutionContext context) {
+        if (arguments == null) {
+            throw new NullPointerException("arguments is null");
+        }
+
         if (arguments.size() != 2) {
             throw new IllegalArgumentException("Define. Two arguments were expected.");
         }

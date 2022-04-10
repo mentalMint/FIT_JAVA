@@ -26,5 +26,22 @@ class PushTest {
         push.execute(arguments, context);
 
         assertEquals(3., context.stack.peek());
+
+
+        context.parameters = new HashMap<>();
+        stack = new Stack<>();
+        context.stack = stack;
+        arguments = new ArrayList<>();
+        arguments.add("a");
+        arguments.add("3");
+
+        List<String> finalArguments = arguments;
+        Exception exception = assertThrows(Exception.class, () -> {
+            push.execute(finalArguments, context);
+        });
+
+        String expectedMessage = "Push. One argument was expected.";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }

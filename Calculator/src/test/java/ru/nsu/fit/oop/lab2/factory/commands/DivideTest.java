@@ -24,5 +24,33 @@ class DivideTest {
         divide.execute(null, context);
 
         assertEquals(3. / 2., context.stack.peek());
+
+
+        context.parameters = new HashMap<>();
+        stack = new Stack<>();
+        context.stack = stack;
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            divide.execute(null, context);
+        });
+
+        String expectedMessage = "Divide. Less then 2 numbers in the stack. Too few for Divide.";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+
+
+        context.parameters = new HashMap<>();
+        stack = new Stack<>();
+        context.stack = stack;
+        stack.add(0.);
+        stack.add(3.);
+
+        exception = assertThrows(Exception.class, () -> {
+            divide.execute(null, context);
+        });
+
+        expectedMessage = "Division by zero";
+        actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }

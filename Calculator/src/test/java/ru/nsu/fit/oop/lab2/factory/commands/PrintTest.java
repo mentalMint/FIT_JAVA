@@ -24,5 +24,19 @@ class PrintTest {
 
         print.execute(null, context);
 
-        assertEquals(2., new Double(out.toString()));    }
+        assertEquals(2., new Double(out.toString()));
+
+
+        context.parameters = new HashMap<>();
+        stack = new Stack<>();
+        context.stack = stack;
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            print.execute(null, context);
+        });
+
+        String expectedMessage = "Print. Less then 1 number in the stack. Too few for Print.";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
 }

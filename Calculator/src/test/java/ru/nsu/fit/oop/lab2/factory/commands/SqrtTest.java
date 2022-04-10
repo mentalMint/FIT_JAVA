@@ -23,5 +23,32 @@ class SqrtTest {
         sqrt.execute(null, context);
 
         assertEquals(Math.sqrt(2), context.stack.peek());
+
+
+        context.parameters = new HashMap<>();
+        stack = new Stack<>();
+        context.stack = stack;
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            sqrt.execute(null, context);
+        });
+
+        String expectedMessage = "Sqrt. Less then 1 number in the stack. Too few for Sqrt.";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+
+
+        context.parameters = new HashMap<>();
+        stack = new Stack<>();
+        context.stack = stack;
+        stack.add(-2.);
+
+        exception = assertThrows(Exception.class, () -> {
+            sqrt.execute(null, context);
+        });
+
+        expectedMessage = "Argument is less then zero.";
+        actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }

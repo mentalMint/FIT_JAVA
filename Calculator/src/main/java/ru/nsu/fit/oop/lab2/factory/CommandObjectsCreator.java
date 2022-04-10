@@ -18,8 +18,7 @@ public class CommandObjectsCreator {
                 Command commandObject = (Command) Class.forName(commandClasses.get(command.getKey())).newInstance();
                 commandObjects.add(new Pair<>(commandObject, command.getValue()));
             } catch (Exception e) {
-                logger.warning("Error while instantiation: " + e.getLocalizedMessage() + " Command \"" + command.getKey() + "\" will be skipped.");
-                System.err.println("Error while instantiation: " + e.getLocalizedMessage() + " Command \"" + command.getKey() + "\" will be skipped.");
+                logger.warning("Error while instantiation: " + e.getLocalizedMessage() + "\nCommand \"" + command.getKey() + "\" will be skipped.");
             }
         }
         return commandObjects;

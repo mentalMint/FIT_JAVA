@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,5 +33,12 @@ class ConfigParserTest {
         expectedCommandClasses.put("*", "ru.nsu.fit.oop.lab2.factory.commands.Multiply");
         expectedCommandClasses.put("/", "ru.nsu.fit.oop.lab2.factory.commands.Divide");
         assertEquals(expectedCommandClasses, commandClasses);
+
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            Map<String, String> NullCommandClasses = configParser.parseConfig(null);
+        });
+
+        assertEquals(new NullPointerException().getClass(), exception.getClass());
     }
 }

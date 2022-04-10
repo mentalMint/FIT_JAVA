@@ -10,11 +10,11 @@ public class Sqrt implements Command {
     @Override
     public void execute(List<String> arguments, Calculator.ExecutionContext context) throws EmptyStackException {
         if (context.stack.size() < 1) {
-            throw new EmptyStackException("Sqrt. Less then 2 numbers in the stack. Too few for Sqrt.");
+            throw new EmptyStackException("Sqrt. Less then 1 number in the stack. Too few for Sqrt.");
         }
         Double a = context.stack.pop();
         if (a < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Argument is less then zero.");
         }
         context.stack.push(Math.sqrt(a));
     }

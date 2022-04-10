@@ -10,7 +10,7 @@ public class Pop implements Command {
     @Override
     public void execute(List<String> arguments, Calculator.ExecutionContext context) throws EmptyStackException {
         if (context.stack.size() < 1) {
-            throw new EmptyStackException("Pop. Less then 2 numbers in the stack. Too few for Pop.");
+            throw new EmptyStackException("Pop. Less then 1 number in the stack. Too few for Pop.");
         }
         context.stack.pop();
     }

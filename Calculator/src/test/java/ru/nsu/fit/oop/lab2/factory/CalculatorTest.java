@@ -2,7 +2,6 @@ package ru.nsu.fit.oop.lab2.factory;
 
 import javafx.util.Pair;
 import org.junit.jupiter.api.Test;
-import ru.nsu.fit.oop.lab2.factory.*;
 import ru.nsu.fit.oop.lab2.factory.commands.Add;
 import ru.nsu.fit.oop.lab2.factory.commands.Define;
 import ru.nsu.fit.oop.lab2.factory.commands.Print;

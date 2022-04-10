@@ -31,5 +31,13 @@ class ProgramParserTest {
         expectedCommands.add(new Pair<>("PRINT", null));
 
         assertEquals(expectedCommands, commands);
+
+
+        program = new ArrayList<>();
+
+        commands = programParser.parseProgram(program);
+
+        expectedCommands = new ArrayList<>();
+        assertEquals(expectedCommands, commands);
     }
 }

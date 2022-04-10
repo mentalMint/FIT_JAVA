@@ -15,7 +15,7 @@ public class Divide implements Command {
         Double a = context.stack.pop();
         Double b = context.stack.pop();
         if (b == 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Division by zero");
         }
         context.stack.push((a / b));
     }

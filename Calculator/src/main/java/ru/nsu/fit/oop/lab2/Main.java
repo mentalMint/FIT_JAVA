@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 public class Main {
-    private final static Logger logger = Logger.getLogger(Calculator.class.getName());
+    public final static Logger logger = Logger.getLogger(Calculator.class.getName());
 
     public static void main(String[] args) {
         BufferedReader reader = null;
@@ -18,7 +18,7 @@ public class Main {
             try {
                 reader = new BufferedReader(new FileReader(args[0]));
             } catch (IOException e) {
-                System.err.println("Error while reading file: " + e.getLocalizedMessage());
+                logger.severe("Error while reading file: " + e.getLocalizedMessage());
             }
         } else {
             reader = new BufferedReader(new InputStreamReader(System.in));
@@ -32,22 +32,22 @@ public class Main {
                     program.add(line);
                 }
             } catch (IOException e) {
-                System.err.println("Error while reading file: " + e.getLocalizedMessage());
+                logger.severe("Error while reading file: " + e.getLocalizedMessage());
+
             } finally {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    e.printStackTrace(System.err);
+                    logger.severe("Error while closing file: " + e.getLocalizedMessage());
                 }
             }
 
             ProgramParser programParser = new ProgramParser();
             List<Pair<String, List<String>>> commands = programParser.parseProgram(program);
 
-            InputStream config = Calculator.class.getResourceAsStream("config.txt");
+            InputStream config = Calculator.class.getResourceAsStream("1config.txt");
             if (config == null) {
-                logger.warning("config.txt is not found");
-                System.err.println("config.txt is not found");
+                logger.severe("config.txt is not found");
                 return;
             }
 

@@ -31,5 +31,34 @@ class DefineTest {
         push.execute(pushArguments, context);
 
         assertEquals(4., context.stack.peek());
+
+
+        context.parameters = new HashMap<>();
+        stack = new Stack<>();
+        context.stack = stack;
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            define.execute(null, context);
+        });
+
+        String expectedMessage = "arguments is null";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+
+
+        context.parameters = new HashMap<>();
+        stack = new Stack<>();
+        context.stack = stack;
+        arguments = new ArrayList<>();
+        arguments.add("a");
+
+        List<String> finalArguments = arguments;
+        exception = assertThrows(Exception.class, () -> {
+            define.execute(finalArguments, context);
+        });
+
+        expectedMessage = "Define. Two arguments were expected.";
+        actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }

@@ -24,5 +24,18 @@ class MultiplyTest {
         multiply.execute(null, context);
 
         assertEquals(6., context.stack.peek());
+
+
+        context.parameters = new HashMap<>();
+        stack = new Stack<>();
+        context.stack = stack;
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            multiply.execute(null, context);
+        });
+
+        String expectedMessage = "Multiply. Less then 2 numbers in the stack. Too few for Multiply.";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }

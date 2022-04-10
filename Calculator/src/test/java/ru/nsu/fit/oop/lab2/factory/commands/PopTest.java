@@ -28,5 +28,18 @@ class PopTest {
         pop.execute(arguments, context);
 
         assertEquals(21., context.stack.peek());
+
+
+        context.parameters = new HashMap<>();
+        stack = new Stack<>();
+        context.stack = stack;
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            pop.execute(null, context);
+        });
+
+        String expectedMessage = "Pop. Less then 1 number in the stack. Too few for Pop.";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }
