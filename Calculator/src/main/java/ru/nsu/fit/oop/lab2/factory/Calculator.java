@@ -5,11 +5,10 @@ import javafx.util.Pair;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import ru.nsu.fit.oop.lab2.logging.Logger;
 
 public class Calculator implements Interpreter {
-    public final static Logger logger = Logger.getLogger(Calculator.class.getName());
+    public final static Logger logger = (Logger) Logger.getLogger(Calculator.class.getName());
     Properties properties = new Properties();
 
     public void setProperties(InputStream inputStream) throws IOException {
@@ -26,8 +25,7 @@ public class Calculator implements Interpreter {
             try {
                 commandObject.getKey().execute(commandObject.getValue(), context);
             } catch (Exception e) {
-                logger.log(Level.WARNING,"Error while executing command. Command will be skipped.", e);
-
+                logger.warning("Error while executing command: " + e.getLocalizedMessage() + " Command will be skipped.");
             }
         }
     }

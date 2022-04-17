@@ -2,15 +2,14 @@ package ru.nsu.fit.oop.lab2;
 
 import javafx.util.Pair;
 import ru.nsu.fit.oop.lab2.factory.*;
+import ru.nsu.fit.oop.lab2.logging.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Main {
-    public final static Logger logger = Logger.getLogger(Calculator.class.getName());
+    public final static Logger logger = (Logger) Logger.getLogger(Calculator.class.getName());
 
     public static void main(String[] args) {
         BufferedReader reader = null;
@@ -18,7 +17,7 @@ public class Main {
             try {
                 reader = new BufferedReader(new FileReader(args[0]));
             } catch (IOException e) {
-                logger.log(Level.SEVERE,"Error while reading file.", e);
+                logger.severe("Error while reading file: " + e.getLocalizedMessage());
             }
         } else {
             reader = new BufferedReader(new InputStreamReader(System.in));
@@ -32,12 +31,12 @@ public class Main {
                     program.add(line);
                 }
             } catch (IOException e) {
-                logger.log(Level.SEVERE,"Error while reading file.", e);
+                logger.severe("Error while reading file: " + e.getLocalizedMessage());
             } finally {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    logger.log(Level.SEVERE,"Error while closing file.", e);
+                    logger.severe("Error while closing file: " + e.getLocalizedMessage());
                 }
             }
 
@@ -48,7 +47,7 @@ public class Main {
             try {
                 calculator.setProperties(config);
             } catch (Exception e) {
-                logger.log(Level.SEVERE,"config.txt is not found.", e);
+                logger.severe("config.txt is not found");
             }
             calculator.execute(commands);
         }
