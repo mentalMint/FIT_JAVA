@@ -13,7 +13,7 @@ import static org.mockito.Mockito.mock;
 class PrintTest {
     @Test
     void execute() throws EmptyStackException {
-        Calculator.ExecutionContext context = mock(Calculator.ExecutionContext.class);
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
         Stack<Double> stack = new Stack<>();
         stack.add(2.);
@@ -25,11 +25,15 @@ class PrintTest {
         print.execute(null, context);
 
         assertEquals(2., new Double(out.toString()));
+    }
 
-
+    @Test
+    void failToExecuteWithNullArguments() {
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
-        stack = new Stack<>();
+        Stack<Double> stack = new Stack<>();
         context.stack = stack;
+        Print print = new Print();
 
         Exception exception = assertThrows(Exception.class, () -> {
             print.execute(null, context);

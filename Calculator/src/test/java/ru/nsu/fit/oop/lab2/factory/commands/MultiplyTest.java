@@ -13,7 +13,7 @@ import static org.mockito.Mockito.mock;
 class MultiplyTest {
     @Test
     void execute() throws EmptyStackException {
-        Calculator.ExecutionContext context = mock(Calculator.ExecutionContext.class);
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
         Stack<Double> stack = new Stack<>();
         stack.add(2.);
@@ -24,11 +24,16 @@ class MultiplyTest {
         multiply.execute(null, context);
 
         assertEquals(6., context.stack.peek());
+    }
 
-
+    @Test
+    void failToExecuteWithNullArguments() {
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
+        Stack<Double> stack = new Stack<>();
         stack = new Stack<>();
         context.stack = stack;
+        Multiply multiply = new Multiply();
 
         Exception exception = assertThrows(Exception.class, () -> {
             multiply.execute(null, context);

@@ -22,7 +22,7 @@ class CommandObjectsCreatorTest {
         commands.add(new Pair<>("PUSH", new ArrayList(Collections.singletonList("3"))));
         commands.add(new Pair<>("+", null));
         commands.add(new Pair<>("PRINT", null));
-        Map<String, String> commandClasses = new HashMap<>();
+        Properties commandClasses = new Properties();
         commandClasses.put("PUSH", "ru.nsu.fit.oop.lab2.factory.commands.Push");
         commandClasses.put("POP", "ru.nsu.fit.oop.lab2.factory.commands.Pop");
         commandClasses.put("DEFINE", "ru.nsu.fit.oop.lab2.factory.commands.Define");
@@ -34,7 +34,7 @@ class CommandObjectsCreatorTest {
         commandClasses.put("/", "ru.nsu.fit.oop.lab2.factory.commands.Divide");
         CommandObjectsCreator commandObjectsCreator = new CommandObjectsCreator();
 
-//        List<Pair<Command, List<String>>> commandObjects = commandObjectsCreator.create(commands, commandClasses);
+        List<Pair<Command, List<String>>> commandObjects = commandObjectsCreator.create(commands, commandClasses);
 
         List<Pair<Command, List<String>>> expectedCommandObjects = new ArrayList<>();
         expectedCommandObjects.add(new Pair<>(new Define(), new ArrayList<>(Arrays.asList("a", "2"))));
@@ -42,8 +42,6 @@ class CommandObjectsCreatorTest {
         expectedCommandObjects.add(new Pair<>(new Push(), new ArrayList<>(Collections.singletonList("3"))));
         expectedCommandObjects.add(new Pair<>(new Add(), null));
         expectedCommandObjects.add(new Pair<>(new Print(), null));
-//        assertEquals(expectedCommandObjects.size(), commandObjects.size());
-//        for (CommandObject : expectedCommandObjects) {
-//        assertEquals(expectedCommandObjects, commandObjects);
+        assertEquals(expectedCommandObjects.size(), commandObjects.size());
     }
 }

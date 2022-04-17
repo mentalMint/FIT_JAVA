@@ -8,12 +8,11 @@ import java.util.HashMap;
 import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 
 class SubTest {
     @Test
     void execute() throws EmptyStackException {
-        Calculator.ExecutionContext context = mock(Calculator.ExecutionContext.class);
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
         Stack<Double> stack = new Stack<>();
         stack.add(2.);
@@ -24,10 +23,15 @@ class SubTest {
         sub.execute(null, context);
 
         assertEquals(1., context.stack.peek());
+    }
 
+    @Test
+    void failToExecuteWithNullArguments() {
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
-        stack = new Stack<>();
+        Stack<Double> stack = new Stack<>();
         context.stack = stack;
+        Sub sub = new Sub();
 
         Exception exception = assertThrows(Exception.class, () -> {
             sub.execute(null, context);

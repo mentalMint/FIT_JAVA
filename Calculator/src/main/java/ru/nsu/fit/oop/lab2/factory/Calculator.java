@@ -32,7 +32,7 @@ public class Calculator implements Interpreter {
         }
     }
 
-    public class ExecutionContext {
+    public static class ExecutionContext {
         public Stack<Double> stack = new Stack<>();
         public Map<String, Double> parameters = new HashMap<>();
     }

@@ -13,7 +13,7 @@ import static org.mockito.Mockito.mock;
 class SqrtTest {
     @Test
     void execute() throws EmptyStackException {
-        Calculator.ExecutionContext context = mock(Calculator.ExecutionContext.class);
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
         Stack<Double> stack = new Stack<>();
         stack.add(2.);
@@ -23,11 +23,15 @@ class SqrtTest {
         sqrt.execute(null, context);
 
         assertEquals(Math.sqrt(2), context.stack.peek());
+    }
 
-
+    @Test
+    void failToExecuteWithNullArguments() {
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
-        stack = new Stack<>();
+        Stack<Double> stack = new Stack<>();
         context.stack = stack;
+        Sqrt sqrt = new Sqrt();
 
         Exception exception = assertThrows(Exception.class, () -> {
             sqrt.execute(null, context);
@@ -36,19 +40,23 @@ class SqrtTest {
         String expectedMessage = "Sqrt. Less then 1 number in the stack. Too few for Sqrt.";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
+    }
 
-
+    @Test
+    void failToExecuteWithWrongArguments() {
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
-        stack = new Stack<>();
+        Stack<Double> stack = new Stack<>();
         context.stack = stack;
         stack.add(-2.);
+        Sqrt sqrt = new Sqrt();
 
-        exception = assertThrows(Exception.class, () -> {
+        Exception exception = assertThrows(Exception.class, () -> {
             sqrt.execute(null, context);
         });
 
-        expectedMessage = "Argument is less then zero.";
-        actualMessage = exception.getMessage();
+        String expectedMessage = "Argument is less then zero.";
+        String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
 }

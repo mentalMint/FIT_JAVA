@@ -10,12 +10,11 @@ import java.util.List;
 import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 
 class PopTest {
     @Test
     void execute() throws EmptyStackException {
-        Calculator.ExecutionContext context = mock(Calculator.ExecutionContext.class);
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
         Stack<Double> stack = new Stack<>();
         context.stack = stack;
@@ -28,11 +27,15 @@ class PopTest {
         pop.execute(arguments, context);
 
         assertEquals(21., context.stack.peek());
+    }
 
-
+    @Test
+    void failToExecuteWithNullArguments() {
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
-        stack = new Stack<>();
+        Stack<Double> stack = new Stack<>();
         context.stack = stack;
+        Pop pop = new Pop();
 
         Exception exception = assertThrows(Exception.class, () -> {
             pop.execute(null, context);

@@ -10,12 +10,11 @@ import java.util.List;
 import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 
 class PushTest {
     @Test
     void execute() throws NoSuchParameterException {
-        Calculator.ExecutionContext context = mock(Calculator.ExecutionContext.class);
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
         Stack<Double> stack = new Stack<>();
         context.stack = stack;
@@ -27,17 +26,22 @@ class PushTest {
 
         assertEquals(3., context.stack.peek());
 
+    }
 
+    @Test
+    void failToExecuteWithNullArguments() {
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
+        Stack<Double> stack = new Stack<>();
         stack = new Stack<>();
         context.stack = stack;
-        arguments = new ArrayList<>();
+        List<String> arguments = new ArrayList<>();
         arguments.add("a");
         arguments.add("3");
+        Push push = new Push();
 
-        List<String> finalArguments = arguments;
         Exception exception = assertThrows(Exception.class, () -> {
-            push.execute(finalArguments, context);
+            push.execute(arguments, context);
         });
 
         String expectedMessage = "Push. One argument was expected.";

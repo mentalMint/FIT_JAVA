@@ -10,12 +10,11 @@ import java.util.List;
 import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 
 class DefineTest {
     @Test
     void execute() throws NoSuchParameterException {
-        Calculator.ExecutionContext context = mock(Calculator.ExecutionContext.class);
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
         Stack<Double> stack = new Stack<>();
         context.stack = stack;
@@ -31,11 +30,15 @@ class DefineTest {
         push.execute(pushArguments, context);
 
         assertEquals(4., context.stack.peek());
+    }
 
-
+    @Test
+    void failToExecuteWithNullArguments() {
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
-        stack = new Stack<>();
+        Stack<Double> stack = new Stack<>();
         context.stack = stack;
+        Define define = new Define();
 
         Exception exception = assertThrows(Exception.class, () -> {
             define.execute(null, context);
@@ -44,21 +47,24 @@ class DefineTest {
         String expectedMessage = "arguments is null";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
+    }
 
-
+    @Test
+    void failToExecuteWithWrongArguments() {
+        Calculator.ExecutionContext context = new Calculator.ExecutionContext();
         context.parameters = new HashMap<>();
-        stack = new Stack<>();
+        Stack<Double> stack = new Stack<>();
         context.stack = stack;
-        arguments = new ArrayList<>();
+        Define define = new Define();
+        List<String> arguments = new ArrayList<>();
         arguments.add("a");
 
-        List<String> finalArguments = arguments;
-        exception = assertThrows(Exception.class, () -> {
-            define.execute(finalArguments, context);
+        Exception exception = assertThrows(Exception.class, () -> {
+            define.execute(arguments, context);
         });
 
-        expectedMessage = "Define. Two arguments were expected.";
-        actualMessage = exception.getMessage();
+        String expectedMessage = "Define. Two arguments were expected.";
+        String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
 }
