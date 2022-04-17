@@ -3,6 +3,7 @@ package ru.nsu.fit.oop.lab2.factory;
 import javafx.util.Pair;
 
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CommandObjectsCreator {
@@ -15,7 +16,8 @@ public class CommandObjectsCreator {
                 Command commandObject = (Command) Class.forName(commandClasses.getProperty(command.getKey())).getConstructor().newInstance();
                 commandObjects.add(new Pair<>(commandObject, command.getValue()));
             } catch (Exception e) {
-                logger.warning("Error while instantiation. Command " + commandClasses.getProperty(command.getKey()) + " will be skipped.");
+                logger.log(Level.WARNING,"Error while instantiation. Command will be skipped.", e);
+
             }
         }
         return commandObjects;

@@ -5,6 +5,7 @@ import javafx.util.Pair;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Calculator implements Interpreter {
@@ -25,7 +26,8 @@ public class Calculator implements Interpreter {
             try {
                 commandObject.getKey().execute(commandObject.getValue(), context);
             } catch (Exception e) {
-                logger.warning("Error while executing command. Command will be skipped.");
+                logger.log(Level.WARNING,"Error while executing command. Command will be skipped.", e);
+
             }
         }
     }

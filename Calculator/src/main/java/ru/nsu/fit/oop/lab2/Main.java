@@ -6,6 +6,7 @@ import ru.nsu.fit.oop.lab2.factory.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
@@ -17,7 +18,7 @@ public class Main {
             try {
                 reader = new BufferedReader(new FileReader(args[0]));
             } catch (IOException e) {
-                logger.severe("Error while reading file.");
+                logger.log(Level.SEVERE,"Error while reading file.", e);
             }
         } else {
             reader = new BufferedReader(new InputStreamReader(System.in));
@@ -31,13 +32,12 @@ public class Main {
                     program.add(line);
                 }
             } catch (IOException e) {
-                logger.severe("Error while reading file.");
-
+                logger.log(Level.SEVERE,"Error while reading file.", e);
             } finally {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    logger.severe("Error while closing file.");
+                    logger.log(Level.SEVERE,"Error while closing file.", e);
                 }
             }
 
@@ -48,7 +48,7 @@ public class Main {
             try {
                 calculator.setProperties(config);
             } catch (Exception e) {
-                logger.severe("config.txt is not found.");
+                logger.log(Level.SEVERE,"config.txt is not found.", e);
             }
             calculator.execute(commands);
         }

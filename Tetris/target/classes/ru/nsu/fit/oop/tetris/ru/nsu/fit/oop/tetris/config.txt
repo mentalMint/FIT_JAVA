@@ -1,0 +1,1 @@
+ru.nsu.fit.oop.tetris.shapes.SquareShape
