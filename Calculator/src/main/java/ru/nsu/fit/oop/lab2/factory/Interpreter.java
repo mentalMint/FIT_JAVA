@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface Interpreter {
 
-    void execute(List<Pair<Command, List<String>>> commandObjects);
+    void execute(List<Pair<String, List<String>>> commands);
 }

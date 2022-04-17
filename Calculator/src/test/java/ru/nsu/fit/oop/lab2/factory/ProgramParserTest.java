@@ -22,7 +22,7 @@ class ProgramParserTest {
         program.add("PRINT");
 
         ProgramParser programParser = new ProgramParser();
-        List<Pair<String, List<String>>> commands = programParser.parseProgram(program);
+        List<Pair<String, List<String>>> commands = programParser.parse(program);
 
         List<Pair<String, List<String>>> expectedCommands = new ArrayList<>();
         expectedCommands.add(new Pair<>("DEFINE", new ArrayList(Arrays.asList("b", "3"))));
@@ -35,7 +35,7 @@ class ProgramParserTest {
 
         program = new ArrayList<>();
 
-        commands = programParser.parseProgram(program);
+        commands = programParser.parse(program);
 
         expectedCommands = new ArrayList<>();
         assertEquals(expectedCommands, commands);

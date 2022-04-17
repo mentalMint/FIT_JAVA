@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Vector;
 
 public class ProgramParser {
-    public List<Pair<String, List<String>>> parseProgram(List<String> program) {
+    public List<Pair<String, List<String>>> parse(List<String> program) {
         List<Pair<String, List<String>>> commands = new ArrayList<>();
         for (String line : program) {
-            if (line.charAt(0) != '#') {
+            if (!line.isEmpty() && line.charAt(0) != '#') {
                 List<String> words = new Vector<>(Arrays.asList(line.split(" ")));
                 List<String> arguments = null;
                 if (words.size() > 1) {

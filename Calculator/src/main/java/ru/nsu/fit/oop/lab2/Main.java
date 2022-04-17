@@ -6,7 +6,6 @@ import ru.nsu.fit.oop.lab2.factory.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 public class Main {
@@ -43,24 +42,15 @@ public class Main {
             }
 
             ProgramParser programParser = new ProgramParser();
-            List<Pair<String, List<String>>> commands = programParser.parseProgram(program);
-
+            List<Pair<String, List<String>>> commands = programParser.parse(program);
             InputStream config = Calculator.class.getResourceAsStream("config.txt");
-            if (config == null) {
-                logger.severe("config.txt is not found.");
-                return;
-            }
-
-            ConfigParser configParser = new ConfigParser();
-
-            Map<String, String> commandClasses;
-            commandClasses = configParser.parseConfig(config);
-
-            CommandObjectsCreator commandObjectsCreator = new CommandObjectsCreator();
-            List<Pair<Command, List<String>>> commandObjects = commandObjectsCreator.create(commands, commandClasses);
-
             Calculator calculator = new Calculator();
-            calculator.execute(commandObjects);
+            try {
+                calculator.setProperties(config);
+            } catch (Exception e) {
+                logger.severe("config.txt is not found.");
+            }
+            calculator.execute(commands);
         }
     }
 }
