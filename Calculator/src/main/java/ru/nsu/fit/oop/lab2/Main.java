@@ -21,32 +21,33 @@ public class Main {
         } else {
             reader = new InputStreamReader(System.in);
         }
-
-        if (reader != null) {
-            ReaderParser parser = new ReaderParser();
-            try {
-                 parser.parse(reader);
-            } catch (IOException e) {
-                logger.severe("Error while reading file: " + e.getLocalizedMessage());
-            } finally {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    logger.severe("Error while closing file: " + e.getLocalizedMessage());
-                }
-            }
-
-            List<String> program = parser.getText();
-            ProgramParser programParser = new ProgramParser();
-            List<Pair<String, List<String>>> commands = programParser.parse(program);
-            InputStream config = Calculator.class.getResourceAsStream("config.txt");
-            Calculator calculator = new Calculator();
-            try {
-                calculator.setProperties(config);
-            } catch (Exception e) {
-                logger.severe("config.txt is not found");
-            }
-            calculator.execute(commands);
+        if (reader == null) {
+            return;
         }
+
+        ReaderParser parser = new ReaderParser();
+        try {
+            parser.parse(reader);
+        } catch (IOException e) {
+            logger.severe("Error while parsing reader: " + e.getLocalizedMessage());
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                logger.severe("Error while closing file: " + e.getLocalizedMessage());
+            }
+        }
+
+        List<String> program = parser.getText();
+        ProgramParser programParser = new ProgramParser();
+        List<Pair<String, List<String>>> commands = programParser.parse(program);
+        InputStream config = Calculator.class.getResourceAsStream("config.txt");
+        Calculator calculator = new Calculator();
+        try {
+            calculator.setProperties(config);
+        } catch (IOException e) {
+            logger.severe("config.txt is not found");
+        }
+        calculator.execute(commands);
     }
 }
