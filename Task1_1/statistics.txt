@@ -1,0 +1,43 @@
+Threads:
+Threads number: 100000
+Creation time: 6997 milliseconds
+All time: 7009 milliseconds
+
+Creation time: 7104 milliseconds
+All time: 7110 milliseconds
+
+Creation time: 7099 milliseconds
+All time: 7106 milliseconds
+
+ThreadPool:
+Threads number: 10
+Creation time: 29 milliseconds
+All time: 64 milliseconds
+
+Creation time: 23 milliseconds
+All time: 47 milliseconds
+
+Creation time: 10 milliseconds
+All time: 32 milliseconds
+
+ThreadPool:
+Threads number: 10
+Creation time: 3 milliseconds
+All time: 53 milliseconds
+
+Creation time: 0 milliseconds
+All time: 48 milliseconds
+
+Creation time: 0 milliseconds
+All time: 21 milliseconds
+
+ThreadPool:
+Threads number: 10
+Creation time: 3 milliseconds
+All time: 61 milliseconds
+
+ThreadPool:
+Threads number: 10
+Creation time: 3 milliseconds
+All time: 58 milliseconds
+

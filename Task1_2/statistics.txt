@@ -1,0 +1,43 @@
+synchronized
+Read success: 79 failure: 0
+Read success: 141 failure: 0
+Read success: 182 failure: 0
+Read success: 252 failure: 0
+Read success: 176 failure: 0
+Read success: 128 failure: 0
+Read success: 191 failure: 0
+Read success: 329 failure: 0
+Read success: 230 failure: 0
+Read success: 198 failure: 0
+Read success: 202 failure: 0
+Read success: 225 failure: 0
+Read success: 142 failure: 0
+Read success: 227 failure: 0
+Read success: 218 failure: 0
+Write success: 347 failure: 0
+Write success: 213 failure: 0
+Write success: 204 failure: 0
+Write success: 152 failure: 0
+Write success: 201 failure: 0
+
+reentrant
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Read success: 551 failure: 0
+Write success: 68 failure: 0
+Write success: 47 failure: 0
+Write success: 200 failure: 0
+Write success: 88 failure: 0
+Write success: 148 failure: 0

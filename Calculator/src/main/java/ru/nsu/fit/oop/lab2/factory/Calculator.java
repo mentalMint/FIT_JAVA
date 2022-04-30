@@ -5,14 +5,16 @@ import javafx.util.Pair;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
-import ru.nsu.fit.oop.lab2.logging.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Calculator implements Interpreter {
-    public final static Logger logger = (Logger) Logger.getLogger(Calculator.class.getName());
+    public final static Logger logger = Logger.getLogger(Calculator.class.getName());
     Properties properties = new Properties();
 
-    public void setProperties(InputStream inputStream) throws IOException {
-        this.properties.load(inputStream);
+    public void setProperties(String configFile) throws IOException {
+        InputStream config = Calculator.class.getResourceAsStream(configFile);
+        this.properties.load(config);
     }
 
     @Override
@@ -25,7 +27,9 @@ public class Calculator implements Interpreter {
             try {
                 commandObject.getKey().execute(commandObject.getValue(), context);
             } catch (Exception e) {
-                logger.warning("Error while executing command: " + e.getLocalizedMessage() + " Command will be skipped.");
+                if (logger.isLoggable(Level.WARNING)) {
+                    logger.warning("Error while executing command: " + e.getLocalizedMessage() + " Command will be skipped.");
+                }
             }
         }
     }

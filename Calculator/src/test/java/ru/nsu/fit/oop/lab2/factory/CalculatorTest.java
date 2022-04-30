@@ -28,9 +28,8 @@ class CalculatorTest {
         commands.add(new Pair<>("PRINT", null));
 
         Calculator calculator = new Calculator();
-        InputStream config = Calculator.class.getResourceAsStream("config.txt");
         try {
-            calculator.setProperties(config);
+            calculator.setProperties("config.txt");
         } catch (Exception e) {
         }
         ByteArrayOutputStream out = new ByteArrayOutputStream();
