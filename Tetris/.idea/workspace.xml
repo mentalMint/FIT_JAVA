@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/CalculatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/src/test/java/ru/nsu/fit/oop/lab2/factory/commands/CalculatorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Interpreter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/CalculatorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/commands/CalculatorTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Calculator$ExecutionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Calculator$ExecutionContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Calculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Calculator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/CommandObjectsCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/CommandObjectsCreator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/CalculatorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/CalculatorTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/observer/Observable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/observer/Observable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

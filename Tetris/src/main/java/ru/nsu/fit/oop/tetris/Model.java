@@ -13,6 +13,15 @@ import static ru.nsu.fit.oop.tetris.Color.*;
 
 public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
     public class Field {
+        private int width = 10;
+        private int height = 5;
+
+        public void setBlocks(List<Block> blocks) {
+            this.blocks = blocks;
+        }
+
+        private List<Block> blocks = new ArrayList<>();
+
         public int getWidth() {
             return width;
         }
@@ -24,10 +33,6 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         public List<Block> getBlocks() {
             return blocks;
         }
-
-        private int width = 10;
-        private int height = 5;
-        private List<Block> blocks = new ArrayList<>();
 
         public Field() {
             for (int i = 0; i < width * height; ++i) {
@@ -67,7 +72,8 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         registerShapeClasses();
         createNewShape();
         updateField();
-        timer.schedule(timerTask, 0, 1500);
+        notifyObservers();
+        timer.schedule(timerTask, 1000, 1500);
     }
 
     public void pause() {
