@@ -4,4 +4,6 @@ module ru.nsu.fit.oop.tetris {
 
     opens ru.nsu.fit.oop.tetris to javafx.fxml;
     exports ru.nsu.fit.oop.tetris;
+    exports ru.nsu.fit.oop.tetris.View;
+    opens ru.nsu.fit.oop.tetris.View to javafx.fxml;
 }

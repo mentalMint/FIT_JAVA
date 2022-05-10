@@ -1,30 +1,24 @@
 package ru.nsu.fit.oop.tetris.shapes;
 
+import javafx.scene.paint.Color;
 import ru.nsu.fit.oop.tetris.Block;
-import ru.nsu.fit.oop.tetris.Color;
-
-import java.util.ArrayList;
 
 public class SquareShape extends Shape {
 
     public SquareShape(Color color, int x, int y) {
         super(color, x, y);
-        super.blocks = new ArrayList<>();
-        super.blocks.add(new Block(color, x, y));
-        super.blocks.add(new Block(color, x + 1, y));
-        super.blocks.add(new Block(color, x, y + 1));
-        super.blocks.add(new Block(color, x + 1, y + 1));
+        blocks.add(new Block(color, 0, 0));
+        blocks.add(new Block(color, 1, 0));
+        blocks.add(new Block(color, 0, 1));
+        blocks.add(new Block(color, 1, 1));
     }
 
-//    public void setBlocks(Color color) {
-//        super.blocks = new ArrayList<>();
-//        super.blocks.add(new Block(color, x, y));
-//        super.blocks.add(new Block(color, x + 1, y));
-//        super.blocks.add(new Block(color, x, y + 1));
-//        super.blocks.add(new Block(color, x + 1, y + 1));
-//    }
-
-    public SquareShape(Shape shape) {
+    public SquareShape(SquareShape shape) {
         super(shape);
+    }
+
+    @Override
+    public void rotate() {
+
     }
 }

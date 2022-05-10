@@ -1,15 +1,17 @@
 package ru.nsu.fit.oop.tetris.shapes;
 
+import javafx.scene.paint.Color;
 import ru.nsu.fit.oop.tetris.Block;
-import ru.nsu.fit.oop.tetris.Color;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Shape implements IShape {
-    public List<Block> blocks = null;
-    public int x = 0;
-    public int y = 0;
+public abstract class Shape implements IShape {
+    public List<Block> blocks = new ArrayList<>();
+    public int x;
+    public int y;
     Color color;
+    TurningSide turningSide = TurningSide.UP;
 
     public Shape(Color color, int x, int y) {
         this.color = color;
@@ -18,9 +20,20 @@ public class Shape implements IShape {
     }
 
     public Shape(Shape shape) {
-        this.color = shape.color;
-        this.x = shape.x;
-        this.y = shape.y;
-        this.blocks = shape.blocks;
+        color = shape.color;
+        x = shape.x;
+        y = shape.y;
+        turningSide = shape.turningSide;
+//        blocks = new ArrayList<>(shape.blocks);
+        for (Block block : shape.blocks) {
+            blocks.add(new Block((block)));
+        }
+    }
+
+    public enum TurningSide {
+        UP,
+        RIGHT,
+        DOWN,
+        LEFT
     }
 }

@@ -4,17 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Calculator$ExecutionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Calculator$ExecutionContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Calculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/Calculator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/CommandObjectsCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/classes/ru/nsu/fit/oop/lab2/factory/CommandObjectsCreator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/CalculatorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Calculator/target/test-classes/ru/nsu/fit/oop/lab2/factory/CalculatorTest.class" afterDir="false" />
+    <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="view shows blocks">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/Pause.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/BarShape.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Block.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/observer/Observable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/observer/Observable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/IShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/IShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/Shape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/SquareShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/SquareShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/config.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Block.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Controller$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$Field.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$Field.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/View.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/config.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/observer/Observable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/observer/Observable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/shapes/IShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/shapes/IShape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/shapes/Shape.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/shapes/Shape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/shapes/SquareShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/shapes/SquareShape.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +43,23 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -68,7 +102,7 @@
       <module name="Tetris" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.nsu.fit.oop.tetris.*" />
+          <option name="PATTERN" value="ru.nsu.fit.oop.tetris.View.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -81,7 +115,7 @@
       <module name="Tetris" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.nsu.fit.oop.tetris.*" />
+          <option name="PATTERN" value="ru.nsu.fit.oop.tetris.View.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -105,6 +139,14 @@
       <option name="presentableId" value="Default" />
       <updated>1648884687213</updated>
     </task>
+    <task id="LOCAL-00001" summary="view shows blocks">
+      <created>1651491010491</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1651491010491</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -117,5 +159,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="view shows blocks" />
+    <option name="LAST_COMMIT_MESSAGE" value="view shows blocks" />
   </component>
 </project>

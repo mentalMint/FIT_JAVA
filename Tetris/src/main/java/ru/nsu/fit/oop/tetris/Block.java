@@ -1,5 +1,7 @@
 package ru.nsu.fit.oop.tetris;
 
+import javafx.scene.paint.Color;
+
 public class Block {
     public Color color;
     public int x;
@@ -9,5 +11,11 @@ public class Block {
         this.color = color;
         this.x = x;
         this.y = y;
+    }
+
+    public Block(Block block) {
+        color = block.color;
+        x = block.x;
+        y = block.y;
     }
 }

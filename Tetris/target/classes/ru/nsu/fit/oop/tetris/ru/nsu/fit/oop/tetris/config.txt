@@ -1,1 +1,2 @@
-ru.nsu.fit.oop.tetris.shapes.SquareShape
+Square=ru.nsu.fit.oop.tetris.shapes.SquareShape
+Bar=ru.nsu.fit.oop.tetris.shapes.BarShape
