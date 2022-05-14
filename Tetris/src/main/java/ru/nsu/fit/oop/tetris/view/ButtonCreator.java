@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.tetris.View;
+package ru.nsu.fit.oop.tetris.view;
 
 import javafx.scene.control.Button;
 import javafx.scene.text.Font;

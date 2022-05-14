@@ -75,7 +75,7 @@
       <module name="Tetris" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.nsu.fit.oop.tetris.View.*" />
+          <option name="PATTERN" value="ru.nsu.fit.oop.tetris.view.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -88,7 +88,7 @@
       <module name="Tetris" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.nsu.fit.oop.tetris.View.*" />
+          <option name="PATTERN" value="ru.nsu.fit.oop.tetris.view.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

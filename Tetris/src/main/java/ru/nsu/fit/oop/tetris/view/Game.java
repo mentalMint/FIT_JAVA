@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.tetris.View;
+package ru.nsu.fit.oop.tetris.view;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.tetris.View;
+package ru.nsu.fit.oop.tetris.view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,7 +15,7 @@ import ru.nsu.fit.oop.tetris.Model;
 
 import java.util.concurrent.Flow;
 
-public class Menu implements Flow.Subscriber<Boolean> {
+public class Pause implements Flow.Subscriber<Boolean> {
     private final Model model;
     private final int height = 720;
     private final int width = 480;
@@ -23,52 +23,46 @@ public class Menu implements Flow.Subscriber<Boolean> {
     private final Stage stage;
     private final Scene scene = new Scene(layout, width, height);
 
-    public Menu(Model model, Stage stage) {
+    public Pause(Model model, Stage stage) {
         this.model = model;
         model.subscribe(this);
         this.stage = stage;
-        this.stage.setTitle("Tetris");
 
         layout.setBackground((new Background(new BackgroundFill(Color.DARKSLATEBLUE, CornerRadii.EMPTY, Insets.EMPTY))));
-        Button startButton = ButtonCreator.createButton("Start", 300);
-        EventHandler<ActionEvent> event = e -> {
+
+        Button resumeButton = ButtonCreator.createButton("Resume", 400);
+        EventHandler<ActionEvent> resumeEvent = e -> {
             try {
-                model.start();
+                model.resume();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         };
 
-        startButton.setOnAction(event);
-        layout.getChildren().add(startButton);
+        resumeButton.setOnAction(resumeEvent);
+        layout.getChildren().add(resumeButton);
 
-        HighScores highScores = new HighScores(model, stage);
-        Button highScoresButton = ButtonCreator.createButton("High scores", 400);
-        EventHandler<ActionEvent> highScoresEvent = e -> {
-            highScores.show();
+        Button menuButton = ButtonCreator.createButton("Menu", 300);
+        EventHandler<ActionEvent> menuEvent = e -> {
+            try {
+                model.toMenu();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         };
 
-        highScoresButton.setOnAction(highScoresEvent);
-        layout.getChildren().add(highScoresButton);
-
-        About about = new About(model, stage);
-        Button aboutButton = ButtonCreator.createButton("About", 500);
-        EventHandler<ActionEvent> aboutEvent = e -> {
-            about.show();
-        };
-
-        aboutButton.setOnAction(aboutEvent);
-        layout.getChildren().add(aboutButton);
-        this.stage.setScene(scene);
+        menuButton.setOnAction(menuEvent);
+        layout.getChildren().add(menuButton);
     }
 
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
+
     }
 
     @Override
     public void onNext(Boolean item) {
-        if (model.getGameState() == Model.GameState.MENU) {
+        if (model.getGameState() == Model.GameState.PAUSE) {
             this.stage.setScene(scene);
         }
     }

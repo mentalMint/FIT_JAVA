@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.tetris.View;
+package ru.nsu.fit.oop.tetris.view;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;

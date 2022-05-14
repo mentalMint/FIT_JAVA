@@ -1,10 +1,10 @@
 package ru.nsu.fit.oop.tetris;
 
 import javafx.stage.Stage;
-import ru.nsu.fit.oop.tetris.View.Game;
-import ru.nsu.fit.oop.tetris.View.Score;
-import ru.nsu.fit.oop.tetris.View.Menu;
-import ru.nsu.fit.oop.tetris.View.Pause;
+import ru.nsu.fit.oop.tetris.view.Game;
+import ru.nsu.fit.oop.tetris.view.Score;
+import ru.nsu.fit.oop.tetris.view.Menu;
+import ru.nsu.fit.oop.tetris.view.Pause;
 
 public class Controller {
     public void run(Stage stage) {
