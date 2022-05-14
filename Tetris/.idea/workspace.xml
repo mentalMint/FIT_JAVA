@@ -4,44 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="Menu and pause added">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/HighScores.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/MapUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/About.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/ButtonCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/HighScores.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/IView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/Score.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/JShape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/LShape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/SShape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/TShape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/ZShape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/high_scores.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Cell.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Color.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/Pause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/Pause.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/BarShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/BarShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/shapes/Shape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Cell.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Color.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/HelloApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/HelloController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$Field.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$Field.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/shapes/Shape.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/shapes/Shape.class" afterDir="false" />
+    <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="Game is playable">
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/IView.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652159349744</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Game is playable">
+      <created>1652513418417</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652513418417</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -179,6 +150,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="view shows blocks" />
     <MESSAGE value="Menu and pause added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Menu and pause added" />
+    <MESSAGE value="Game is playable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game is playable" />
   </component>
 </project>
