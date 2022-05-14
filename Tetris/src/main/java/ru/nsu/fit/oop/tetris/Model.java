@@ -9,14 +9,22 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
+    public Model() {
+        try {
+            highScores.load(highScoreFileName);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public enum GameState {
         MENU,
-        HIGH_SCORES,
-        ABOUT,
         GAME,
-        OVER,
-        PAUSE
+        PAUSE,
+        SCORE
     }
+
     public class Field {
         private final int width = 10;
         private final int height = 17;
@@ -41,6 +49,21 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         }
     }
 
+    private class TickTask extends TimerTask {
+
+        @Override
+        public void run() {
+            try {
+                nextTick();
+            } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private String highScoreFileName = "high_scores.txt";
+    private int score = 0;
+    private final HighScores highScores = new HighScores();
     private GameState gameState = GameState.MENU;
     private Shape currentShape;
     private Shape previousShape;
@@ -49,37 +72,83 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
     private final Field field = new Field();
     private Timer timer = null;
     private TimerTask timerTask;
-
+    private final int timerSpeed = 700;
 
     private void nextTick() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         moveCurrentShapeDown();
         if (noWayDown(currentShape)) {
+            cleanFullLines();
+            if (isOver()) {
+                complete();
+            }
             createNewShape();
         }
     }
 
+    private boolean isOver() {
+        for (int i = 0; i < field.width; i++) {
+            if (field.blocks.get(2 * field.width + i).color != Color.TRANSPARENT) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void cleanFullLines() {
+        for (int i = 0; i < field.height; i++) {
+            boolean fullLine = true;
+            for (int j = 0; j < field.width; j++) {
+                if (field.blocks.get(i * field.width + j).color == Color.TRANSPARENT) {
+                    fullLine = false;
+                    break;
+                }
+            }
+            if (fullLine) {
+                score += 10;
+                moveBlocksDown(i);
+            }
+        }
+    }
+
+    public void moveBlocksDown(int line) {
+        for (int j = 0; j < field.width; j++) {
+            field.blocks.get(line * field.width + j).color = Color.TRANSPARENT;
+        }
+        for (int j = line; j > 0; j--) {
+            for (int k = 0; k < field.width; k++) {
+                field.blocks.get(j * field.width + k).color = field.blocks.get((j - 1) * field.width + k).color;
+            }
+        }
+        for (int j = 0; j < field.width; j++) {
+            field.blocks.get(j).color = Color.TRANSPARENT;
+        }
+    }
+
     public void start() throws Exception {
+        score = 0;
+        cleanBoard();
         gameState = GameState.GAME;
         registerShapeClasses();
         createNewShape();
         updateField();
         notifyObservers();
         timer = new Timer();
-        timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    nextTick();
-                } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        timer.schedule(timerTask, 1000, 700);
+        timerTask = new TickTask();
+        timer.schedule(timerTask, 1000, timerSpeed);
     }
 
     public void pause() {
         gameState = GameState.PAUSE;
+        timer.cancel();
+        notifyObservers();
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void complete() {
+        gameState = GameState.SCORE;
         timer.cancel();
         notifyObservers();
     }
@@ -90,35 +159,53 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         }
     }
 
-    public void stop() {
+    public void toMenu() {
         gameState = GameState.MENU;
         notifyObservers();
-        cleanBoard();
     }
 
     public void exit() {
         if (gameState == GameState.GAME) {
             pause();
-            stop();
+            toMenu();
         } else if (gameState == GameState.PAUSE) {
-            stop();
+            toMenu();
+        }
+        try {
+            highScores.store(highScoreFileName);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     public void resume() {
         gameState = GameState.GAME;
         timer = new Timer();
-        timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    nextTick();
-                } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        timer.schedule(timerTask, 0, 700);
+        timerTask = new TickTask();
+        timer.schedule(timerTask, 0, timerSpeed);
+    }
+
+    public void increaseSpeed() {
+        changeSpeed(1000);
+    }
+
+    public void decreaseSpeed() {
+        changeSpeed(timerSpeed);
+    }
+
+    private void changeSpeed(int newSpeed) {
+        timer.cancel();
+        timer = new Timer();
+        timerTask = new TickTask();
+        timer.schedule(timerTask, 0, newSpeed);
+    }
+
+    public Map<String, Integer> getHighScores() {
+        return highScores.getHighScores();
+    }
+
+    public void addScore(String name) {
+        highScores.add(name, score);
     }
 
     public Field getField() {
@@ -128,6 +215,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
     public GameState getGameState() {
         return gameState;
     }
+
     private void updateField() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         for (Block block : previousShape.blocks) {
             block.color = Color.TRANSPARENT;
@@ -137,31 +225,6 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
             field.blocks.set((block.y + currentShape.y) * field.width + block.x + currentShape.x, block);
         }
         previousShape = currentShape.getClass().getConstructor(currentShape.getClass()).newInstance(currentShape);
-
-        if (noWayDown(currentShape)) {
-            for (int i = 0; i < field.height; i++) {
-                boolean fullLine = true;
-                for (int j = 0; j < field.width; j++) {
-                    if (field.blocks.get(i * field.width + j).color == Color.TRANSPARENT) {
-                        fullLine = false;
-                        break;
-                    }
-                }
-                if (fullLine) {
-                    for (int j = 0; j < field.width; j++) {
-                        field.blocks.get(i * field.width + j).color = Color.TRANSPARENT;
-                    }
-                    for (int j = i; j > 0; j--) {
-                        for (int k = 0; k < field.width; k++) {
-                            field.blocks.get(j * field.width + k).color = field.blocks.get((j - 1) * field.width + k).color;
-                        }
-                    }
-                    for (int j = 0; j < field.width; j++) {
-                        field.blocks.get(j).color = Color.TRANSPARENT;
-                    }
-                }
-            }
-        }
     }
 
     private void moveCurrentShapeDown() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
@@ -178,7 +241,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
             System.err.println("Null shape class");
         } else {
             try {
-                currentShape = (Shape) shapeClass.getConstructor(javafx.scene.paint.Color.class, int.class, int.class).newInstance(getRandomElement(shapeColors), field.width / 2 - 1, 0);
+                currentShape = (Shape) shapeClass.getConstructor(javafx.scene.paint.Color.class, int.class, int.class).newInstance(getRandomElement(shapeColors), field.width / 2 - 1, 1);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -294,62 +357,13 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         }
     }
 
-    boolean isOutOfBoundaries(Shape shape) {
-        for (Block block : shape.blocks) {
-            if (shape.x + block.x < 0 || shape.x + block.x >= field.width ||
-                    shape.y + block.y < 0 || shape.y + block.y >= field.width) {
-                return true;
-            }
+    private boolean hasIllegalPlace(Block block) {
+        if (block.x + currentShape.x < 0 || block.x + currentShape.x >= field.width ||
+                block.y + currentShape.y < 0 || block.y + currentShape.y >= field.height) {
+            return true;
         }
-        return false;
-    }
-
-    int getIndexOfLeftestBlock(Shape shape) {
-        int indexOfLeftest = 0;
-        for (Block block : shape.blocks) {
-            if (block.x < shape.blocks.get(indexOfLeftest).x) {
-                indexOfLeftest = shape.blocks.indexOf(block);
-            }
-        }
-        return indexOfLeftest;
-    }
-
-    int getIndexOfRightestBlock(Shape shape) {
-        int indexOfRightest = 0;
-        for (Block block : shape.blocks) {
-            if (block.x > shape.blocks.get(indexOfRightest).x) {
-                indexOfRightest = shape.blocks.indexOf(block);
-            }
-        }
-        return indexOfRightest;
-    }
-
-    int getIndexOfHighestBlock(Shape shape) {
-        int indexOfHighest = 0;
-        for (Block block : shape.blocks) {
-            if (block.y < shape.blocks.get(indexOfHighest).y) {
-                indexOfHighest = shape.blocks.indexOf(block);
-            }
-        }
-        return indexOfHighest;
-    }
-
-    int getIndexOfLowestBlock(Shape shape) {
-        int indexOfLowest = 0;
-        for (Block block : shape.blocks) {
-            if (block.y > shape.blocks.get(indexOfLowest).y) {
-                indexOfLowest = shape.blocks.indexOf(block);
-            }
-        }
-        return indexOfLowest;
-    }
-
-    boolean hasIllegalPlace(Block block) {
         Block existingBlock = field.blocks.get((block.y + currentShape.y) * field.width + block.x + currentShape.x);
-        return block.x + currentShape.x < 0 || block.x + currentShape.x >= field.width ||
-                block.y + currentShape.y < 0 || block.y + currentShape.y >= field.height ||
-                (existingBlock.color != Color.TRANSPARENT &&
-                        ! currentShape.blocks.contains(existingBlock));
+        return existingBlock.color != Color.TRANSPARENT && !currentShape.blocks.contains(existingBlock);
     }
 
     public void rotateCurrentShape() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
@@ -364,4 +378,5 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         updateField();
         notifyObservers();
     }
+
 }

@@ -11,7 +11,6 @@ public abstract class Shape implements IShape {
     public int x;
     public int y;
     Color color;
-    TurningSide turningSide = TurningSide.UP;
 
     public Shape(Color color, int x, int y) {
         this.color = color;
@@ -23,17 +22,19 @@ public abstract class Shape implements IShape {
         color = shape.color;
         x = shape.x;
         y = shape.y;
-        turningSide = shape.turningSide;
-//        blocks = new ArrayList<>(shape.blocks);
+
         for (Block block : shape.blocks) {
             blocks.add(new Block((block)));
         }
     }
 
-    public enum TurningSide {
-        UP,
-        RIGHT,
-        DOWN,
-        LEFT
+    @Override
+    public void rotate() {
+        for (Block block : blocks) {
+            int x = block.x;
+            int y = block.y;
+            block.x = -y ;
+            block.y = x;
+        }
     }
 }

@@ -29,24 +29,10 @@ public class Game implements Flow.Subscriber<Boolean> {
         this.stage = stage;
         this.stage.setTitle("Tetris");
 
-//        InputStream background = View.class.getResourceAsStream("background.jpg");
-//        if (background == null) {
-//            System.err.println("No background");
-//        } else {
-//            Image img = new Image(background);
-//            BackgroundImage bImg = new BackgroundImage(img,
-//                    BackgroundRepeat.NO_REPEAT,
-//                    BackgroundRepeat.NO_REPEAT,
-//                    BackgroundPosition.DEFAULT,
-//                    new BackgroundSize(width, height, true, true, true, true));
-//            Background bGround = new Background(bImg);
-//            layout.setBackground(bGround);
-//        }
         layout.setBackground((new Background(new BackgroundFill(Color.DARKSLATEBLUE, CornerRadii.EMPTY, Insets.EMPTY))));
         this.blocks = model.getField().getBlocks();
 
         double widthShift = (double) width / model.getField().getWidth();
-        double heightShift = (double) (height - 2) / model.getField().getHeight();
 
         for (int i = 0; i < model.getField().getHeight(); i++) {
             for (int j = 0; j < model.getField().getWidth(); j++) {
@@ -82,6 +68,13 @@ public class Game implements Flow.Subscriber<Boolean> {
                 }
             } else if (e.getCode() == KeyCode.ESCAPE) {
                 model.pause();
+            } else if (e.getCode() == KeyCode.S) {
+                model.increaseSpeed();
+            }
+        });
+        scene.setOnKeyReleased(e -> {
+            if (e.getCode() == KeyCode.S) {
+                model.decreaseSpeed();
             }
         });
         scene.setRoot(layout);
