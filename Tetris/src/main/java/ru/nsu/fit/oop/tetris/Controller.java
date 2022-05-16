@@ -13,7 +13,10 @@ public class Controller {
         Menu menu = new Menu(model, stage);
         Pause pause = new Pause(model, stage);
         Score gameOver = new Score(model, stage);
-        stage.setOnCloseRequest(t -> model.exit());
+        stage.setOnCloseRequest(t -> {
+            model.exit();
+        });
         stage.show();
     }
 }
+

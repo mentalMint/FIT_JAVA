@@ -1,11 +1,12 @@
 package ru.nsu.fit.oop.tetris;
 
 import java.io.*;
+import java.net.URL;
 import java.util.*;
 
 public class HighScores {
     private final Map<String, Integer> highScores = new TreeMap<>();
-    private Properties properties = new Properties();
+    private final Properties properties = new Properties();
 
     public void add(String name, int score) {
         if (highScores.containsKey(name)) {
@@ -21,15 +22,31 @@ public class HighScores {
         for (String name : highScores.keySet()) {
             properties.put(name, highScores.get(name).toString());
         }
-        PrintWriter writer =
-                new PrintWriter(
-                        Model.class.getResource(fileName).getPath());
-            properties.store(writer, null);
+
+        URL file = Model.class.getResource(fileName);
+        if (file == null) {
+            System.err.println("File \"" + fileName + "\" not found. High scores can't be written.");
+        } else {
+            try (PrintWriter writer = new PrintWriter(Objects.requireNonNull(file).getPath())) {
+                properties.store(writer, null);
+            } catch (FileNotFoundException e) {
+                throw new FileNotFoundException("File \"" + fileName + "\" not found");
+            } catch (IOException e) {
+                throw new IOException("Error while storing");
+            }
+        }
     }
 
     public void load(String fileName) throws IOException {
-        InputStream stream = Model.class.getResourceAsStream(fileName);
-        properties.load(stream);
+        try (InputStream stream = Model.class.getResourceAsStream(fileName)) {
+            if (stream == null) {
+                System.err.println("File \"" + fileName + "\" not found. High scores can't be loaded.");
+            } else {
+                properties.load(stream);
+            }
+        } catch (IOException e) {
+            throw new IOException("Error while loading");
+        }
         for (final String name : properties.stringPropertyNames()) {
             highScores.put(name, Integer.parseInt(properties.getProperty(name)));
         }

@@ -4,6 +4,7 @@ import ru.nsu.fit.oop.tetris.shapes.Shape;
 
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -12,9 +13,9 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
     public Model() {
         try {
             highScores.load(highScoreFileName);
-
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
+            System.err.println("High scores will be empty.");
         }
     }
 
@@ -61,7 +62,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         }
     }
 
-    private String highScoreFileName = "high_scores.txt";
+    private final String highScoreFileName = "high_scores.txt";
     private int score = 0;
     private final HighScores highScores = new HighScores();
     private GameState gameState = GameState.MENU;
@@ -173,8 +174,9 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         }
         try {
             highScores.store(highScoreFileName);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
+            System.err.println("High scores won't been updated.");
         }
     }
 
@@ -368,13 +370,13 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
 
     public void rotateCurrentShape() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Shape tmp = currentShape.getClass().getConstructor(currentShape.getClass()).newInstance(currentShape);
-        currentShape.rotate();
-        for (Block block : currentShape.blocks) {
+        tmp.rotate();
+        for (Block block : tmp.blocks) {
             if (hasIllegalPlace(block)) {
-                currentShape = tmp;
                 return;
             }
         }
+        currentShape = tmp;
         updateField();
         notifyObservers();
     }

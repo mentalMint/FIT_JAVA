@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="Game is playable">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/View/IView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/HighScores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/HighScores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$Field.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$Field.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +142,21 @@
       <option name="project" value="LOCAL" />
       <updated>1652513418417</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Game is playable">
+      <created>1652513646622</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652513646622</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Game is playable">
+      <created>1652513747592</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1652513747592</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -152,5 +175,15 @@
     <MESSAGE value="Menu and pause added" />
     <MESSAGE value="Game is playable" />
     <option name="LAST_COMMIT_MESSAGE" value="Game is playable" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.reflect.InvocationTargetException" package="java.lang.reflect" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
