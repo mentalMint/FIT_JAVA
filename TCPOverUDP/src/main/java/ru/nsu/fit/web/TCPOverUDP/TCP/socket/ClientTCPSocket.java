@@ -1,5 +1,7 @@
 package ru.nsu.fit.web.TCPOverUDP.TCP.socket;
 
+import ru.nsu.fit.web.TCPOverUDP.TCP.socket.packet.TCPPacket;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -10,17 +12,42 @@ public class ClientTCPSocket extends TCPSocket {
         super(port);
     }
 
+    private void sendHandshake() throws IOException {
+        TCPPacket packet = new TCPPacket();
+        packet.ack = getAck();
+        packet.seq = getSeq();
+        packet.isSyn = true;
+        getSocket().send(packet.makePacket());
+        setSeq(getSeq() + 1);
+    }
+
+    private void receiveHandshakeAck() throws IOException {
+        int receivedLength = 2 * Integer.BYTES;
+        DatagramPacket receivedPacket = new DatagramPacket(new byte[receivedLength], receivedLength);
+        getSocket().receive(receivedPacket);
+        TCPPacket packet = new TCPPacket();
+        packet.extractPacket(receivedPacket);
+
+        System.err.println("Seq: " + packet.seq + " Ack: " + packet.ack);
+        setAck(getAck() + 1);
+    }
+
+    private void sendHandshakeAck() throws IOException {
+        TCPPacket packet = new TCPPacket();
+        packet.ack = getAck();
+        packet.seq = getSeq();
+        packet.isAck = true;
+        getSocket().send(packet.makePacket());
+        setSeq(getSeq() + 1);
+    }
+
     @Override
     public void connect(InetAddress address, int port) {
-        socket.connect(address, port);
-        byte[] buf = new byte[1];
-        DatagramPacket packet = new DatagramPacket(buf, 1);
+        getSocket().connect(address, port);
         try {
-            sendNow(new DatagramPacket(buf, 1));
-            receive(packet);
-            String str = new String(packet.getData(), 0, packet.getLength());
-            System.err.println(str);
-            sendNow(new DatagramPacket(buf, 1));
+            sendHandshake();
+            receiveHandshakeAck();
+            sendHandshakeAck();
         } catch (IOException e) {
             e.printStackTrace();
         }

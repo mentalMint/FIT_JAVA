@@ -50,16 +50,16 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         }
 
         public void clean() {
-            for (Block block : field.blocks) {
+            for (Block block : this.blocks) {
                 block.color = Color.TRANSPARENT;
             }
         }
 
         public void cleanFullLines() {
-            for (int i = 0; i < field.height; i++) {
+            for (int i = 0; i < this.height; i++) {
                 boolean fullLine = true;
-                for (int j = 0; j < field.width; j++) {
-                    if (field.blocks.get(i * field.width + j).color == Color.TRANSPARENT) {
+                for (int j = 0; j < this.width; j++) {
+                    if (this.blocks.get(i * this.width + j).color == Color.TRANSPARENT) {
                         fullLine = false;
                         break;
                     }
@@ -72,26 +72,26 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         }
 
         public void moveBlocksDown(int line) {
-            for (int j = 0; j < field.width; j++) {
-                field.blocks.get(line * field.width + j).color = Color.TRANSPARENT;
+            for (int j = 0; j < width; j++) {
+                blocks.get(line * width + j).color = Color.TRANSPARENT;
             }
             for (int j = line; j > 0; j--) {
-                for (int k = 0; k < field.width; k++) {
-                    field.blocks.get(j * field.width + k).color = field.blocks.get((j - 1) * field.width + k).color;
+                for (int k = 0; k < width; k++) {
+                    blocks.get(j * width + k).color = blocks.get((j - 1) * width + k).color;
                 }
             }
-            for (int j = 0; j < field.width; j++) {
-                field.blocks.get(j).color = Color.TRANSPARENT;
+            for (int j = 0; j < width; j++) {
+                blocks.get(j).color = Color.TRANSPARENT;
             }
         }
 
         public boolean noWayDown(Shape shape) {
             for (Block block : shape.blocks) {
                 int blockYCoordinates = block.y + shape.y;
-                if (blockYCoordinates >= field.height - 1) {
+                if (blockYCoordinates >= height - 1) {
                     return true;
                 }
-                Block lowerBlock = field.blocks.get(blockYCoordinates * field.width + block.x + shape.x + field.width);
+                Block lowerBlock = blocks.get(blockYCoordinates * width + block.x + shape.x + width);
                 if (lowerBlock.color != Color.TRANSPARENT && !shape.blocks.contains(lowerBlock)) {
                     return true;
                 }
@@ -105,7 +105,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
                 if (blockYCoordinates <= 0) {
                     return true;
                 }
-                Block upperBlock = field.blocks.get(blockYCoordinates * field.width + block.x + shape.x - field.width);
+                Block upperBlock = blocks.get(blockYCoordinates * width + block.x + shape.x - width);
                 if (upperBlock.color != Color.TRANSPARENT && !shape.blocks.contains(upperBlock)) {
                     return true;
                 }
@@ -119,7 +119,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
                 if (blockXCoordinates <= 0) {
                     return true;
                 } else {
-                    Block lefterBlock = field.blocks.get(blockXCoordinates - 1 + (block.y + shape.y) * field.width);
+                    Block lefterBlock = blocks.get(blockXCoordinates - 1 + (block.y + shape.y) * width);
                     if (lefterBlock.color != Color.TRANSPARENT && !shape.blocks.contains(lefterBlock)) {
                         return true;
                     }
@@ -131,10 +131,10 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         public boolean noWayRight(Shape shape) {
             for (Block block : shape.blocks) {
                 int blockXCoordinates = block.x + shape.x;
-                if (blockXCoordinates >= field.width - 1) {
+                if (blockXCoordinates >= width - 1) {
                     return true;
                 } else {
-                    Block lefterBlock = field.blocks.get(blockXCoordinates + 1 + (block.y + shape.y) * field.width);
+                    Block lefterBlock = blocks.get(blockXCoordinates + 1 + (block.y + shape.y) * width);
                     if (lefterBlock.color != Color.TRANSPARENT && !shape.blocks.contains(lefterBlock)) {
                         return true;
                     }
