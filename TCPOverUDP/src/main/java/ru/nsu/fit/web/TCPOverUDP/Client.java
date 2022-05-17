@@ -13,9 +13,9 @@ public class Client {
             InetAddress address = InetAddress.getByName("127.0.0.1");
             socket.connect(address, 8000);
             String str = "You picked the wrong house, fool!";
-            socket.sendNow(str.getBytes());
+            socket.send(str.getBytes());
             str = "Roger, roger, Roger, roger, Roger, roger, Roger, roger, Roger, roger";
-            socket.sendNow(str.getBytes(StandardCharsets.UTF_8));
+            socket.send(str.getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             e.printStackTrace();
         }
