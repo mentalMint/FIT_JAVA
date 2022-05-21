@@ -5,51 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="Exceptions best practises implemented">
-      <change beforePath="$PROJECT_DIR$/../ScannerNextCheck/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ScannerNextCheck/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ScannerNextCheck/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ScannerNextCheck/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ScannerNextCheck/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ScannerNextCheck/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ScannerNextCheck/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ScannerNextCheck/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ScannerNextCheck/src/main/java/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ScannerNextCheck/target/classes/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/src/main/java/ru/nsu/fit/oop/Block.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/src/main/java/ru/nsu/fit/oop/Cell.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/src/main/java/ru/nsu/fit/oop/Color.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/src/main/java/ru/nsu/fit/oop/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/src/main/java/ru/nsu/fit/oop/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/src/main/java/ru/nsu/fit/oop/Model.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/src/main/java/ru/nsu/fit/oop/View.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/src/main/java/ru/nsu/fit/oop/observer/Observable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/src/main/java/ru/nsu/fit/oop/observer/Observer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/src/main/java/ru/nsu/fit/oop/shapes/IShape.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/src/main/java/ru/nsu/fit/oop/shapes/Shape.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/src/main/java/ru/nsu/fit/oop/shapes/SquareShape.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/Block.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/Cell.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/Color.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/Model$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/Model$Field.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/Model.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/View.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/config.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/observer/Observable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/observer/Observer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/shapes/IShape.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/shapes/Shape.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tetris1/target/classes/ru/nsu/fit/oop/shapes/SquareShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653136715263</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Exceptions best practises implemented">
+      <created>1653138038615</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1653138038615</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
