@@ -216,7 +216,6 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
     private final TetrisTimer tetrisTimer = new TetrisTimer();
 
     private void nextTick() throws ShapeCreationException {
-        moveCurrentShapeDown();
         if (field.noWayDown(currentShape)) {
             field.cleanFullLines();
             if (isOver()) {
@@ -224,6 +223,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
             }
             createNewShape();
         }
+        moveCurrentShapeDown();
     }
 
     private boolean isOver() {

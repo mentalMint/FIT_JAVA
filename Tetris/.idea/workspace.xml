@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="Exceptions best practises implemented">
+    <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="Classes exported">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_media_18_ea_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_media_win_18_ea_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/TetrisBeatbox.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/config.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,13 +56,17 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.41609195" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -71,20 +83,7 @@
       <recent name="ru.nsu.fit.oop.tetris" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.nsu.fit.oop.tetris.HelloApplication" />
-      <module name="Tetris" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.nsu.fit.oop.tetris.view.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.nsu.fit.oop.tetris.Main" />
       <module name="Tetris" />
@@ -101,7 +100,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.HelloApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -184,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653138038615</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Classes exported">
+      <created>1653139863608</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1653139863608</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -205,7 +210,8 @@
     <MESSAGE value="Bug with wall sticking was fixed." />
     <MESSAGE value="TetrisTimer created. Some methods moved to Field and TetrisTimer" />
     <MESSAGE value="Exceptions best practises implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Exceptions best practises implemented" />
+    <MESSAGE value="Classes exported" />
+    <option name="LAST_COMMIT_MESSAGE" value="Classes exported" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

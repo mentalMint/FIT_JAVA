@@ -3,7 +3,12 @@ package ru.nsu.fit.oop.tetris.view;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -11,8 +16,11 @@ import ru.nsu.fit.oop.tetris.Block;
 import ru.nsu.fit.oop.tetris.Model;
 import ru.nsu.fit.oop.tetris.exceptions.ShapeCreationException;
 
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.Flow;
+
+import javafx.scene.media.Media;
 
 public class Game implements Flow.Subscriber<Boolean> {
     private final Model model;
@@ -22,6 +30,8 @@ public class Game implements Flow.Subscriber<Boolean> {
     private final Pane layout = new Pane();
     private final Stage stage;
     private final Scene scene = new Scene(layout, width, height);
+    private final String musicFile = "src/main/resources/ru/nsu/fit/oop/tetris/TetrisBeatbox.mp3";
+    private final AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
 
     public Game(Model model, Stage stage) {
         this.model = model;
@@ -88,6 +98,9 @@ public class Game implements Flow.Subscriber<Boolean> {
     @Override
     public void onNext(Boolean item) {
         if (model.getGameState() == Model.GameState.GAME) {
+            if (!sound.isPlaying()) {
+                sound.play();
+            }
             blocks = model.getField().getBlocks();
 
             for (int i = 0; i < model.getField().getHeight(); i++) {
@@ -98,6 +111,8 @@ public class Game implements Flow.Subscriber<Boolean> {
             }
             scene.setRoot(layout);
             stage.setScene(scene);
+        } else {
+            sound.stop();
         }
     }
 

@@ -1,7 +1,7 @@
-#Square=ru.nsu.fit.oop.tetris.shapes.SquareShape
-#Bar=ru.nsu.fit.oop.tetris.shapes.BarShape
-#T=ru.nsu.fit.oop.tetris.shapes.TShape
-#L=ru.nsu.fit.oop.tetris.shapes.LShape
-#J=ru.nsu.fit.oop.tetris.shapes.JShape
-#S=ru.nsu.fit.oop.tetris.shapes.SShape
-#Z=ru.nsu.fit.oop.tetris.shapes.ZShape
+Square=ru.nsu.fit.oop.tetris.shapes.SquareShape
+Bar=ru.nsu.fit.oop.tetris.shapes.BarShape
+T=ru.nsu.fit.oop.tetris.shapes.TShape
+L=ru.nsu.fit.oop.tetris.shapes.LShape
+J=ru.nsu.fit.oop.tetris.shapes.JShape
+S=ru.nsu.fit.oop.tetris.shapes.SShape
+Z=ru.nsu.fit.oop.tetris.shapes.ZShape
