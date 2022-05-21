@@ -5,26 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="Exceptions best practises implemented">
-      <change afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/SR/ClientTCPSocket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/SR/ReceiveBuffer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/SR/SendBuffer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/SR/ServerTCPSocket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/SR/TCPSocket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/exceptions/ShapeCreationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/TCP/socket/TCPBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/SR/TCPBuffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/TCP/socket/TCPSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/TCP/socket/TCPSocket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/target/classes/ru/nsu/fit/web/TCPOverUDP/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/target/classes/ru/nsu/fit/web/TCPOverUDP/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/target/classes/ru/nsu/fit/web/TCPOverUDP/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/target/classes/ru/nsu/fit/web/TCPOverUDP/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/target/classes/ru/nsu/fit/web/TCPOverUDP/TCP/socket/TCPSocket.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/target/classes/ru/nsu/fit/web/TCPOverUDP/TCP/socket/TCPSocket.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/exceptions/ClassesRegistrationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/HighScores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/HighScores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$Field.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$Field.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/config.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/module-info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Block.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$Field.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/config.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/observer/Observable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/observer/Observer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/shapes/IShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/shapes/Shape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/shapes/SquareShape.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +71,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -180,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652677500403</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Exceptions best practises implemented">
+      <created>1653135609680</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1653135609680</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -1,5 +1,7 @@
 package ru.nsu.fit.oop.tetris;
 
+import javafx.fxml.LoadException;
+import ru.nsu.fit.oop.tetris.exceptions.ClassesRegistrationException;
 import ru.nsu.fit.oop.tetris.exceptions.ShapeCreationException;
 import ru.nsu.fit.oop.tetris.shapes.Shape;
 
@@ -146,7 +148,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
 
     private class TickTask extends TimerTask {
         @Override
-        public void run(){
+        public void run() {
             try {
                 nextTick();
             } catch (ShapeCreationException e) {
@@ -233,13 +235,18 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         return false;
     }
 
-    public void start() throws Exception {
+    public void start() throws ClassesRegistrationException, ShapeCreationException {
         score = 0;
         field.clean();
         gameState = GameState.GAME;
-        registerShapeClasses();
+        try {
+            registerShapeClasses();
+        } catch (Exception e) {
+            throw new ClassesRegistrationException(e);
+        }
         createNewShape();
         updateField();
+
         notifyObservers();
         tetrisTimer.start();
     }
@@ -364,13 +371,17 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         return null;
     }
 
-    private void registerShapeClasses() throws Exception {
+    private void registerShapeClasses() throws NullPointerException, LoadException, ClassNotFoundException {
         InputStream config = Model.class.getResourceAsStream("config.txt");
         if (config == null) {
             throw new NullPointerException("config.txt is not found");
         }
         Properties properties = new Properties();
-        properties.load(config);
+        try {
+            properties.load(config);
+        } catch (IOException e) {
+            throw new LoadException("Faild to load config");
+        }
 
         for (Object shapeClassName : properties.values()) {
             try {

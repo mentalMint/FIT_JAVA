@@ -36,6 +36,7 @@ public class Menu implements Flow.Subscriber<Boolean> {
                 model.start();
             } catch (Exception ex) {
                 ex.printStackTrace();
+                stage.close();
             }
         };
 
