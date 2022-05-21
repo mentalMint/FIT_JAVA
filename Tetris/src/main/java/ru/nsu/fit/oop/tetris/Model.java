@@ -1,12 +1,12 @@
 package ru.nsu.fit.oop.tetris;
 
+import ru.nsu.fit.oop.tetris.exceptions.ShapeCreationException;
 import ru.nsu.fit.oop.tetris.shapes.Shape;
 
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
@@ -146,10 +146,12 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
 
     private class TickTask extends TimerTask {
         @Override
-        public void run() {
+        public void run(){
             try {
                 nextTick();
-            } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+            } catch (ShapeCreationException e) {
+                pause();
+                exit();
                 e.printStackTrace();
             }
         }
@@ -211,7 +213,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
     private final Field field = new Field();
     private final TetrisTimer tetrisTimer = new TetrisTimer();
 
-    private void nextTick() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    private void nextTick() throws ShapeCreationException {
         moveCurrentShapeDown();
         if (field.noWayDown(currentShape)) {
             field.cleanFullLines();
@@ -307,7 +309,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         return gameState;
     }
 
-    private void updateField() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    private void updateField() throws ShapeCreationException {
         for (Block block : previousShape.blocks) {
             block.color = Color.TRANSPARENT;
             field.blocks.set((block.y + previousShape.y) * field.width + block.x + previousShape.x, block);
@@ -315,10 +317,14 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         for (Block block : currentShape.blocks) {
             field.blocks.set((block.y + currentShape.y) * field.width + block.x + currentShape.x, block);
         }
-        previousShape = currentShape.getClass().getConstructor(currentShape.getClass()).newInstance(currentShape);
+        try {
+            previousShape = currentShape.getClass().getConstructor(currentShape.getClass()).newInstance(currentShape);
+        } catch (Exception e) {
+            throw new ShapeCreationException(e);
+        }
     }
 
-    private void moveCurrentShapeDown() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    private void moveCurrentShapeDown() throws ShapeCreationException {
         if (!field.noWayDown(currentShape)) {
             currentShape.y++;
             updateField();
@@ -326,18 +332,24 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         }
     }
 
-    private void createNewShape() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    private void createNewShape() throws ShapeCreationException {
         Class<?> shapeClass = getRandomElement(this.shapeClasses);
         if (shapeClass == null) {
-            System.err.println("Null shape class");
+            throw new NullPointerException("Null shape class");
         } else {
             try {
-                currentShape = (Shape) shapeClass.getConstructor(javafx.scene.paint.Color.class, int.class, int.class).newInstance(getRandomElement(shapeColors), field.width / 2 - 1, 1);
+                currentShape = (Shape) shapeClass.getConstructor(javafx.scene.paint.Color.class, int.class, int.class).
+                        newInstance(getRandomElement(shapeColors), field.width / 2 - 1, 1);
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new ShapeCreationException(e);
             }
         }
-        previousShape = currentShape.getClass().getConstructor(currentShape.getClass()).newInstance(currentShape);
+
+        try {
+            previousShape = currentShape.getClass().getConstructor(currentShape.getClass()).newInstance(currentShape);
+        } catch (Exception e) {
+            throw new ShapeCreationException(e);
+        }
     }
 
     private <T> T getRandomElement(Set<T> set) {
@@ -364,17 +376,18 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
             try {
                 Class<?> shapeClass = Class.forName((String) shapeClassName);
                 this.shapeClasses.add(shapeClass);
-            } catch (Exception e) {
-                System.err.println("Error while searching shape class: " + e.getLocalizedMessage() + " This shape will be skipped.");
+            } catch (ClassNotFoundException e) {
+                System.err.println("Error while searching shape class: " + e.getLocalizedMessage() + " This shape will be skipped");
             }
         }
+        shapeClasses.remove(null);
 
         if (this.shapeClasses.isEmpty()) {
-            throw new Exception("no shape classes");
+            throw new ClassNotFoundException("No shape classes from config.txt found");
         }
     }
 
-    public void moveCurrentShapeRight() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void moveCurrentShapeRight() throws ShapeCreationException {
         if (!field.noWayRight(currentShape)) {
             currentShape.x++;
             updateField();
@@ -382,7 +395,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         }
     }
 
-    public void moveCurrentShapeLeft() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void moveCurrentShapeLeft() throws ShapeCreationException {
         if (!field.noWayLeft(currentShape)) {
             currentShape.x--;
             updateField();
@@ -399,8 +412,13 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         return existingBlock.color != Color.TRANSPARENT && !currentShape.blocks.contains(existingBlock);
     }
 
-    public void rotateCurrentShape() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        Shape tmp = currentShape.getClass().getConstructor(currentShape.getClass()).newInstance(currentShape);
+    public void rotateCurrentShape() throws ShapeCreationException {
+        Shape tmp;
+        try {
+            tmp = currentShape.getClass().getConstructor(currentShape.getClass()).newInstance(currentShape);
+        } catch (Exception e) {
+            throw new ShapeCreationException(e);
+        }
         tmp.rotate();
         for (Block block : tmp.blocks) {
             if (hasIllegalPlace(block)) {

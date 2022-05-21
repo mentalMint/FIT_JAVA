@@ -9,8 +9,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.tetris.Block;
 import ru.nsu.fit.oop.tetris.Model;
+import ru.nsu.fit.oop.tetris.exceptions.ShapeCreationException;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.concurrent.Flow;
 
@@ -51,19 +51,19 @@ public class Game implements Flow.Subscriber<Boolean> {
             if (e.getCode() == KeyCode.A) {
                 try {
                     model.moveCurrentShapeLeft();
-                } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException ex) {
+                } catch (ShapeCreationException ex) {
                     ex.printStackTrace();
                 }
             } else if (e.getCode() == KeyCode.D) {
                 try {
                     model.moveCurrentShapeRight();
-                } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException ex) {
+                } catch (ShapeCreationException ex) {
                     ex.printStackTrace();
                 }
             } else if (e.getCode() == KeyCode.SPACE) {
                 try {
                     model.rotateCurrentShape();
-                } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException ex) {
+                } catch (ShapeCreationException ex) {
                     ex.printStackTrace();
                 }
             } else if (e.getCode() == KeyCode.ESCAPE) {

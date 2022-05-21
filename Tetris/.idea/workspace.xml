@@ -4,9 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="TetrisTimer created. Some methods moved to Field and TetrisTimer">
+    <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="Exceptions best practises implemented">
+      <change afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/SR/ClientTCPSocket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/SR/ReceiveBuffer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/SR/SendBuffer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/SR/ServerTCPSocket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/SR/TCPSocket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/exceptions/ShapeCreationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/TCP/socket/TCPBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/SR/TCPBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/TCP/socket/TCPSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/src/main/java/ru/nsu/fit/web/TCPOverUDP/TCP/socket/TCPSocket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/target/classes/ru/nsu/fit/web/TCPOverUDP/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/target/classes/ru/nsu/fit/web/TCPOverUDP/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/target/classes/ru/nsu/fit/web/TCPOverUDP/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/target/classes/ru/nsu/fit/web/TCPOverUDP/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TCPOverUDP/target/classes/ru/nsu/fit/web/TCPOverUDP/TCP/socket/TCPSocket.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TCPOverUDP/target/classes/ru/nsu/fit/web/TCPOverUDP/TCP/socket/TCPSocket.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/HighScores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/HighScores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$Field.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model$Field.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/nsu/fit/oop/tetris/ru/nsu/fit/oop/tetris/Model.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +200,8 @@
     <MESSAGE value="Game is playable" />
     <MESSAGE value="Bug with wall sticking was fixed." />
     <MESSAGE value="TetrisTimer created. Some methods moved to Field and TetrisTimer" />
-    <option name="LAST_COMMIT_MESSAGE" value="TetrisTimer created. Some methods moved to Field and TetrisTimer" />
+    <MESSAGE value="Exceptions best practises implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Exceptions best practises implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

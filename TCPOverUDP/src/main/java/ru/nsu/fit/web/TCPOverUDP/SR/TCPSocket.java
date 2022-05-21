@@ -1,17 +1,23 @@
-package ru.nsu.fit.web.TCPOverUDP.TCP.socket;
+package ru.nsu.fit.web.TCPOverUDP.SR;
 
 import ru.nsu.fit.web.TCPOverUDP.TCP.socket.packet.TCPPacket;
 
 import java.io.Closeable;
 import java.io.IOException;
-import java.net.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
 import java.util.ArrayList;
 
 public abstract class TCPSocket implements Closeable {
     private final DatagramSocket socket;
     private Integer seq = 0;
     private Integer ack = 0;
-    private long timeoutInterval = 500;
+    private final long timeoutInterval = 500;
+    private SendBuffer sendBuffer = null;
+    private ReceiveBuffer receiveBuffer = null;
+
 
     public DatagramSocket getSocket() {
         return socket;
@@ -37,36 +43,26 @@ public abstract class TCPSocket implements Closeable {
         this.socket = new DatagramSocket(port);
     }
 
-    abstract public void connect(InetAddress address, int port);
-
-    public byte[] receive(int length) throws IOException {
-        int receivedLength = length + 2 * Integer.BYTES;
-        DatagramPacket receivedPacket = new DatagramPacket(new byte[receivedLength], receivedLength);
-        socket.receive(receivedPacket);
-        TCPPacket packet = new TCPPacket();
-        packet.extractPacket(receivedPacket);
-        System.err.println("Seq: " + packet.seq + " Ack: " + packet.ack);
-        ack++;
-        sendAck();
-        return packet.buf;
+    protected void makeBuffers() {
+        sendBuffer = new SendBuffer();
+        receiveBuffer = new ReceiveBuffer();
     }
 
-    public void send(byte[] buf) throws IOException {
+    abstract public void connect(InetAddress address, int port);
+
+    abstract public byte[] receive();
+
+    private void sendNow(TCPPacket packetToSend) throws IOException {
+        socket.send(packetToSend.makePacket());
+    }
+
+    public void send(byte[] buf) {
         TCPPacket packetToSend = new TCPPacket();
         packetToSend.ack = ack;
         packetToSend.seq = seq;
         packetToSend.length = buf.length;
         packetToSend.buf = buf;
-        socket.send(packetToSend.makePacket());
-
-        long start = System.currentTimeMillis();
-        TCPPacket receivedPacket = receivePacket();
-        while (!receivedPacket.isAck && receivedPacket.ack == seq - 1) {
-            if (System.currentTimeMillis() - start > timeoutInterval) {
-                socket.send(packetToSend.makePacket());
-            }
-            receivedPacket = receivePacket();
-        }
+        sendBuffer.put(packetToSend);
         seq++;
     }
 
@@ -79,7 +75,7 @@ public abstract class TCPSocket implements Closeable {
         seq++;
     }
 
-    private TCPPacket receivePacket() throws IOException {
+    private void receivePacket() throws IOException {
         int receivedLength = 2 * Integer.BYTES;
         DatagramPacket receivedPacket = new DatagramPacket(new byte[receivedLength], receivedLength);
         socket.receive(receivedPacket);
@@ -87,7 +83,7 @@ public abstract class TCPSocket implements Closeable {
         packet.extractPacket(receivedPacket);
         System.err.println("Seq: " + packet.seq + " Ack: " + packet.ack);
         ack++;
-        return packet;
+        receiveBuffer.put(packet);
     }
 
     @Override

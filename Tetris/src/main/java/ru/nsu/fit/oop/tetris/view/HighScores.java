@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,14 +18,18 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.tetris.Model;
 
 public class HighScores {
     public class Score {
 
-        private SimpleStringProperty name;
-        private SimpleIntegerProperty value;
+        private final SimpleStringProperty name;
+        private final SimpleIntegerProperty value;
 
         Score(String name, int value){
             this.name = new SimpleStringProperty(name);
@@ -72,7 +77,11 @@ public class HighScores {
         table.setBackground((new Background(new BackgroundFill(Color.DARKSLATEBLUE, CornerRadii.EMPTY, Insets.EMPTY))));
         table.setPrefHeight(250);
         table.setTranslateY(200);
-        table.setTranslateX(width / 2 - 200);
+        table.setTranslateX((float) width / 2 - 200);
+        Label emptyTable = new Label("It's quite empty here...");
+        emptyTable.setFont(Font.font("helvetica", FontWeight.BLACK, FontPosture.REGULAR, 20));
+        emptyTable.setTextFill(Paint.valueOf("#34CFBE"));
+        table.setPlaceholder(emptyTable);
 
         TableColumn<Score, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setPrefWidth(200);
