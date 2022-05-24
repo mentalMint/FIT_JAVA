@@ -1,6 +1,6 @@
-package ru.nsu.fit.web.TCPOverUDP.TCP.socket;
+package ru.nsu.fit.web.TCPOverUDP.TCP;
 
-import ru.nsu.fit.web.TCPOverUDP.TCP.socket.packet.TCPPacket;
+import ru.nsu.fit.web.TCPOverUDP.TCP.packet.TCPPacket;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -18,7 +18,7 @@ public class ServerTCPSocket extends TCPSocket{
         getSocket().receive(receivedPacket);
         TCPPacket packet = new TCPPacket();
         packet.extractPacket(receivedPacket);
-        System.err.println("Seq: " + packet.seq + " Ack: " + packet.ack);
+        System.err.println("Seq: " + packet.seqNumber + " Ack: " + packet.ackNumber);
         setAck(getAck() + 1);
     }
 
@@ -29,14 +29,14 @@ public class ServerTCPSocket extends TCPSocket{
         TCPPacket packet = new TCPPacket();
         packet.extractPacket(receivedPacket);
 
-        System.err.println("Seq: " + packet.seq + " Ack: " + packet.ack);
+        System.err.println("Seq: " + packet.seqNumber + " Ack: " + packet.ackNumber);
         setAck(getAck() + 1);
     }
 
     private void sendHandshakeAck() throws IOException {
         TCPPacket packet = new TCPPacket();
-        packet.ack = getAck();
-        packet.seq = getSeq();
+        packet.ackNumber = getAck();
+        packet.seqNumber = getSeq();
         packet.isSyn = true;
         packet.isAck = true;
         getSocket().send(packet.makePacket());

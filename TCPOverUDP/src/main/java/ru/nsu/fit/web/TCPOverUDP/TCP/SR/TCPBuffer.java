@@ -1,6 +1,6 @@
-package ru.nsu.fit.web.TCPOverUDP.SR;
+package ru.nsu.fit.web.TCPOverUDP.TCP.SR;
 
-import ru.nsu.fit.web.TCPOverUDP.TCP.socket.packet.TCPPacket;
+import ru.nsu.fit.web.TCPOverUDP.TCP.packet.TCPPacket;
 
 import java.util.ArrayList;
 
