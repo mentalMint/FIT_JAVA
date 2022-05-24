@@ -7,9 +7,9 @@ public class SendBuffer {
     private Boolean[] acknowledged = null;
     private Boolean[] waitForSend = null;
     private Integer[] duplicateAcksNumbers = null;
-    private final int windowSize = 8;
+    private final int windowSize = 2;
     private int base = 0;
-    private int length = 16;
+    private int length = 4;
     private int packetsToAckNumber = 0;
     private int packetsWaitToSendNumber = 0;
 
@@ -44,13 +44,17 @@ public class SendBuffer {
         packetsWaitToSendNumber++;
     }
 
+    synchronized public void decrementPacketsWaitToSendNumber() {
+        packetsWaitToSendNumber--;
+    }
+
 
     public int getDuplicateAckNumber(int index) {
-        return duplicateAcksNumbers[index];
+        return duplicateAcksNumbers[index % length];
     }
 
     public void incrementDuplicateAckNumber(int index) {
-        duplicateAcksNumbers[index] = (duplicateAcksNumbers[index] + 1) % 4;
+        duplicateAcksNumbers[index % length] = (duplicateAcksNumbers[index % length] + 1) % 4;
     }
 
     synchronized public int getPacketsToAckNumber() {
@@ -73,8 +77,20 @@ public class SendBuffer {
         return acknowledged;
     }
 
+    synchronized public Boolean isPacketAcknowledged(int index) {
+        return acknowledged[index % length];
+    }
+
     synchronized public Boolean[] getWaitForSend() {
         return waitForSend;
+    }
+
+    synchronized public Boolean isPacketWaitingForSend(int index) {
+        return waitForSend[index % length];
+    }
+
+    synchronized public void setIsPacketWaitingForSend(int index, boolean state) {
+        waitForSend[index % length] = state;
     }
 
     synchronized public int getWindowSize() {
@@ -86,11 +102,14 @@ public class SendBuffer {
     }
 
     synchronized public void setBase(int base) {
-        this.base = base % length;
+        this.base = base;
     }
 
     synchronized public TCPPacket[] getBuffer() {
         return buffer;
+    }
+    public void setPacket(int index, TCPPacket packet) {
+        buffer[index % length] = packet;
     }
 
     public int getLength() {
@@ -98,7 +117,7 @@ public class SendBuffer {
     }
 
     synchronized public void put(TCPPacket packet) {
-        buffer[packet.seqNumber] = packet;
+        buffer[packet.seqNumber % length] = packet;
     }
 
     synchronized public void acknowledge(int index) {

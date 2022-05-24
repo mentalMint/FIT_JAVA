@@ -5,9 +5,9 @@ import ru.nsu.fit.web.TCPOverUDP.TCP.packet.TCPPacket;
 public class ReceiveBuffer {
     private TCPPacket[] buffer = null;
     private Boolean[] received = null;
-    private final int windowSize = 8;
+    private final int windowSize = 2;
     private int base = 0;
-    private int length = 16;
+    private int length = 4;
 
     public void init() {
         buffer = new TCPPacket[length];
@@ -27,6 +27,14 @@ public class ReceiveBuffer {
     public ReceiveBuffer() {
     }
 
+    public boolean isPacketReceived(int index) {
+        return received[index % length];
+    }
+
+    public void setIsPacketReceived(int index, boolean state) {
+        received[index % length] = state;
+    }
+
     public TCPPacket getPacket(int index) {
         return buffer[index % length];
     }
@@ -40,7 +48,7 @@ public class ReceiveBuffer {
     }
 
     public void setBase(int base) {
-        this.base = base % length;
+        this.base = base;
     }
 
     public TCPPacket[] getBuffer() {
@@ -56,6 +64,6 @@ public class ReceiveBuffer {
     }
 
     public void put(TCPPacket packet) {
-        buffer[packet.seqNumber] = packet;
+        buffer[packet.seqNumber % length] = packet;
     }
 }

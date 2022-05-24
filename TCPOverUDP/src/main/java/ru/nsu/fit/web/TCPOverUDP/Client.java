@@ -25,10 +25,14 @@ public class Client {
             socket.connect(address, 8000);
             byte[] buf;
 
-            buf = socket.receive();
-            System.err.println("Received message 1: " + new String(buf));
-            buf = socket.receive();
-            System.err.println("Received message 2: " + new String(buf));
+            for (int i = 0; i < 10; i++) {
+                buf = socket.receive();
+                System.err.println("Received message " + i + ": " + new String(buf));
+            }
+//            buf = socket.receive();
+//            System.err.println("Received message 1: " + new String(buf));
+//            buf = socket.receive();
+//            System.err.println("Received message 2: " + new String(buf));
             String str = "You picked the wrong house, fool!";
             socket.send(str.getBytes());
         } catch (IOException | InterruptedException e) {

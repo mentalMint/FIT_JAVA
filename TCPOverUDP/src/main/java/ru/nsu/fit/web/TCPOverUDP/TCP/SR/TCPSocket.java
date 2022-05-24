@@ -8,8 +8,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
+import java.util.concurrent.SynchronousQueue;
 
 public abstract class TCPSocket implements Closeable {
     private final DatagramSocket socket;
@@ -18,18 +18,21 @@ public abstract class TCPSocket implements Closeable {
     private final ReceiveBuffer receiveBuffer = new ReceiveBuffer();
     private Integer seqNumber = 0;
     private Integer ackNumber = 0;
-    private Integer receiveNumber = 0;
     private final Thread receiver = new Thread(new Task());
     private final Timer timer = new Timer();
+    private final LinkedList<TCPPacket> receiveQueue = new LinkedList<>();
 
     private class TCPTimerTask extends TimerTask {
 
         @Override
         public void run() {
             try {
-                if (sendBuffer.getWaitForSend()[sendBuffer.getBase()])
-                sendNow(sendBuffer.getPacket(sendBuffer.getBase()));
+                if (!sendBuffer.isPacketAcknowledged(sendBuffer.getBase()) && sendBuffer.getPacket(sendBuffer.getBase()) != null) {
+//                    System.err.println(sendBuffer.getBase());
+                    sendNow(sendBuffer.getPacket(sendBuffer.getBase()));
+                }
             } catch (IOException e) {
+                timer.cancel();
                 e.printStackTrace();
             }
         }
@@ -71,34 +74,43 @@ public abstract class TCPSocket implements Closeable {
     abstract public void connect(InetAddress address, int port);
 
     public byte[] receive() throws InterruptedException {
-        synchronized (receiveBuffer) {
-            if (receiveNumber >= receiveBuffer.getBase() - receiveBuffer.getWindowSize() && receiveNumber < receiveBuffer.getBase()) {
-                return receiveBuffer.getPacket(receiveNumber++).buf;
+        synchronized (receiveQueue) {
+            if (receiveQueue.isEmpty()) {
+                receiveQueue.wait();
             }
-            receiveBuffer.wait();
-            return receiveBuffer.getPacket(receiveNumber++).buf;
+//            assert receiveQueue.peek() != null;
+            return Objects.requireNonNull(receiveQueue.poll()).buf;
         }
     }
 
     private synchronized void sendNow(TCPPacket packetToSend) throws IOException {
         socket.send(packetToSend.makePacket());
+        System.err.println("Send " + packetToSend.seqNumber);
     }
 
-    public void send(byte[] buf) throws IOException {
+    public void send(byte[] buf) throws IOException, InterruptedException {
         TCPPacket packetToSend = new TCPPacket();
         packetToSend.ackNumber = receiveBuffer.getBase();
         packetToSend.seqNumber = seqNumber;
         packetToSend.length = buf.length;
         packetToSend.buf = buf;
-        sendBuffer.put(packetToSend);
-        if (packetToSend.seqNumber < sendBuffer.getBase() + sendBuffer.getWindowSize()) {
-            sendNow(packetToSend);
-            sendBuffer.incrementPacketsToAckNumber();
+        synchronized (sendBuffer) {
+            if (packetToSend.seqNumber < sendBuffer.getBase() + sendBuffer.getWindowSize()) {
+                sendBuffer.put(packetToSend);
+                sendNow(packetToSend);
+                sendBuffer.incrementPacketsToAckNumber();
 //            System.err.println("Sent " + seqNumber);
-            sendBuffer.getWaitForSend()[packetToSend.seqNumber] = false;
-        } else {
-            sendBuffer.getWaitForSend()[packetToSend.seqNumber] = true;
-            sendBuffer.incrementPacketsWaitToSendNumber();
+                sendBuffer.setIsPacketWaitingForSend(packetToSend.seqNumber, false);
+            } else if (packetToSend.seqNumber >= sendBuffer.getBase() + sendBuffer.getWindowSize() && packetToSend.seqNumber < sendBuffer.getBase() + 2 * sendBuffer.getWindowSize()) {
+                sendBuffer.put(packetToSend);
+                sendBuffer.setIsPacketWaitingForSend(packetToSend.seqNumber, true);
+                sendBuffer.incrementPacketsWaitToSendNumber();
+            } else {
+                sendBuffer.wait();
+                sendBuffer.put(packetToSend);
+                sendBuffer.setIsPacketWaitingForSend(packetToSend.seqNumber, true);
+                sendBuffer.incrementPacketsWaitToSendNumber();
+            }
         }
         seqNumber++;
         try {
@@ -108,30 +120,13 @@ public abstract class TCPSocket implements Closeable {
         }
     }
 
-    private void moveWindow(int index) throws IOException {
-        if (index == sendBuffer.getBase()) {
-            int newBase = sendBuffer.getBase();
-            for (int i = sendBuffer.getBase(); i < sendBuffer.getWindowSize(); i++) {
-                if (sendBuffer.getAcknowledged()[i]) {
-                    newBase = i;
-                    if (sendBuffer.getWaitForSend()[i]) {
-                        sendNow(sendBuffer.getBuffer()[i]);
-                    }
-                } else {
-                    break;
-                }
-            }
-            sendBuffer.setBase(newBase);
-        }
-    }
-
     private TCPPacket receivePacket() throws IOException {
         int receivedLength = 1024 + 2 * Integer.BYTES + 1;
         DatagramPacket receivedPacket = new DatagramPacket(new byte[receivedLength], receivedLength);
         socket.receive(receivedPacket);
         TCPPacket packet = new TCPPacket();
         packet.extractPacket(receivedPacket);
-        System.err.println("Received " + packet.seqNumber + " Is ack " + packet.isAck);
+//        System.err.println("Received " + packet.seqNumber + " Is ack " + packet.isAck);
         return packet;
     }
 
@@ -141,19 +136,41 @@ public abstract class TCPSocket implements Closeable {
         packetToSend.seqNumber = seqNumber;
         packetToSend.isAck = true;
         socket.send(packetToSend.makePacket());
-//        System.err.println("Sent " + packetToSend.seqNumber);
+        System.err.println("Send ack " + number);
     }
 
     private void sendNewPacketsFromBuffer() throws IOException {
-        for (int i = sendBuffer.getBase(); i < sendBuffer.getWindowSize(); i++) {
-            if (sendBuffer.getWaitForSend()[i]) {
-                sendNow(sendBuffer.getBuffer()[i]);
-                sendBuffer.decrementPacketsToAckNumber();
+        for (int i = sendBuffer.getBase(); i < sendBuffer.getBase() + sendBuffer.getWindowSize(); i++) {
+            if (sendBuffer.isPacketWaitingForSend(i)) {
+                sendNow(sendBuffer.getPacket(i));
+                sendBuffer.incrementPacketsToAckNumber();
+                sendBuffer.decrementPacketsWaitToSendNumber();
+                sendBuffer.setIsPacketWaitingForSend(i, false);
             } else {
                 break;
             }
         }
+    }
 
+    private void pushBufferedPackets() throws InterruptedException {
+        int i;
+        for (i = receiveBuffer.getBase(); i < receiveBuffer.getBase() + receiveBuffer.getWindowSize(); i++) {
+            if (receiveBuffer.isPacketReceived(i)) {
+//                synchronized (receiveQueue) {
+//                System.err.println(i);
+                receiveQueue.offer(receiveBuffer.getPacket(i));
+//                }
+                receiveBuffer.setIsPacketReceived(i, false);
+            } else {
+                break;
+            }
+        }
+        receiveBuffer.setBase(i);
+    }
+
+    private boolean isLost() {
+        double x = Math.random() * 10;
+        return x > 8;
     }
 
     public class Task implements Runnable {
@@ -165,39 +182,58 @@ public abstract class TCPSocket implements Closeable {
             while (!Thread.currentThread().isInterrupted()) {
                 try {
                     TCPPacket packet = receivePacket();
-                    if (packet.isAck && packet.ackNumber > sendBuffer.getBase()) {
-//                        expectedSeqNum++;
-//                        ackNumber++;
-                        sendBuffer.setBase(packet.ackNumber);
-//                        sendBuffer.acknowledge(packet.seqNumber);
-//                        moveWindow(packet.seqNumber);
-                        sendNewPacketsFromBuffer();
-                        synchronized (sendBuffer) {
-                            sendBuffer.decrementPacketsToAckNumber();
-                            if (sendBuffer.getPacketsToAckNumber() == 0 && sendBuffer.getPacketsWaitToSendNumber() == 0) {
+                    if (!isLost()) {
+                        if (packet.isAck) {
+                            System.err.println("Ack " + packet.ackNumber + " is received");
+                        } else {
+                            System.err.println("Seq " + packet.seqNumber + " is received");
+                        }
+
+                        if (packet.isAck && packet.ackNumber > sendBuffer.getBase()) {
+                            synchronized (sendBuffer) {
+                                for (int i = sendBuffer.getBase(); i < packet.ackNumber; i++) {
+                                    sendBuffer.setPacket(i, null);
+                                }
+                                sendBuffer.setBase(packet.ackNumber);
+                                sendNewPacketsFromBuffer();
+                                sendBuffer.decrementPacketsToAckNumber();
+//                            if (sendBuffer.getPacketsToAckNumber() == 0 && sendBuffer.getPacketsWaitToSendNumber() == 0) {
                                 sendBuffer.notify();
+//                            }
                             }
-                        }
-                    } else if (packet.isAck && sendBuffer.getDuplicateAckNumber(packet.ackNumber) == 3) {
-                        sendNow(sendBuffer.getPacket(packet.ackNumber));
-                        sendBuffer.incrementDuplicateAckNumber(packet.ackNumber);
-                    } else if (packet.isAck && sendBuffer.getDuplicateAckNumber(packet.ackNumber) < 3) {
-                        sendBuffer.incrementDuplicateAckNumber(packet.ackNumber);
-                    } else if (packet.seqNumber >= receiveBuffer.getBase() && packet.seqNumber < sendBuffer.getBase() + sendBuffer.getWindowSize()) {
-//                        expectedSeqNum++;
-//                        ackNumber++;
-                        synchronized (receiveBuffer) {
-                            receiveBuffer.setBase(packet.seqNumber + 1);
+                        } else if (packet.isAck && sendBuffer.getDuplicateAckNumber(packet.ackNumber) == 3) {
+                            sendNow(sendBuffer.getPacket(packet.ackNumber));
+                            sendBuffer.incrementDuplicateAckNumber(packet.ackNumber);
+                        } else if (packet.isAck && sendBuffer.getDuplicateAckNumber(packet.ackNumber) < 3) {
+                            sendBuffer.incrementDuplicateAckNumber(packet.ackNumber);
+                        } else if (packet.seqNumber >= receiveBuffer.getBase() && packet.seqNumber < receiveBuffer.getBase() + receiveBuffer.getWindowSize()) {
                             receiveBuffer.put(packet);
-                            receiveBuffer.notify();
+                            receiveBuffer.setIsPacketReceived(packet.seqNumber, true);
+                            synchronized (receiveQueue) {
+                                if (packet.seqNumber == receiveBuffer.getBase()) {
+                                    receiveQueue.notify();
+                                }
+                                pushBufferedPackets();
+                            }
+                            sendAck(receiveBuffer.getBase());
+                        } else if (packet.seqNumber >= receiveBuffer.getBase() - receiveBuffer.getWindowSize() && packet.seqNumber < receiveBuffer.getBase()) {
+                            sendAck(packet.seqNumber + 1);
                         }
-                        sendAck(packet.seqNumber + 1);
-                    } else if (packet.seqNumber >= receiveBuffer.getBase() - sendBuffer.getWindowSize() && packet.seqNumber < sendBuffer.getBase()) {
-                        sendAck(sendBuffer.getBase());
+                    } else {
+                        if (packet.isAck) {
+                            System.err.println("Ack " + packet.ackNumber + " is lost");
+                        } else {
+                            System.err.println("Seq " + packet.seqNumber + " is lost");
+                        }
                     }
                 } catch (IOException e) {
-                    receiver.interrupt();
+                    synchronized (receiver) {
+                        Thread.currentThread().notifyAll();
+                        receiver.interrupt();
+                    }
 //                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }
@@ -213,7 +249,10 @@ public abstract class TCPSocket implements Closeable {
     public void close() {
         try {
             if (sendBuffer.getPacketsToAckNumber() > 0 || sendBuffer.getPacketsWaitToSendNumber() > 0) {
-                waitReceiver();
+//                waitReceiver();
+                synchronized (receiver) {
+                    receiver.wait();
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -20,7 +20,7 @@ public class ClientSocket extends TCPSocket {
             sendHandshake();
             receiveHandshakeAck();
             sendHandshakeAck();
-            setAck(0);
+//            setAck(0);
             setSeq(0);
             getReceiver().start();
         } catch (IOException e) {
@@ -43,7 +43,7 @@ public class ClientSocket extends TCPSocket {
         getSocket().receive(receivedPacket);
         TCPPacket packet = new TCPPacket();
         packet.extractPacket(receivedPacket);
-        setAck(getAck() + 1);
+//        setAck(getAck() + 1);
     }
 
     private void sendHandshakeAck() throws IOException {
