@@ -13,19 +13,16 @@ public class ClientSocket extends TCPSocket {
     }
 
     @Override
-    public void connect(InetAddress address, int port) {
+    public void connect(InetAddress address, int port) throws IOException {
         getSocket().connect(address, port);
-        try {
-            sendHandshake();
-            receiveHandshakeAck();
-            makeBuffers();
-            System.err.println("Buffers initialized");
-            sendHandshakeAck();
-            setSeq(0);
-            getReceiver().start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sendHandshake();
+        receiveHandshakeAck();
+        makeBuffers();
+        System.err.println("Buffers initialized");
+        sendHandshakeAck();
+        setSeq(0);
+        System.err.println("Thread starts work");
+        getTcpThread().start();
     }
 
     private void sendHandshake() throws IOException {
@@ -55,21 +52,17 @@ public class ClientSocket extends TCPSocket {
     }
 
     @Override
-    public void close() throws IOException {
-        try {
-            sendFin();
-            synchronized (getMutex3()) {
-                if (!getIsFinReceived()) {
-                    getMutex3().wait();
-                    System.err.println("End");
-                }
+    public void close() throws IOException, InterruptedException {
+        if (!getTcpThread().isInterrupted() && getTcpThread().isAlive()) {
+            try {
+                sendFin();
+            } catch (IOException | InterruptedException e) {
+                getTcpThread().interrupt();
+                throw e;
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            getTimer().cancel();
-//            getReceiver().interrupt();
+        } else {
             getSocket().close();
+            getTimer().cancel();
         }
     }
 }

@@ -7,9 +7,9 @@ public class SendBuffer {
     private Boolean[] acknowledged = null;
     private Boolean[] waitForSend = null;
     private Integer[] duplicateAcksNumbers = null;
-    private final int windowSize = 4;
+    private final int windowSize = 8;
     private int base = 0;
-    private int length = 8;
+    private int length = 16;
     private int packetsToAckNumber = 0;
     private int packetsWaitToSendNumber = 0;
 

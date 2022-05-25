@@ -5,9 +5,9 @@ import ru.nsu.fit.web.TCPOverUDP.TCP.packet.TCPPacket;
 public class ReceiveBuffer {
     private TCPPacket[] buffer = null;
     private Boolean[] received = null;
-    private final int windowSize = 4;
+    private final int windowSize = 8;
     private int base = 0;
-    private int length = 8;
+    private int length = 16;
 
     public void init() {
         buffer = new TCPPacket[length];

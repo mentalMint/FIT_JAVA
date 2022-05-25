@@ -13,19 +13,16 @@ public class ServerSocket extends TCPSocket {
     }
 
     @Override
-    public void connect(InetAddress address, int port) {
+    public void connect(InetAddress address, int port) throws IOException {
         getSocket().connect(address, port);
-        try {
-            receiveHandshake();
-            makeBuffers();
-            System.err.println("Buffers initialized");
-            sendHandshakeAck();
-            receiveHandshakeAck();
-            setSeq(0);
-            getReceiver().start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        receiveHandshake();
+        makeBuffers();
+        System.err.println("Buffers initialized");
+        sendHandshakeAck();
+        receiveHandshakeAck();
+        setSeq(0);
+        System.err.println("Thread starts work");
+        getTcpThread().start();
     }
 
     private void receiveHandshake() throws IOException {
@@ -55,27 +52,29 @@ public class ServerSocket extends TCPSocket {
     }
 
     @Override
-    public void close() throws IOException {
-        try {
-            synchronized (getMutex()) {
-                if (!getIsFinReceived()) {
-                    getMutex().wait();
+    public void close() throws IOException, InterruptedException {
+        if (!getTcpThread().isInterrupted() && getTcpThread().isAlive()) {
+            try {
+                synchronized (getMutex()) {
+                    if (!getIsFinReceived()) {
+                        getMutex().wait();
+                    }
                 }
-            }
-            sendFinAck();
-            synchronized (getMutex2()) {
-                if (getSendBuffer().getPacketsToAckNumber() > 0 || getSendBuffer().getPacketsWaitToSendNumber() > 0) {
-                    getMutex2().wait();
-                    System.err.println("End");
-
+                sendFinAck();
+                synchronized (getMutex2()) {
+                    if (getSendBuffer().getPacketsToAckNumber() > 0 || getSendBuffer().getPacketsWaitToSendNumber() > 0) {
+                        getMutex2().wait();
+                    }
                 }
+            } catch (IOException | InterruptedException e) {
+                throw e;
+            } finally {
+                getTcpThread().interrupt();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            getTimer().cancel();
-            getReceiver().interrupt();
+        }
+        else {
             getSocket().close();
+            getTimer().cancel();
         }
     }
 }
