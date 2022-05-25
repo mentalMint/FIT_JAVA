@@ -1,27 +1,26 @@
 package ru.nsu.fit.web.TCPOverUDP;
 
-//import ru.nsu.fit.web.TCPOverUDP.TCP.socket.ServerTCPSocket;
-import ru.nsu.fit.web.TCPOverUDP.TCP.SR.ServerSocket;
-import ru.nsu.fit.web.TCPOverUDP.TCP.SR.ServerTCPSocket;
-import ru.nsu.fit.web.TCPOverUDP.TCP.SR.TCPSocket;
+import ru.nsu.fit.web.TCPOverUDP.TCP.sockets.ServerSocket;
+import ru.nsu.fit.web.TCPOverUDP.TCP.sockets.TCPSocket;
 
 import java.io.IOException;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 
 public class Server {
     public static void main(String[] args) {
-//        try (TCPSocket socket = new ServerTCPSocket(8000)) {
+//        try {
+//            DatagramSocket datagramSocket = new DatagramSocket(8000);
 //            InetAddress address = InetAddress.getByName("127.0.0.1");
-//            socket.connect(address, 7000);
-//            byte[] buf;
-//            buf = socket.receive(1024);
-//            System.out.println(new String(buf));
-//            buf = socket.receive(1024);
-//            System.out.println(new String(buf));
-//        } catch (IOException e) {
+//            datagramSocket.connect(address, 7000);
+////            byte[] buf = new byte[1];
+////            datagramSocket.receive(new DatagramPacket(buf, 0, 1));
+//            datagramSocket.close();
+//        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
+
         try (TCPSocket socket = new ServerSocket(8000)) {
             InetAddress address = InetAddress.getByName("127.0.0.1");
             socket.connect(address, 7000);

@@ -1,4 +1,4 @@
-package ru.nsu.fit.web.TCPOverUDP.TCP.SR;
+package ru.nsu.fit.web.TCPOverUDP.TCP.sockets;
 
 import ru.nsu.fit.web.TCPOverUDP.TCP.packet.TCPPacket;
 
@@ -14,13 +14,13 @@ public class ClientSocket extends TCPSocket {
 
     @Override
     public void connect(InetAddress address, int port) {
-        makeBuffers();
         getSocket().connect(address, port);
         try {
             sendHandshake();
             receiveHandshakeAck();
+            makeBuffers();
+            System.err.println("Buffers initialized");
             sendHandshakeAck();
-//            setAck(0);
             setSeq(0);
             getReceiver().start();
         } catch (IOException e) {
@@ -30,7 +30,7 @@ public class ClientSocket extends TCPSocket {
 
     private void sendHandshake() throws IOException {
         TCPPacket packet = new TCPPacket();
-        packet.ackNumber = getAck();
+        packet.ackNumber = 1;
         packet.seqNumber = getSeq();
         packet.isSyn = true;
         getSocket().send(packet.makePacket());
@@ -38,22 +38,39 @@ public class ClientSocket extends TCPSocket {
     }
 
     private void receiveHandshakeAck() throws IOException {
-        int receivedLength = 2 * Integer.BYTES + 1;
+        TCPPacket packet = new TCPPacket();
+        int receivedLength = packet.getHeaderLength();
         DatagramPacket receivedPacket = new DatagramPacket(new byte[receivedLength], receivedLength);
         getSocket().receive(receivedPacket);
-        TCPPacket packet = new TCPPacket();
         packet.extractPacket(receivedPacket);
-//        setAck(getAck() + 1);
     }
 
     private void sendHandshakeAck() throws IOException {
         TCPPacket packet = new TCPPacket();
-        packet.ackNumber = getAck();
+        packet.ackNumber = 2;
         packet.seqNumber = getSeq();
         packet.isAck = true;
         getSocket().send(packet.makePacket());
         setSeq(getSeq() + 1);
+    }
 
+    @Override
+    public void close() throws IOException {
+        try {
+            sendFin();
+            synchronized (getMutex3()) {
+                if (!getIsFinReceived()) {
+                    getMutex3().wait();
+                    System.err.println("End");
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            getTimer().cancel();
+//            getReceiver().interrupt();
+            getSocket().close();
+        }
     }
 }
 

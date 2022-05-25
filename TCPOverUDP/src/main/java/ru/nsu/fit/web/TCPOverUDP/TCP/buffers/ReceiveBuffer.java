@@ -1,13 +1,13 @@
-package ru.nsu.fit.web.TCPOverUDP.TCP.SR;
+package ru.nsu.fit.web.TCPOverUDP.TCP.buffers;
 
 import ru.nsu.fit.web.TCPOverUDP.TCP.packet.TCPPacket;
 
 public class ReceiveBuffer {
     private TCPPacket[] buffer = null;
     private Boolean[] received = null;
-    private final int windowSize = 2;
+    private final int windowSize = 4;
     private int base = 0;
-    private int length = 4;
+    private int length = 8;
 
     public void init() {
         buffer = new TCPPacket[length];

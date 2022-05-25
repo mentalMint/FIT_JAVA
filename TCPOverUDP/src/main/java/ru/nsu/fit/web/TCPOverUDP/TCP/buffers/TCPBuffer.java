@@ -1,4 +1,4 @@
-package ru.nsu.fit.web.TCPOverUDP.TCP.SR;
+package ru.nsu.fit.web.TCPOverUDP.TCP.buffers;
 
 import ru.nsu.fit.web.TCPOverUDP.TCP.packet.TCPPacket;
 

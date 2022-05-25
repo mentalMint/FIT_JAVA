@@ -1,4 +1,4 @@
-package ru.nsu.fit.web.TCPOverUDP.TCP.SR;
+package ru.nsu.fit.web.TCPOverUDP.TCP.buffers;
 
 import ru.nsu.fit.web.TCPOverUDP.TCP.packet.TCPPacket;
 
@@ -7,17 +7,17 @@ public class SendBuffer {
     private Boolean[] acknowledged = null;
     private Boolean[] waitForSend = null;
     private Integer[] duplicateAcksNumbers = null;
-    private final int windowSize = 2;
+    private final int windowSize = 4;
     private int base = 0;
-    private int length = 4;
+    private int length = 8;
     private int packetsToAckNumber = 0;
     private int packetsWaitToSendNumber = 0;
 
     public void init() {
         buffer = new TCPPacket[length];
         acknowledged = new Boolean[length];
-        waitForSend =  new Boolean[length];
-        duplicateAcksNumbers =  new Integer[length];
+        waitForSend = new Boolean[length];
+        duplicateAcksNumbers = new Integer[length];
 
         for (int i = 0; i < length; i++) {
             acknowledged[i] = false;
@@ -48,6 +48,9 @@ public class SendBuffer {
         packetsWaitToSendNumber--;
     }
 
+    public void setDuplicateAckNumber(int index, int value) {
+        duplicateAcksNumbers[index % length] = value;
+    }
 
     public int getDuplicateAckNumber(int index) {
         return duplicateAcksNumbers[index % length];
@@ -108,6 +111,7 @@ public class SendBuffer {
     synchronized public TCPPacket[] getBuffer() {
         return buffer;
     }
+
     public void setPacket(int index, TCPPacket packet) {
         buffer[index % length] = packet;
     }
@@ -121,6 +125,6 @@ public class SendBuffer {
     }
 
     synchronized public void acknowledge(int index) {
-            acknowledged[index % length] = true;
+        acknowledged[index % length] = true;
     }
 }
