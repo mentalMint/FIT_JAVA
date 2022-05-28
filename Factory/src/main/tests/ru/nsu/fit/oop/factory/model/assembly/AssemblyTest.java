@@ -17,7 +17,6 @@ class AssemblyTest {
         IProduct engine = new Engine(0);
         warehouse.putProduct(engine);
         assembly.addWarehouse(warehouse);
-
         assembly.assemble();
 
         synchronized (assembly.getFinishedProductsWarehouse()) {

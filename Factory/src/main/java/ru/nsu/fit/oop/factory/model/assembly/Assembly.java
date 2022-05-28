@@ -11,7 +11,6 @@ public class Assembly {
     private final ArrayList<IWarehouse> supplyWarehouses = new ArrayList<>();
     private final Warehouse finishedProductsWarehouse;
     private final ThreadPool assemblers;
-    private final ArrayList<IProduct> finishedProductDetails = new ArrayList<>();
     private final Runnable task;
 
      public Assembly(int warehouseSize, int assemblersNumber) {
@@ -20,8 +19,9 @@ public class Assembly {
         }
         assemblers = new ThreadPool(assemblersNumber);
         finishedProductsWarehouse = new Warehouse(warehouseSize);
-
          task = () -> {
+             ArrayList<IProduct> finishedProductDetails = new ArrayList<>();
+//             for (int i = 0; i < supplyWarehouses.size(); i++) {
              for (IWarehouse supplyWarehouse : supplyWarehouses) {
                  synchronized (supplyWarehouse) {
                      if (supplyWarehouse.isEmpty()) {
@@ -42,9 +42,9 @@ public class Assembly {
                      } catch (InterruptedException e) {
                          e.printStackTrace();
                      }
-                     finishedProductsWarehouse.putProduct(new FinishedProduct(finishedProductDetails));
-                     finishedProductsWarehouse.notifyAll();
                  }
+                 finishedProductsWarehouse.putProduct(new FinishedProduct(finishedProductDetails));
+                 finishedProductsWarehouse.notify();
              }
          };
     }

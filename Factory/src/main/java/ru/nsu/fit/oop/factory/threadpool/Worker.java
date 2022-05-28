@@ -22,6 +22,9 @@ public class Worker extends Thread {
                         e.printStackTrace();
                     }
                 }
+                if (tasks.isEmpty()) {
+                    continue;
+                }
                 task = tasks.remove();
             }
             task.run();
