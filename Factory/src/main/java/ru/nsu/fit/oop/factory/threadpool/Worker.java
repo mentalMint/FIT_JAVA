@@ -25,6 +25,7 @@ public class Worker extends Thread {
                 task = tasks.remove();
             }
             task.run();
+
         }
     }
 }
