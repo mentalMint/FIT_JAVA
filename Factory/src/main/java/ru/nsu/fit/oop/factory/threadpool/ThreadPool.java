@@ -16,6 +16,7 @@ public class ThreadPool {
         workers = new ArrayList<>(numberOfWorkers);
         for (int i = 0; i < numberOfWorkers; i++) {
             Worker worker = new Worker(tasks);
+            worker.setName("Worker " + i);
             workers.add(worker);
             worker.start();
         }
@@ -26,5 +27,15 @@ public class ThreadPool {
             tasks.add(task);
             tasks.notify();
         }
+    }
+
+    public int getTasksNumber() {
+        synchronized (tasks) {
+            return tasks.size();
+        }
+    }
+
+    public void shutdown() {
+        workers.forEach(Thread::interrupt);
     }
 }

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ThreadPoolTest {
     @Test
-    void threadPoolWithOneThreadTaskExecutionTest() throws InterruptedException {
+    void threadPoolWithOneThreadTaskExecution() throws InterruptedException {
         ThreadPool threadPool = new ThreadPool(1);
         final Integer[] taskIsCompleted = {0};
         Runnable task = () -> {
@@ -38,7 +38,7 @@ class ThreadPoolTest {
     }
 
     @Test
-    void threadPoolWithTwoThreadsTaskExecutionTest() throws InterruptedException {
+    void threadPoolWithTwoThreadsTaskExecution() throws InterruptedException {
         ThreadPool threadPool = new ThreadPool(3);
         final Integer[] taskIsCompleted = {0};
         Runnable task = () -> {

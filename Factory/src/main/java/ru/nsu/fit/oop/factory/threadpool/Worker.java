@@ -20,6 +20,7 @@ public class Worker extends Thread {
                         tasks.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                        return;
                     }
                 }
                 if (tasks.isEmpty()) {
