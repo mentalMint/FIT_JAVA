@@ -1,35 +1,30 @@
 package ru.nsu.fit.oop.factory.model.supplies.suppliers;
 
-import ru.nsu.fit.oop.factory.model.supplies.details.Engine;
+import ru.nsu.fit.oop.factory.model.supplies.IdGenerator;
 import ru.nsu.fit.oop.factory.model.supplies.details.IProduct;
 import ru.nsu.fit.oop.factory.model.warehouses.IWarehouse;
 
 abstract public class Supplier extends Thread implements ISupplier {
     private final IWarehouse warehouse;
-    private int detailId = 0;
     private long delay = 100;
+    private final IdGenerator idGenerator;
 
-    public Supplier(IWarehouse warehouse) {
+    public Supplier(IWarehouse warehouse, IdGenerator idGenerator) {
         this.warehouse = warehouse;
+        this.idGenerator = idGenerator;
     }
 
     protected int getDetailId() {
-        return detailId;
-    }
-
-    protected void incrementDetailId() {
-        detailId++;
+        return idGenerator.getNewId();
     }
 
     protected abstract IProduct createDetail();
 
-    @Override
     public IWarehouse getWarehouse() {
         return warehouse;
     }
 
-    @Override
-    public void supplyProduct(IProduct detail) throws InterruptedException {
+    protected void supplyProduct(IProduct detail) throws InterruptedException {
         warehouse.putProduct(detail);
     }
 
@@ -44,12 +39,13 @@ abstract public class Supplier extends Thread implements ISupplier {
     @Override
     public void run() {
         try {
-            while (true) {
+            while (!Thread.interrupted()) {
                 Thread.sleep(delay);
                 supplyProduct(createDetail());
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
+        System.err.println(Thread.currentThread().getName() + " has stopped");
     }
 }

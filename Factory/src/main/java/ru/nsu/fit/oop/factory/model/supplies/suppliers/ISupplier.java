@@ -6,5 +6,5 @@ import ru.nsu.fit.oop.factory.model.warehouses.IWarehouse;
 public interface ISupplier {
     IWarehouse getWarehouse();
 
-    void supplyProduct(IProduct product) throws InterruptedException;
+//    void supplyProduct(IProduct product) throws InterruptedException;
 }

@@ -1,30 +1,25 @@
 package ru.nsu.fit.oop.factory.model.sale;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import ru.nsu.fit.oop.factory.model.assembly.Auto;
-import ru.nsu.fit.oop.factory.model.supplies.details.Accessory;
-import ru.nsu.fit.oop.factory.model.supplies.details.IProduct;
 import ru.nsu.fit.oop.factory.model.warehouses.FinishedProductsWarehouse;
-import ru.nsu.fit.oop.factory.model.warehouses.IWarehouse;
 
 public class Dealer extends Thread {
     private static final Logger logger = Logger.getLogger(Dealer.class.getName());
     private final FinishedProductsWarehouse finishedProductWarehouse;
-    private boolean loggingEnabled = false;
-    private long delay = 1000;
+    private boolean loggingEnabled;
+    private long delay;
 
     public Dealer(long delay, boolean loggingEnabled, FinishedProductsWarehouse finishedProductWarehouse) {
         super();
-//        System.getProperties().setProperty("java.util.logging.config.file", "D:/1_Programming/Java/Projects/Factory/src/main/resources/logging.properties");
         this.finishedProductWarehouse = finishedProductWarehouse;
         this.delay = delay;
         this.loggingEnabled = loggingEnabled;
     }
 
-    public void setDelay(int delay) {
+    public void setDelay(long delay) {
         this.delay = delay;
     }
 
@@ -36,7 +31,7 @@ public class Dealer extends Thread {
     public void run() {
         super.run();
         try {
-            while (true) {
+            while (!Thread.interrupted()) {
 
                 Thread.sleep(delay);
 
@@ -58,7 +53,8 @@ public class Dealer extends Thread {
 //            System.err.println(Thread.currentThread().getName() + ": out");
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
+        System.err.println(Thread.currentThread().getName() + " has stopped");
     }
 }

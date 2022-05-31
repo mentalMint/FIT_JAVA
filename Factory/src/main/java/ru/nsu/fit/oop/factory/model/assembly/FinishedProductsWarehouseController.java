@@ -11,25 +11,25 @@ public class FinishedProductsWarehouseController extends Thread {
     public void run() {
         super.run();
         synchronized (assembly.getFinishedProductsWarehouse().getMutex()) {
-            outerLoop:
-            while (true) {
+            try {
+                while (!Thread.interrupted()) {
 //                System.err.println("Controller: new iteration. Products sum: " +
 //                        (assembly.getFinishedProductsWarehouse().getProductsNumber() + assembly.getProductsAssemblingNumber()));
-                while (assembly.getFinishedProductsWarehouse().getProductsNumber() + assembly.getProductsAssemblingNumber()
-                        > assembly.getFinishedProductsWarehouse().getSize() / 2) {
+                    while (assembly.getFinishedProductsWarehouse().getProductsNumber() + assembly.getProductsAssemblingNumber()
+                            > assembly.getFinishedProductsWarehouse().getSize() / 2) {
 //                    System.err.println("Controller: need wait");
-                    try {
                         assembly.getFinishedProductsWarehouse().getMutex().wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                        break outerLoop;
                     }
+//                    System.err.println("Controller: is notified");
+                    for (int i = 0; i < (assembly.getFinishedProductsWarehouse().getSize() + 1) / 2; i++) {
+                        assembly.assemble();
+                    }
+//                    System.err.println("Controller: delegated tasks");
                 }
-                System.err.println("Controller: is notified");
-                for (int i = 0; i < (assembly.getFinishedProductsWarehouse().getSize() + 1) / 2; i++) {
-                    assembly.assemble();
-                }
-                System.err.println("Controller: delegated tasks");
+            } catch (InterruptedException e) {
+                System.err.println(Thread.currentThread().getName() + " has stopped");
+
+//                e.printStackTrace();
             }
         }
     }

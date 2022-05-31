@@ -13,23 +13,22 @@ public class Worker extends Thread {
     public void run() {
         super.run();
         Runnable task;
-        while (true) {
-            synchronized (tasks) {
-                if (tasks.isEmpty()) {
-                    try {
-                        tasks.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                        return;
-                    }
-                }
-                if (tasks.isEmpty()) {
-                    continue;
-                }
-                task = tasks.remove();
-            }
-            task.run();
+        try {
 
+            while (!interrupted()) {
+                synchronized (tasks) {
+                    while (tasks.isEmpty()) {
+                        tasks.wait();
+                    }
+                    task = tasks.remove();
+                }
+                task.run();
+            }
+        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//            return;
         }
+        System.err.println(Thread.currentThread().getName() + " has stopped");
+
     }
 }

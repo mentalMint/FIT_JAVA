@@ -1,10 +1,11 @@
 package ru.nsu.fit.oop.factory.model.warehouses;
 
 import ru.nsu.fit.oop.factory.model.supplies.details.IProduct;
+import ru.nsu.fit.oop.factory.observer.Observable;
 
 import java.util.ArrayList;
 
-public class Warehouse implements IWarehouse {
+public class Warehouse extends Observable implements IWarehouse {
     private final ArrayList<IProduct> products = new ArrayList<>();
     private final int size;
 
@@ -29,6 +30,7 @@ public class Warehouse implements IWarehouse {
             notify();
         }
         products.add(product);
+        notifyObservers();
     }
 
     @Override
@@ -43,7 +45,9 @@ public class Warehouse implements IWarehouse {
         }
 
         synchronized (products) {
-            return products.remove(0);
+            IProduct product = products.remove(0);
+            notifyObservers();
+            return product;
         }
     }
 

@@ -19,45 +19,39 @@ public class Assembly {
     private int tasksNumber = 0;
     private int productId = 0;
 
+    public int getProductId() {
+        return productId;
+    }
+
     public Assembly(int warehouseSize, int assemblersNumber) {
         if (assemblersNumber <= 0) {
             throw new IllegalArgumentException("Not positive assemblersNumber");
         }
         assemblers = new ThreadPool(assemblersNumber);
         finishedProductsWarehouse = new FinishedProductsWarehouse(warehouseSize);
-        task = () -> {
-            Auto auto = new Auto(productId++);
-//            for (IWarehouse supplyWarehouse : supplyWarehouses) {
-//                IProduct product;
-//                try {
-//                    product = supplyWarehouse.takeProduct();
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                    return;
-//                }
-//                finishedProductDetails.add(product);
-//            }
-            try {
-                auto.setBody(bodySupplyWarehouse.takeProduct());
-                auto.setEngine(engineSupplyWarehouse.takeProduct());
-                auto.setAccessory(accessorySupplyWarehouse.takeProduct());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        task = new Runnable() {
+
+            @Override
+            public void run() {
+                Auto auto = new Auto(productId++);
+                try {
+                    auto.setBody(bodySupplyWarehouse.takeProduct());
+                    auto.setEngine(engineSupplyWarehouse.takeProduct());
+                    auto.setAccessory(accessorySupplyWarehouse.takeProduct());
 //            System.err.println(Thread.currentThread().getName() + ": want to put car");
 
-            synchronized (finishedProductsWarehouse) {
-                try {
-                    finishedProductsWarehouse.putProduct(auto);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    return;
-                }
+                    synchronized (finishedProductsWarehouse) {
+                        finishedProductsWarehouse.putProduct(auto);
 //                System.err.println(Thread.currentThread().getName() + ": cars in warehouse: " + finishedProductsWarehouse.getProductsNumber());
-            }
+                    }
 
-            synchronized (mutex) {
-                tasksNumber--;
+                    synchronized (mutex) {
+                        tasksNumber--;
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+//                e.printStackTrace();
+                }
             }
         };
     }

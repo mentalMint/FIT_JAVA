@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.factory.model.assembly.Assembly;
 import ru.nsu.fit.oop.factory.model.assembly.FinishedProductsWarehouseController;
 import ru.nsu.fit.oop.factory.model.sale.Sale;
+import ru.nsu.fit.oop.factory.model.supplies.IdGenerator;
 import ru.nsu.fit.oop.factory.model.supplies.suppliers.AccessorySupplier;
 import ru.nsu.fit.oop.factory.model.supplies.suppliers.BodySupplier;
 import ru.nsu.fit.oop.factory.model.supplies.suppliers.EngineSupplier;
@@ -13,9 +14,9 @@ public class FactoryTest {
     @Test
     void carProducing() throws InterruptedException {
         Assembly assembly = new Assembly(5, 5);
-        EngineSupplier supplier = new EngineSupplier(new Warehouse(10));
-        BodySupplier supplier2 = new BodySupplier(new Warehouse(10));
-        AccessorySupplier supplier3 = new AccessorySupplier(new Warehouse(10));
+        EngineSupplier supplier = new EngineSupplier(new Warehouse(10), new IdGenerator());
+        BodySupplier supplier2 = new BodySupplier(new Warehouse(10), new IdGenerator());
+        AccessorySupplier supplier3 = new AccessorySupplier(new Warehouse(10), new IdGenerator());
         assembly.setEngineSupplyWarehouse(supplier.getWarehouse());
         assembly.setBodySupplyWarehouse(supplier2.getWarehouse());
         assembly.setAccessorySupplyWarehouse(supplier3.getWarehouse());

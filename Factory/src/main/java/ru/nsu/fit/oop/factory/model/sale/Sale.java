@@ -7,8 +7,17 @@ import java.util.ArrayList;
 public class Sale {
     private final ArrayList<Dealer> dealers = new ArrayList<>();
     private final FinishedProductsWarehouse warehouse;
-    private long delay = 100;
-    private boolean loggingEnabled = false;
+    private long delay;
+    private boolean loggingEnabled;
+
+    public void setDelay(long delay) {
+        this.delay = delay;
+        dealers.forEach(dealer -> dealer.setDelay(delay));
+    }
+
+    public long getDelay() {
+        return delay;
+    }
 
     public Sale(int dealersNumber, FinishedProductsWarehouse warehouse, long delay, boolean loggingEnabled) {
         this.delay = delay;
