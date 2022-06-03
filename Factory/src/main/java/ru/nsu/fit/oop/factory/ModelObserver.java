@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.factory;
 
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import ru.nsu.fit.oop.factory.model.Model;
@@ -68,14 +69,16 @@ public class ModelObserver implements Flow.Subscriber<Boolean> {
 
     @Override
     public void onNext(Boolean item) {
-        bodyIdProperty.set(model.getBodyId());
-        engineIdProperty.set(model.getEngineId());
-        accessoryIdProperty.set(model.getAccessoryId());
-        bodyWarehouseWorkloadProperty.set(model.getBodyWarehouseWorkload());
-        engineWarehouseWorkloadProperty.set(model.getEngineWarehouseWorkload());
-        accessoryWarehouseWorkloadProperty.set(model.getAccessoryWarehouseWorkload());
-        autosNumberProperty.set(model.getAutosNumber());
-        autoWarehouseWorkloadProperty.set(model.getAutoWarehouseWorkload());
+        Platform.runLater(() -> {
+            bodyIdProperty.set(model.getBodyId());
+            engineIdProperty.set(model.getEngineId());
+            accessoryIdProperty.set(model.getAccessoryId());
+            bodyWarehouseWorkloadProperty.set(model.getBodyWarehouseWorkload());
+            engineWarehouseWorkloadProperty.set(model.getEngineWarehouseWorkload());
+            accessoryWarehouseWorkloadProperty.set(model.getAccessoryWarehouseWorkload());
+            autosNumberProperty.set(model.getAutosNumber());
+            autoWarehouseWorkloadProperty.set(model.getAutoWarehouseWorkload());
+        });
     }
 
     @Override

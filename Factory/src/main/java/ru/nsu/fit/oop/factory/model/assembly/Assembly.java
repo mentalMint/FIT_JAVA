@@ -2,12 +2,13 @@ package ru.nsu.fit.oop.factory.model.assembly;
 
 import ru.nsu.fit.oop.factory.model.supplies.details.IProduct;
 import ru.nsu.fit.oop.factory.model.warehouses.FinishedProductsWarehouse;
+import ru.nsu.fit.oop.factory.observer.Observable;
 import ru.nsu.fit.oop.factory.threadpool.ThreadPool;
 import ru.nsu.fit.oop.factory.model.warehouses.IWarehouse;
 
 import java.util.ArrayList;
 
-public class Assembly {
+public class Assembly extends Observable {
 //    private final ArrayList<IWarehouse> supplyWarehouses = new ArrayList<>();
     private IWarehouse accessorySupplyWarehouse;
     private IWarehouse bodySupplyWarehouse;
@@ -39,7 +40,7 @@ public class Assembly {
                     auto.setEngine(engineSupplyWarehouse.takeProduct());
                     auto.setAccessory(accessorySupplyWarehouse.takeProduct());
 //            System.err.println(Thread.currentThread().getName() + ": want to put car");
-
+                    notifyObservers();
                     synchronized (finishedProductsWarehouse) {
                         finishedProductsWarehouse.putProduct(auto);
 //                System.err.println(Thread.currentThread().getName() + ": cars in warehouse: " + finishedProductsWarehouse.getProductsNumber());

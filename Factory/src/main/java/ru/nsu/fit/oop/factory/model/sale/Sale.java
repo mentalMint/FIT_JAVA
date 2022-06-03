@@ -1,10 +1,11 @@
 package ru.nsu.fit.oop.factory.model.sale;
 
 import ru.nsu.fit.oop.factory.model.warehouses.FinishedProductsWarehouse;
+import ru.nsu.fit.oop.factory.observer.Observable;
 
 import java.util.ArrayList;
 
-public class Sale {
+public class Sale extends Observable {
     private final ArrayList<Dealer> dealers = new ArrayList<>();
     private final FinishedProductsWarehouse warehouse;
     private long delay;
@@ -13,6 +14,7 @@ public class Sale {
     public void setDelay(long delay) {
         this.delay = delay;
         dealers.forEach(dealer -> dealer.setDelay(delay));
+        notifyObservers();
     }
 
     public long getDelay() {

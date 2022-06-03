@@ -1,6 +1,5 @@
 package ru.nsu.fit.oop.factory.model.warehouses;
 
-import ru.nsu.fit.oop.factory.model.assembly.Auto;
 import ru.nsu.fit.oop.factory.model.supplies.details.IProduct;
 
 public class FinishedProductsWarehouse extends Warehouse {

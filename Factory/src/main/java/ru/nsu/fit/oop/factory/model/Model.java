@@ -37,6 +37,8 @@ public class Model {
         accessoryWarehouse.subscribe(subscriber);
         bodyWarehouse.subscribe(subscriber);
         engineWarehouse.subscribe(subscriber);
+        assembly.subscribe(subscriber);
+        sale.subscribe(subscriber);
     }
 
     public void setBodySupplierDelay(long delay) {
@@ -108,7 +110,7 @@ public class Model {
         assembly.setBodySupplyWarehouse(bodyWarehouse);
         assembly.setEngineSupplyWarehouse(engineWarehouse);
         sale = new Sale(Integer.parseInt(properties.getProperty("Dealers")), assembly.getFinishedProductsWarehouse(),
-                100, Boolean.parseBoolean(properties.getProperty("LogSale")));
+                1000, Boolean.parseBoolean(properties.getProperty("LogSale")));
         finishedProductsWarehouseController = new FinishedProductsWarehouseController(assembly);
         finishedProductsWarehouseController.setName("Controller");
     }

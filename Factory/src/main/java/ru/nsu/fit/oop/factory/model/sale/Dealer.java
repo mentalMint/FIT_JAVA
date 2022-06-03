@@ -32,7 +32,6 @@ public class Dealer extends Thread {
         super.run();
         try {
             while (!Thread.interrupted()) {
-
                 Thread.sleep(delay);
 
 //            System.err.println(Thread.currentThread().getName() + ": wait to come in");

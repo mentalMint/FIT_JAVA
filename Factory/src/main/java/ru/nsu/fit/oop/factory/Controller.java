@@ -64,19 +64,20 @@ public class Controller {
     }
 
 
-    public Controller() throws LoadException {
-    }
 
     private long calcDelay(double speed) {
-        long delay = 10000;
+        double delay = 1000;
         if (speed > 0) {
-            delay = (long) (10000 / bodySupplierSpeed.getValue());
+            delay = (1000 / speed);
         }
-        return delay;
+        return (long) delay;
     }
 
     public void exit() {
         model.stop();
+    }
+
+    public Controller() throws LoadException {
     }
 
     public void initialize() {

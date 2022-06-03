@@ -27,7 +27,7 @@ public class Warehouse extends Observable implements IWarehouse {
 //        System.err.println(Thread.currentThread().getName() + ": put product");
 
         if (isEmpty()) {
-            notify();
+            notifyAll();
         }
         products.add(product);
         notifyObservers();
@@ -41,14 +41,15 @@ public class Warehouse extends Observable implements IWarehouse {
         }
 //        System.err.println(Thread.currentThread().getName() + ": take product");
         if (isFull()) {
-            notify();
+            notifyAll();
         }
 
+        IProduct product;
         synchronized (products) {
-            IProduct product = products.remove(0);
-            notifyObservers();
-            return product;
+            product = products.remove(0);
         }
+        notifyObservers();
+        return product;
     }
 
     public int getProductsNumber() {
