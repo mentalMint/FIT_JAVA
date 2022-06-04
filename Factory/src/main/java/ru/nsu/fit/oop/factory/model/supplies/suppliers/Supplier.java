@@ -6,7 +6,7 @@ import ru.nsu.fit.oop.factory.model.warehouses.IWarehouse;
 
 abstract public class Supplier extends Thread implements ISupplier {
     private final IWarehouse warehouse;
-    private long delay = 1000;
+    private long delay = 5000;
     private final IdGenerator idGenerator;
 
     public Supplier(IWarehouse warehouse, IdGenerator idGenerator) {

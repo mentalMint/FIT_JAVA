@@ -1,15 +1,11 @@
 package ru.nsu.fit.oop.factory.model.assembly;
 
-import ru.nsu.fit.oop.factory.model.supplies.details.IProduct;
 import ru.nsu.fit.oop.factory.model.warehouses.FinishedProductsWarehouse;
 import ru.nsu.fit.oop.factory.observer.Observable;
 import ru.nsu.fit.oop.factory.threadpool.ThreadPool;
 import ru.nsu.fit.oop.factory.model.warehouses.IWarehouse;
 
-import java.util.ArrayList;
-
 public class Assembly extends Observable {
-//    private final ArrayList<IWarehouse> supplyWarehouses = new ArrayList<>();
     private IWarehouse accessorySupplyWarehouse;
     private IWarehouse bodySupplyWarehouse;
     private IWarehouse engineSupplyWarehouse;
@@ -30,29 +26,25 @@ public class Assembly extends Observable {
         }
         assemblers = new ThreadPool(assemblersNumber);
         finishedProductsWarehouse = new FinishedProductsWarehouse(warehouseSize);
-        task = new Runnable() {
-
-            @Override
-            public void run() {
-                Auto auto = new Auto(productId++);
-                try {
-                    auto.setBody(bodySupplyWarehouse.takeProduct());
-                    auto.setEngine(engineSupplyWarehouse.takeProduct());
-                    auto.setAccessory(accessorySupplyWarehouse.takeProduct());
+        task = () -> {
+            Auto auto = new Auto(productId++);
+            try {
+                auto.setBody(bodySupplyWarehouse.takeProduct());
+                auto.setEngine(engineSupplyWarehouse.takeProduct());
+                auto.setAccessory(accessorySupplyWarehouse.takeProduct());
 //            System.err.println(Thread.currentThread().getName() + ": want to put car");
-                    notifyObservers();
-                    synchronized (finishedProductsWarehouse) {
-                        finishedProductsWarehouse.putProduct(auto);
+                notifyObservers();
+                synchronized (finishedProductsWarehouse) {
+                    finishedProductsWarehouse.putProduct(auto);
 //                System.err.println(Thread.currentThread().getName() + ": cars in warehouse: " + finishedProductsWarehouse.getProductsNumber());
-                    }
-
-                    synchronized (mutex) {
-                        tasksNumber--;
-                    }
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-//                e.printStackTrace();
                 }
+
+                synchronized (mutex) {
+                    tasksNumber--;
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+//                e.printStackTrace();
             }
         };
     }
@@ -60,10 +52,6 @@ public class Assembly extends Observable {
     public FinishedProductsWarehouse getFinishedProductsWarehouse() {
         return finishedProductsWarehouse;
     }
-
-//    public void addWarehouse(IWarehouse warehouse) {
-//        supplyWarehouses.add(warehouse);
-//    }
 
     public IWarehouse getAccessorySupplyWarehouse() {
         return accessorySupplyWarehouse;

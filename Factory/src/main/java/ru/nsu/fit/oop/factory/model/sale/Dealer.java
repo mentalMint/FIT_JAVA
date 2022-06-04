@@ -9,7 +9,7 @@ import ru.nsu.fit.oop.factory.model.warehouses.FinishedProductsWarehouse;
 public class Dealer extends Thread {
     private static final Logger logger = Logger.getLogger(Dealer.class.getName());
     private final FinishedProductsWarehouse finishedProductWarehouse;
-    private boolean loggingEnabled;
+    private final boolean loggingEnabled;
     private long delay;
 
     public Dealer(long delay, boolean loggingEnabled, FinishedProductsWarehouse finishedProductWarehouse) {
@@ -33,10 +33,7 @@ public class Dealer extends Thread {
         try {
             while (!Thread.interrupted()) {
                 Thread.sleep(delay);
-
-//            System.err.println(Thread.currentThread().getName() + ": wait to come in");
                 synchronized (finishedProductWarehouse) {
-//                System.err.println(Thread.currentThread().getName( + ": in");
                     Auto auto = (Auto) finishedProductWarehouse.takeProduct();
                     if (loggingEnabled) {
                         logger.info(
@@ -46,10 +43,7 @@ public class Dealer extends Thread {
                                         + " Engine: " + auto.getEngine().getId()
                                         + " Accessory: " + auto.getAccessory().getId() + ")");
                     }
-//                System.err.println(Thread.currentThread().getName() + ": cars in warehouse: " + finishedProductWarehouse.getProductsNumber());
-
                 }
-//            System.err.println(Thread.currentThread().getName() + ": out");
             }
         } catch (InterruptedException e) {
 //            e.printStackTrace();

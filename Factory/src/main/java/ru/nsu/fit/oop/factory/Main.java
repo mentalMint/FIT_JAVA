@@ -14,13 +14,17 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("view.fxml"));
-        Parent root = loader.load();
-        stage.setTitle("MVC Example App");
-        stage.setScene(new Scene(root, 720, 480));
-        Controller controller = loader.getController();
-        stage.setOnCloseRequest(windowEvent -> controller.exit());
-        stage.show();
+        try {
+            Parent root = loader.load();
+            stage.setTitle("Factory");
+            stage.setScene(new Scene(root, 720, 480));
+            Controller controller = loader.getController();
+            stage.setOnCloseRequest(windowEvent -> controller.exit());
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

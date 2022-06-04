@@ -8,12 +8,11 @@
       stylesheets="@../css/styles.css"
       fx:controller="ru.nsu.fit.oop.factory.Controller">
     <Label alignment="CENTER" maxWidth="720" styleClass="title" text="Factory"/>
-    <GridPane alignment="CENTER">
+    <GridPane alignment="CENTER" maxWidth="720">
         <columnConstraints>
-            <ColumnConstraints minWidth="150" maxWidth="200" hgrow="SOMETIMES"/>
-            <ColumnConstraints minWidth="150" maxWidth="200" hgrow="SOMETIMES"/>
-            <ColumnConstraints minWidth="150" maxWidth="200" hgrow="SOMETIMES"/>
-            <ColumnConstraints minWidth="150" maxWidth="200" hgrow="SOMETIMES"/>
+            <ColumnConstraints minWidth="150" maxWidth="150" hgrow="SOMETIMES"/>
+            <ColumnConstraints minWidth="120" maxWidth="120" hgrow="SOMETIMES"/>
+            <ColumnConstraints minWidth="120" maxWidth="120" hgrow="SOMETIMES"/>
             <ColumnConstraints minWidth="150" maxWidth="200" hgrow="SOMETIMES"/>
         </columnConstraints>
         <rowConstraints>
@@ -26,29 +25,33 @@
         </rowConstraints>
         <Label styleClass="bold" text="Total" GridPane.columnIndex="1"/>
         <Label styleClass="bold" text="Warehouse" GridPane.columnIndex="2"/>
-        <Label styleClass="bold" text="Supply speed" GridPane.columnIndex="3"/>
+        <Label styleClass="bold" text="Supply speed" translateX="20" GridPane.columnIndex="3"/>
 
         <Label styleClass="bold" text="Bodies:" GridPane.rowIndex="1"/>
-        <Label fx:id="totalBodies" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-        <Label fx:id="bodyWarehouseWorkload" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-        <Slider fx:id="bodySupplierSpeed" minorTickCount="1" majorTickUnit="4" maxWidth="150" onMouseDragged="#setBodySupplierSpeed" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+        <Label fx:id="totalBodies" translateX="5" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Label fx:id="bodyWarehouseWorkload" translateX="25" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <Slider fx:id="bodySupplierSpeed" min="0.2" max="10" maxWidth="170" onMouseDragged="#setBodySupplierSpeed"
+                GridPane.rowIndex="1" GridPane.columnIndex="3"/>
 
         <Label styleClass="bold" text="Engines:" GridPane.rowIndex="2"/>
-        <Label fx:id="totalEngines" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-        <Label fx:id="engineWarehouseWorkload" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-        <Slider fx:id="engineSupplierSpeed" minorTickCount="1" majorTickUnit="5" maxWidth="150" onMouseDragged="#setEngineSupplierSpeed" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+        <Label fx:id="totalEngines" translateX="5" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <Label fx:id="engineWarehouseWorkload" translateX="25" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+        <Slider fx:id="engineSupplierSpeed" min="0.2" max="10" maxWidth="170" onMouseDragged="#setEngineSupplierSpeed"
+                GridPane.columnIndex="3" GridPane.rowIndex="2"/>
 
         <Label styleClass="bold" text="Accessories:" GridPane.rowIndex="3"/>
-        <Label fx:id="totalAccessories" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-        <Label fx:id="accessoryWarehouseWorkload" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-        <Slider fx:id="accessorySupplierSpeed" minorTickCount="1" majorTickUnit="4" maxWidth="150" onMouseDragged="#setAccessorySupplierSpeed" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+        <Label fx:id="totalAccessories" translateX="5" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        <Label fx:id="accessoryWarehouseWorkload" translateX="25" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+        <Slider fx:id="accessorySupplierSpeed" min="0.2" max="10" maxWidth="170"
+                onMouseDragged="#setAccessorySupplierSpeed" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
 
-        <Label styleClass="bold" text="Sale speed" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+        <Label styleClass="bold" text="Sale speed" translateX="20" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
 
         <Label styleClass="bold" text="Autos:" GridPane.rowIndex="5"/>
-        <Label fx:id="totalAutos" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-        <Label fx:id="autoWarehouseWorkload" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-        <Slider fx:id="dealerSpeed" minorTickCount="1" majorTickUnit="5" maxWidth="150" onMouseDragged="#setDealerSpeed" GridPane.columnIndex="3" GridPane.rowIndex="5"/>
+        <Label fx:id="totalAutos" translateX="5" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+        <Label fx:id="autoWarehouseWorkload" translateX="25" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+        <Slider fx:id="dealerSpeed" min="0.2" max="1" maxWidth="170" onMouseDragged="#setDealerSpeed"
+                GridPane.columnIndex="3" GridPane.rowIndex="5"/>
     </GridPane>
     <padding>
         <Insets topRightBottomLeft="15"/>

@@ -110,39 +110,10 @@ public class Model {
         assembly.setBodySupplyWarehouse(bodyWarehouse);
         assembly.setEngineSupplyWarehouse(engineWarehouse);
         sale = new Sale(Integer.parseInt(properties.getProperty("Dealers")), assembly.getFinishedProductsWarehouse(),
-                1000, Boolean.parseBoolean(properties.getProperty("LogSale")));
+                5000, Boolean.parseBoolean(properties.getProperty("LogSale")));
         finishedProductsWarehouseController = new FinishedProductsWarehouseController(assembly);
         finishedProductsWarehouseController.setName("Controller");
     }
-
-//    private void registerSupplyCreators() throws LoadException, ClassNotFoundException {
-//        InputStream supplyCreatorsConfig = Assembly.class.getResourceAsStream("supplier_creators.txt");
-//        if (supplyCreatorsConfig == null) {
-//            throw new NullPointerException("supplier_creators.txt is not found");
-//        }
-//        Properties supplierCreatorsClassNames = new Properties();
-//        try {
-//            supplierCreatorsClassNames.load(supplyCreatorsConfig);
-//        } catch (IOException e) {
-//            throw new LoadException("Failed to load config");
-//        }
-//
-//        for (Object supplierCreatorClassName : supplierCreatorsClassNames.values()) {
-//            try {
-//                ISupplierCreator supplierCreator = (ISupplierCreator) Class.forName((String) supplierCreatorClassName).getConstructor().newInstance();
-//                this.supplyFactories.add(supplierCreator);
-//            } catch (ClassNotFoundException e) {
-//                System.err.println("Error while searching shape class: " + e.getLocalizedMessage() + " This shape will be skipped");
-//            } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        supplyFactories.remove(null);
-//
-//        if (this.supplyFactories.isEmpty()) {
-//            throw new ClassNotFoundException("No shape classes from config.txt found");
-//        }
-//    }
 
     private void arrangeSupplies() {
         accessoryWarehouse = new Warehouse(Integer.parseInt(properties.getProperty("AccessoryWarehouseSize")));
