@@ -13,34 +13,31 @@ import java.util.Set;
 public class Server {
     private static final String POISON_PILL = "POISON_PILL";
 
-    public Server() throws IOException {
-//        serverSocket = ServerSocketChannel.open();
+    public Server() {
     }
 
-    private static void register(Selector selector, ServerSocketChannel serverSocket)
+    private void register(Selector selector, ServerSocketChannel serverSocket)
             throws IOException {
 
         SocketChannel client = serverSocket.accept();
         client.configureBlocking(false);
         client.register(selector, SelectionKey.OP_READ);
+
     }
 
-    private static void answerWithEcho(ByteBuffer buffer, SelectionKey key)
-            throws IOException {
+    private void answerWithEcho(ByteBuffer buffer, SelectionKey key) throws IOException {
 
         SocketChannel client = (SocketChannel) key.channel();
         client.read(buffer);
         if (new String(buffer.array()).trim().equals(POISON_PILL)) {
             client.close();
             System.out.println("Not accepting client messages anymore");
-        }
-        else {
+        } else {
             buffer.flip();
             client.write(buffer);
             buffer.clear();
         }
     }
-
 
     public void start() throws IOException {
         Selector selector = Selector.open();
@@ -51,19 +48,53 @@ public class Server {
         ByteBuffer buffer = ByteBuffer.allocate(256);
 
         while (true) {
-            selector.select();
+            try {
+                selector.select();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             Set<SelectionKey> selectedKeys = selector.selectedKeys();
-            Iterator<SelectionKey> iter = selectedKeys.iterator();
-            while (iter.hasNext()) {
-                SelectionKey key = iter.next();
-                if (key.isAcceptable()) {
-                    register(selector, serverSocket);
-                }
+            Iterator<SelectionKey> iterator = selectedKeys.iterator();
+            while (iterator.hasNext()) {
+                SelectionKey key = iterator.next();
+                try {
+                    if (key.isAcceptable()) {
+                        register(selector, serverSocket);
+                    }
 
-                if (key.isReadable()) {
-                    answerWithEcho(buffer, key);
+                    if (key.isReadable()) {
+                        SocketChannel clientSender = (SocketChannel) key.channel();
+                        clientSender.read(buffer);
+                        if (new String(buffer.array()).trim().equals(POISON_PILL)) {
+                            clientSender.close();
+                            key.cancel();
+                            System.out.println("Not accepting client messages anymore");
+                        } else {
+                            buffer.flip();
+
+                            selector.keys().forEach(selectionKey -> {
+                                try {
+                                    if (!selectionKey.isAcceptable()) {
+                                        SocketChannel clientReceiver = (SocketChannel) selectionKey.channel();
+                                        clientReceiver.write(buffer);
+                                        buffer.rewind();
+                                    }
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                    try {
+                                        clientSender.close();
+                                    } catch (IOException ex) {
+                                        ex.printStackTrace();
+                                    }
+                                }
+                            });
+                            buffer.clear();
+                        }
+                    }
+                    iterator.remove();
+                } catch (IOException e) {
+                    key.cancel();
                 }
-                iter.remove();
             }
         }
     }

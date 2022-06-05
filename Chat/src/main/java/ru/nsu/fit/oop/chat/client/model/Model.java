@@ -5,71 +5,68 @@ import ru.nsu.fit.oop.chat.observer.Observable;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.Iterator;
-import java.util.Set;
 
 public class Model extends Observable {
-    private ServerSocketChannel serverSocket;
-    private static final String POISON_PILL = "POISON_PILL";
+    private SocketChannel client;
+    private ByteBuffer buffer = ByteBuffer.allocate(256);
+    private String message;
 
-    public Model() throws IOException {
-//        serverSocket = ServerSocketChannel.open();
+    public String getMessage() {
+        return message;
     }
 
-    private static void register(Selector selector, ServerSocketChannel serverSocket)
-            throws IOException {
-
-        SocketChannel client = serverSocket.accept();
-        client.configureBlocking(false);
-        client.register(selector, SelectionKey.OP_READ);
-    }
-
-    private static void answerWithEcho(ByteBuffer buffer, SelectionKey key)
-            throws IOException {
-
-        SocketChannel client = (SocketChannel) key.channel();
-        client.read(buffer);
-        if (new String(buffer.array()).trim().equals(POISON_PILL)) {
-            client.close();
-            System.out.println("Not accepting client messages anymore");
-        }
-        else {
-            buffer.flip();
-            client.write(buffer);
-            buffer.clear();
-        }
-    }
-
-
-    public void start() throws IOException {
-        Selector selector = Selector.open();
-        serverSocket = ServerSocketChannel.open();
-        serverSocket.bind(new InetSocketAddress("localhost", 5454));
-        serverSocket.configureBlocking(false);
-        serverSocket.register(selector, SelectionKey.OP_ACCEPT);
-        ByteBuffer buffer = ByteBuffer.allocate(256);
-
-        while (true) {
-            selector.select();
-            Set<SelectionKey> selectedKeys = selector.selectedKeys();
-            Iterator<SelectionKey> iter = selectedKeys.iterator();
-            while (iter.hasNext()) {
-
-                SelectionKey key = iter.next();
-
-                if (key.isAcceptable()) {
-                    register(selector, serverSocket);
+    private final Thread receiver = new Thread() {
+        @Override
+        public void run() {
+            super.run();
+            try {
+                while (true) {
+                    message = receiveMessage();
+                    notifyObservers();
                 }
-
-                if (key.isReadable()) {
-                    answerWithEcho(buffer, key);
-                }
-                iter.remove();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
+    };
+
+    public void stop() throws IOException {
+        receiver.interrupt();
+        if (client != null) {
+            client.close();
+        }
+        buffer = null;
+    }
+
+    public Model() {
+        try {
+            client = SocketChannel.open(new InetSocketAddress("localhost", 5454));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized void sendMessage(String msg) {
+        try {
+            client.write(ByteBuffer.wrap(msg.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String receiveMessage() throws IOException {
+        client.read(buffer);
+        buffer.flip();
+        byte[] bytes = new byte[buffer.remaining()];
+        buffer.get(bytes);
+        String response = new String(bytes);
+        System.out.println("response=" + response);
+        buffer.clear();
+        return response;
+    }
+
+    public void start() throws IOException {
+        receiver.start();
     }
 }

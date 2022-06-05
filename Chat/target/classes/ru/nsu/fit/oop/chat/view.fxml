@@ -3,11 +3,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-      prefHeight="480.0" prefWidth="720.0"
+      prefHeight="720" prefWidth="480"
       spacing="15.0"
-      stylesheets="css/styles.css"
-      fx:controller="ru.nsu.fit.oop.chat.client.Controller">
-    <Label alignment="CENTER" styleClass="title" text="Chat"/>
+      stylesheets="@css/styles.css"
+      fx:controller="ru.nsu.fit.oop.chat.client.Controller"
+      onKeyReleased="#handleOnKeyReleasedVbox">
+    <Label alignment="CENTER" minWidth="100" maxWidth="450" styleClass="title" text="Chat"/>
+    <Pane fx:id="pane">
+        <TextField fx:id="textField" styleClass="textField" onKeyReleased="#handleOnKeyReleased" minWidth="100"
+                   prefWidth="340" layoutY="500" alignment="TOP_LEFT"/>
+        <Button fx:id="send" text="Send" minWidth="100" layoutX="350" layoutY="500" onAction="#handleSend"/>
+    </Pane>
+
     <padding>
         <Insets topRightBottomLeft="15"/>
     </padding>
