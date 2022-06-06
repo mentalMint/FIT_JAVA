@@ -1,9 +1,8 @@
-package ru.nsu.fit.oop.chat.client;
+package ru.nsu.fit.oop.chat.packets;
 
 import java.io.Serial;
-import java.io.Serializable;
 
-public class Request implements Serializable {
+public class Request implements IPacket {
     @Serial
     private static final long serialVersionUID = 1L;
     private final Type type;
@@ -24,6 +23,7 @@ public class Request implements Serializable {
         return type;
     }
 
+    @Override
     public String getBody() {
         return body;
     }

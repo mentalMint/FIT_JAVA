@@ -15,6 +15,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import ru.nsu.fit.oop.chat.client.model.Model;
+import ru.nsu.fit.oop.chat.packets.Response;
 
 
 public class Controller implements Flow.Subscriber<Boolean> {
@@ -109,8 +110,21 @@ public class Controller implements Flow.Subscriber<Boolean> {
             for (int i = 0; i < 9; i++) {
                 messages.get(i).setText(messages.get(i + 1).getText());
             }
-            messages.get(9).setText(model.getMessage());
+
+            messages.get(9).setText(formText(model.getResponse()));
         });
+    }
+
+    private String formText(Response response) {
+//        StringBuilder text = new StringBuilder();
+        if (response.getType() == Response.Type.USER_CONNECTED) {
+            return response.getInitiatorName() + " joined this chat";
+        } else if (response.getType() == Response.Type.MESSAGE) {
+            return response.getInitiatorName() + ": " + response.getBody();
+        } else if (response.getType() == Response.Type.USER_DISCONNECTED) {
+            return response.getInitiatorName() + " disconnected";
+        }
+        return "";
     }
 
     @Override
