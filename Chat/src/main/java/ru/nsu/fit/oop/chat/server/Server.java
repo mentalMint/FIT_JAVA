@@ -1,42 +1,28 @@
 package ru.nsu.fit.oop.chat.server;
 
+import ru.nsu.fit.oop.chat.client.Request;
+
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class Server {
-    private static final String POISON_PILL = "POISON_PILL";
-
-    public Server() {
-    }
+    //    private final ArrayList<User> users = new ArrayList<>();
+    private final HashMap<SocketChannel, User> users = new HashMap<>();
 
     private void register(Selector selector, ServerSocketChannel serverSocket)
             throws IOException {
-
         SocketChannel client = serverSocket.accept();
         client.configureBlocking(false);
         client.register(selector, SelectionKey.OP_READ);
-
-    }
-
-    private void answerWithEcho(ByteBuffer buffer, SelectionKey key) throws IOException {
-
-        SocketChannel client = (SocketChannel) key.channel();
-        client.read(buffer);
-        if (new String(buffer.array()).trim().equals(POISON_PILL)) {
-            client.close();
-            System.out.println("Not accepting client messages anymore");
-        } else {
-            buffer.flip();
-            client.write(buffer);
-            buffer.clear();
-        }
     }
 
     public void start() throws IOException {
@@ -45,7 +31,7 @@ public class Server {
         serverSocket.bind(new InetSocketAddress("localhost", 5454));
         serverSocket.configureBlocking(false);
         serverSocket.register(selector, SelectionKey.OP_ACCEPT);
-        ByteBuffer buffer = ByteBuffer.allocate(256);
+        ByteBuffer buffer = ByteBuffer.allocate(300);
 
         while (true) {
             try {
@@ -64,27 +50,37 @@ public class Server {
 
                     if (key.isReadable()) {
                         SocketChannel clientSender = (SocketChannel) key.channel();
-                        clientSender.read(buffer);
-                        if (new String(buffer.array()).trim().equals(POISON_PILL)) {
-                            clientSender.close();
-                            key.cancel();
-                            System.out.println("Not accepting client messages anymore");
-                        } else {
+                        System.err.println("Read count: " + clientSender.read(buffer));
+                        buffer.flip();
+                        byte[] bytes = new byte[buffer.remaining()];
+                        buffer.get(bytes);
+//                        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+//                        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(buffer.array());
+                        System.err.println(Arrays.toString(bytes));
+                        ObjectInputStream inputStream = new ObjectInputStream(new ByteArrayInputStream(bytes));
+                        System.err.println(2);
+                        Request request = (Request) inputStream.readObject();
+                        System.err.println(3);
+//                        inputStream.close();
+                        System.err.println("Request body: " + request.getBody() + "\n");
+                        if (!users.containsKey(clientSender) && request.getType() == Request.Type.REGISTER) {
+                            users.put(clientSender, new User(request.getBody(), clientSender));
+                            buffer.clear();
+                        } else if (users.containsKey(clientSender) && request.getType() == Request.Type.POST) {
                             buffer.flip();
-
                             selector.keys().forEach(selectionKey -> {
-                                try {
-                                    if (!selectionKey.isAcceptable()) {
+                                if (!selectionKey.isAcceptable()) {
+                                    try {
                                         SocketChannel clientReceiver = (SocketChannel) selectionKey.channel();
                                         clientReceiver.write(buffer);
                                         buffer.rewind();
-                                    }
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                    try {
-                                        clientSender.close();
-                                    } catch (IOException ex) {
-                                        ex.printStackTrace();
+                                    } catch (IOException e) {
+                                        try {
+                                            clientSender.close();
+                                            e.printStackTrace();
+                                        } catch (IOException ex) {
+                                            ex.printStackTrace();
+                                        }
                                     }
                                 }
                             });
@@ -93,7 +89,10 @@ public class Server {
                     }
                     iterator.remove();
                 } catch (IOException e) {
+                    e.printStackTrace();
                     key.cancel();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
         }

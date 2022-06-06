@@ -1,15 +1,21 @@
 package ru.nsu.fit.oop.chat.client.model;
 
+import ru.nsu.fit.oop.chat.client.Request;
 import ru.nsu.fit.oop.chat.observer.Observable;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
+import java.util.Arrays;
 
 public class Model extends Observable {
+//    private Socket client;
     private SocketChannel client;
-    private ByteBuffer buffer = ByteBuffer.allocate(256);
+    private ByteBuffer buffer = ByteBuffer.allocate(300);
     private String message;
 
     public String getMessage() {
@@ -20,16 +26,41 @@ public class Model extends Observable {
         @Override
         public void run() {
             super.run();
+//            try {
+//                Selector selector = Selector.open();
+//                client.register(selector, SelectionKey.OP_ACCEPT);
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             try {
                 while (true) {
                     message = receiveMessage();
                     notifyObservers();
                 }
-            } catch (IOException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
     };
+
+    private String receiveMessage() throws IOException, ClassNotFoundException {
+//        Request request = (Request) inputStream.readObject();
+//        inputStream.close();
+
+        System.err.println("Read count: " + client.read(buffer));
+        buffer.flip();
+        byte[] bytes = new byte[buffer.remaining()];
+        buffer.get(bytes);
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(buffer.array());
+        ObjectInputStream inputStream = new ObjectInputStream(byteArrayInputStream);
+        Request request = (Request) inputStream.readObject();
+        inputStream.close();
+        buffer.clear();
+        System.err.println(request.getType());
+        System.err.println(request.getBody() + "\n");
+        return request.getBody();
+    }
 
     public void stop() throws IOException {
         receiver.interrupt();
@@ -41,32 +72,51 @@ public class Model extends Observable {
 
     public Model() {
         try {
-            client = SocketChannel.open(new InetSocketAddress("localhost", 5454));
+//            client = new Socket();
+            client = SocketChannel.open();
+            client.configureBlocking(true);
+//            client.bind(new InetSocketAddress(0));
+            client.connect(new InetSocketAddress("localhost", 5454));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public synchronized void sendMessage(String msg) {
-        try {
-            client.write(ByteBuffer.wrap(msg.getBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public synchronized void sendMessage(String message) throws IOException {
+        Request request = new Request(Request.Type.POST, message);
+        sendRequest(request);
     }
 
-    private String receiveMessage() throws IOException {
-        client.read(buffer);
-        buffer.flip();
-        byte[] bytes = new byte[buffer.remaining()];
-        buffer.get(bytes);
-        String response = new String(bytes);
-        System.out.println("response=" + response);
-        buffer.clear();
-        return response;
-    }
 
     public void start() throws IOException {
+        sendRequest(new Request(Request.Type.REGISTER, "Boba"));
         receiver.start();
+    }
+
+    private void sendRegisterRequest() {
+
+    }
+
+    private void sendRequest(Request request) throws IOException {
+//        ObjectOutputStream outputStream = new ObjectOutputStream(client.getOutputStream());
+//        outputStream.writeObject(request);
+//        outputStream.close();
+//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//        ObjectOutputStream outputStream = new ObjectOutputStream(byteArrayOutputStream);
+//        outputStream.writeObject(request);
+//        outputStream.close();
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ObjectOutputStream outputStream = new ObjectOutputStream(byteArrayOutputStream);
+        outputStream.writeObject(request);
+        outputStream.close();
+        System.err.println(Arrays.toString(byteArrayOutputStream.toByteArray()));
+        buffer = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
+        try {
+            client.write(buffer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        buffer.clear();
     }
 }

@@ -33,18 +33,26 @@ public class Controller implements Flow.Subscriber<Boolean> {
 
     @FXML
     private void handleSend(Event event) {
-        model.sendMessage(textField.getText());
-        textField.setText("");
+        sendMessage();
     }
 
     @FXML
     private void handleOnKeyReleased(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            String text = textField.getText();
-            if (!text.equals("")) {
+            sendMessage();
+        }
+    }
+
+    private void sendMessage() {
+        String text = textField.getText();
+        if (!text.equals("")) {
+            try {
                 model.sendMessage(text);
-                textField.setText("");
+            } catch (IOException e) {
+                e.printStackTrace();
+                Platform.exit();
             }
+            textField.setText("");
         }
     }
 
