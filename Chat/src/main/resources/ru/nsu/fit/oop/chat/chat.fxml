@@ -8,11 +8,15 @@
       stylesheets="@css/styles.css"
       fx:controller="ru.nsu.fit.oop.chat.client.Controller"
       onKeyReleased="#handleOnKeyReleasedVbox">
-    <Label alignment="CENTER" minWidth="100" maxWidth="450" styleClass="title" text="Chat"/>
+
+
     <Pane fx:id="pane">
+        <Label alignment="CENTER" prefWidth="450" styleClass="title" text="Chat"/>
+        <Button fx:id="membersButton" text="m" onAction="#handleInfo" translateY="5" translateX="400" prefWidth="45" prefHeight="45"/>
+        <Label fx:id="members" translateY="55" translateX="300"/>
         <TextField fx:id="textField" styleClass="textField" onKeyReleased="#handleOnKeyReleased" minWidth="100"
-                   prefWidth="340" layoutY="500" alignment="TOP_LEFT"/>
-        <Button fx:id="send" text="Send" minWidth="100" layoutX="350" layoutY="500" onAction="#handleSend"/>
+                   prefWidth="340" layoutY="600" alignment="TOP_LEFT"/>
+        <Button fx:id="send" text="Send" minWidth="100" layoutX="350" layoutY="600" onAction="#handleSend"/>
     </Pane>
 
     <padding>

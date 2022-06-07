@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+      prefHeight="720" prefWidth="480"
+      spacing="15.0"
+      stylesheets="@css/styles.css"
+      fx:controller="ru.nsu.fit.oop.chat.client.RegistrationController"
+      >
+
+    <Pane fx:id="pane">
+        <Label alignment="CENTER" prefWidth="450" styleClass="title" text="Chat"/>
+        <TextField fx:id="nameField" styleClass="textField" minWidth="100"
+                   prefWidth="430" layoutX="15" layoutY="300" alignment="TOP_LEFT"/>
+        <Button fx:id="login" onAction="#handleLogin" text="Login" translateY="500" translateX="200"/>
+    </Pane>
+
+    <padding>
+        <Insets topRightBottomLeft="15"/>
+    </padding>
+</VBox>

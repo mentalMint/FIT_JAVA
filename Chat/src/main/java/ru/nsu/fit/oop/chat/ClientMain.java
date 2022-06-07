@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.chat.client.Controller;
+import ru.nsu.fit.oop.chat.client.view.SceneBuilder;
 
 import java.io.IOException;
 
@@ -17,23 +18,24 @@ public class ClientMain extends Application {
 
     @Override
     public void start(Stage stage) {
-        FXMLLoader loader = new FXMLLoader(ClientMain.class.getResource("view.fxml"));
+        FXMLLoader loader = new FXMLLoader(ClientMain.class.getResource("registration.fxml"));
         try {
             stage.show();
-
             Parent root = loader.load();
             stage.setTitle("Chat 1");
             stage.setScene(new Scene(root, 480, 720));
+//            SceneBuilder sceneBuilder = new SceneBuilder();
+//            stage.setScene(sceneBuilder.getRegistrationScene());
             stage.setResizable(false);
-            Controller controller = loader.getController();
-            stage.setOnCloseRequest(windowEvent -> {
-                try {
-                    controller.exit();
-                } catch (IOException e) {
-                    e.printStackTrace();
+//            Controller controller = loader.getController();
+//            stage.setOnCloseRequest(windowEvent -> {
+//                try {
+//                    controller.exit();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
 //                    Platform.exit();
-                }
-            });
+//                }
+//            });
 //            controller.start();
         } catch (IOException e) {
             e.printStackTrace();

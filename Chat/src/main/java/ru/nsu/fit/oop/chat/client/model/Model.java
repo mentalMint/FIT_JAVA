@@ -14,15 +14,10 @@ import java.util.Arrays;
 public class Model extends Observable {
     private SocketChannel client;
     private ByteBuffer buffer = ByteBuffer.allocate(300);
-    private String message;
     private Response response;
 
     public Response getResponse() {
         return response;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     private final Thread receiver = new Thread() {
@@ -31,8 +26,8 @@ public class Model extends Observable {
             super.run();
             try {
                 while (true) {
-                    message = receiveMessage();
-                    notifyObservers();
+                    receiveMessage();
+                    notifyObservers(response);
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -40,7 +35,7 @@ public class Model extends Observable {
         }
     };
 
-    private String receiveMessage() throws IOException, ClassNotFoundException {
+    private void receiveMessage() throws IOException, ClassNotFoundException {
         System.err.println("Read count: " + client.read(buffer));
         buffer.flip();
         byte[] bytes = new byte[buffer.remaining()];
@@ -52,7 +47,6 @@ public class Model extends Observable {
         buffer.clear();
         System.err.println(response.getType());
         System.err.println(response.getBody() + "\n");
-        return response.getBody();
     }
 
     public void stop() throws IOException {
@@ -79,9 +73,14 @@ public class Model extends Observable {
     }
 
 
-    public void start() throws IOException {
-        sendRequest(new Request(Request.Type.REGISTER, "Boba"));
+    public void start(String name) throws IOException {
+        sendRequest(new Request(Request.Type.REGISTER, name));
         receiver.start();
+    }
+
+    public void sendMembersRequest() throws IOException {
+        Request request = new Request(Request.Type.GET_MEMBERS, "");
+        sendRequest(request);
     }
 
     private void sendRequest(Request request) throws IOException {
