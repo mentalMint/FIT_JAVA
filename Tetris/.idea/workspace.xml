@@ -10,18 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6be3e99e-c45b-4a4b-99cc-0a68a4168327" name="Changes" comment="Soundtrack added">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/view/menu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Chat/src/main/java/ru/nsu/fit/oop/chat/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Chat/src/main/java/ru/nsu/fit/oop/chat/ClientMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Chat/src/main/java/ru/nsu/fit/oop/chat/ClientMain2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Chat/src/main/java/ru/nsu/fit/oop/chat/ClientMain2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Chat/src/main/java/ru/nsu/fit/oop/chat/client/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Chat/src/main/java/ru/nsu/fit/oop/chat/client/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Chat/src/main/java/ru/nsu/fit/oop/chat/client/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Chat/src/main/java/ru/nsu/fit/oop/chat/client/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Chat/src/main/java/ru/nsu/fit/oop/chat/packets/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Chat/src/main/java/ru/nsu/fit/oop/chat/packets/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Chat/src/main/java/ru/nsu/fit/oop/chat/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Chat/src/main/java/ru/nsu/fit/oop/chat/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Chat/target/classes/ru/nsu/fit/oop/chat/client/members.png" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/ModelBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/SceneBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/controllers/GameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/controllers/MenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/view/game.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/observer/Observable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/observer/Observable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/observer/Observer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Menu.java1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Pause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Pause.java1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/oop/tetris/view/Score.java1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/view/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ru/nsu/fit/oop/tetris/view/menu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +36,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -84,6 +85,7 @@
       <recent name="D:\1_Programming\Java\Projects\Tetris\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\1_Programming\Java\Projects\Tetris\src\main\resources\ru\nsu\fit\oop\tetris\view" />
       <recent name="D:\1_Programming\Java\Projects\Tetris\src\main\resources\ru\nsu\fit\oop\tetris" />
       <recent name="D:\1_Programming\Java\Projects\Tetris\target\classes\ru\nsu\fit\oop\tetris" />
     </key>
