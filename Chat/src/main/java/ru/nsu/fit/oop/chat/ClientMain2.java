@@ -16,24 +16,13 @@ public class ClientMain2 extends Application {
 
     @Override
     public void start(Stage stage) {
-        FXMLLoader loader = new FXMLLoader(ClientMain.class.getResource("view.fxml"));
+        FXMLLoader loader = new FXMLLoader(ClientMain.class.getResource("registration.fxml"));
         try {
             stage.show();
-
             Parent root = loader.load();
             stage.setTitle("Chat 2");
             stage.setScene(new Scene(root, 480, 720));
             stage.setResizable(false);
-            Controller controller = loader.getController();
-            stage.setOnCloseRequest(windowEvent -> {
-                try {
-                    controller.exit();
-                } catch (IOException e) {
-                    e.printStackTrace();
-//                    Platform.exit();
-                }
-            });
-//            controller.start();
         } catch (IOException e) {
             e.printStackTrace();
         }

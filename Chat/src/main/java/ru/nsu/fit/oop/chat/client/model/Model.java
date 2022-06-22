@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 public class Model extends Observable {
     private SocketChannel client;
-    private ByteBuffer buffer = ByteBuffer.allocate(300);
+    private ByteBuffer buffer = ByteBuffer.allocate(1024);
     private Response response;
 
     public Response getResponse() {
@@ -83,9 +83,15 @@ public class Model extends Observable {
         sendRequest(request);
     }
 
+    public void sendDisconnectRequest() throws IOException {
+        Request request = new Request(Request.Type.DISCONNECT, "");
+        sendRequest(request);
+    }
+
     private void sendRequest(Request request) throws IOException {
         byte[] byteArray = ObjectByteArrayConvertor.convertObjectToByteArray(request);
         System.err.println(Arrays.toString(byteArray));
+        buffer.clear();
         buffer.put(byteArray);
         buffer.flip();
         try {

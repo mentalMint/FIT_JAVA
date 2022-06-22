@@ -24,19 +24,7 @@ public class ClientMain extends Application {
             Parent root = loader.load();
             stage.setTitle("Chat 1");
             stage.setScene(new Scene(root, 480, 720));
-//            SceneBuilder sceneBuilder = new SceneBuilder();
-//            stage.setScene(sceneBuilder.getRegistrationScene());
             stage.setResizable(false);
-//            Controller controller = loader.getController();
-//            stage.setOnCloseRequest(windowEvent -> {
-//                try {
-//                    controller.exit();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    Platform.exit();
-//                }
-//            });
-//            controller.start();
         } catch (IOException e) {
             e.printStackTrace();
         }

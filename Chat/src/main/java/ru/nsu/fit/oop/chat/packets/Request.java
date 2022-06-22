@@ -16,7 +16,8 @@ public class Request implements IPacket {
     public enum Type {
         POST,
         REGISTER,
-        GET_MEMBERS
+        GET_MEMBERS,
+        DISCONNECT
     }
 
     public Type getType() {

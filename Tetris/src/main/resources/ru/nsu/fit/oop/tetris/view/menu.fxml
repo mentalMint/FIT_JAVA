@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+      prefHeight="720" prefWidth="480"
+      spacing="15.0"
+      stylesheets="@css/styles.css"
+      fx:controller="ru.nsu.fit.oop.tetris.Controller">
+
+    <padding>
+        <Insets topRightBottomLeft="15"/>
+    </padding>
+</VBox>

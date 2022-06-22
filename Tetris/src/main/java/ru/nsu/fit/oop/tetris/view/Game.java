@@ -8,7 +8,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -20,9 +19,7 @@ import java.io.File;
 import java.util.List;
 import java.util.concurrent.Flow;
 
-import javafx.scene.media.Media;
-
-public class Game implements Flow.Subscriber<Boolean> {
+public class Game implements Flow.Subscriber<Object> {
     private final Model model;
     private List<Block> blocks;
     private final int height = 720;
@@ -30,7 +27,7 @@ public class Game implements Flow.Subscriber<Boolean> {
     private final Pane layout = new Pane();
     private final Stage stage;
     private final Scene scene = new Scene(layout, width, height);
-    private final String musicFile = "src/main/resources/ru/nsu/fit/oop/tetris/TetrisBeatbox.mp3";
+    private final String musicFile = "src/main/resources/ru/nsu/fit/oop/tetris/TetrisBeat-box.mp3";
     private final AudioClip sound = new AudioClip(new File(musicFile).toURI().toString());
 
     public Game(Model model, Stage stage) {
@@ -96,7 +93,7 @@ public class Game implements Flow.Subscriber<Boolean> {
     }
 
     @Override
-    public void onNext(Boolean item) {
+    public void onNext(Object item) {
         if (model.getGameState() == Model.GameState.GAME) {
             if (!sound.isPlaying()) {
                 sound.play();

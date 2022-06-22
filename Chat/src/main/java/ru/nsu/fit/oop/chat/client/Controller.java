@@ -113,6 +113,7 @@ public class Controller implements Flow.Subscriber<Response> {
     }
 
     public void exit() throws IOException {
+        model.sendDisconnectRequest();
         model.stop();
     }
 
@@ -165,15 +166,19 @@ public class Controller implements Flow.Subscriber<Response> {
     }
 
     private String formText(Response response) {
-//        StringBuilder text = new StringBuilder();
-        if (response.getType() == Response.Type.USER_CONNECTED) {
-            return response.getInitiatorName() + " joined this chat";
-        } else if (response.getType() == Response.Type.MESSAGE) {
-            return response.getInitiatorName() + ": " + response.getBody();
-        } else if (response.getType() == Response.Type.USER_DISCONNECTED) {
-            return response.getInitiatorName() + " disconnected";
-        } else if (response.getType() == Response.Type.MEMBERS) {
-            return "Members:\n" + response.getBody();
+        switch (response.getType()) {
+            case USER_CONNECTED -> {
+                return response.getInitiatorName() + " joined this chat";
+            }
+            case MESSAGE -> {
+                return response.getInitiatorName() + ": " + response.getBody();
+            }
+            case MEMBERS -> {
+                return "Members:\n" + response.getBody();
+            }
+            case USER_DISCONNECTED -> {
+                return response.getInitiatorName() + " disconnected";
+            }
         }
         return "";
     }
