@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.tetris;
 
 import javafx.stage.Stage;
+import ru.nsu.fit.oop.tetris.model.Model;
 import ru.nsu.fit.oop.tetris.view.Game;
 //import ru.nsu.fit.oop.tetris.view.Score;
 //import ru.nsu.fit.oop.tetris.view.Menu;

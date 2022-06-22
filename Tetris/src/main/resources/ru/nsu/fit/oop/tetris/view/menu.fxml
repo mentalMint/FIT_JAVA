@@ -2,17 +2,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
       prefHeight="720" prefWidth="480"
       spacing="15.0"
       stylesheets="@css/styles.css"
+      styleClass="root"
+      alignment="CENTER"
       fx:controller="ru.nsu.fit.oop.tetris.controllers.MenuController">
 
-    <Pane>
-        <Button fx:id="start" text="Start" onAction="#handleStart" />
-    </Pane>
-
-    <padding>
-        <Insets topRightBottomLeft="15"/>
-    </padding>
+    <Label text="Tetris" styleClass="title" translateY="-100"/>
+    <Button fx:id="start" styleClass="button" text="Start" onAction="#handleStart"/>
 </VBox>

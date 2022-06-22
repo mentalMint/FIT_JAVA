@@ -11,8 +11,8 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import ru.nsu.fit.oop.tetris.Block;
-import ru.nsu.fit.oop.tetris.Model;
+import ru.nsu.fit.oop.tetris.model.Block;
+import ru.nsu.fit.oop.tetris.model.Model;
 import ru.nsu.fit.oop.tetris.exceptions.ShapeCreationException;
 
 import java.io.File;

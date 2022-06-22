@@ -1,0 +1,7 @@
+Square=ru.nsu.fit.oop.tetris.model.shapes.SquareShape
+Bar=ru.nsu.fit.oop.tetris.model.shapes.BarShape
+T=ru.nsu.fit.oop.tetris.model.shapes.TShape
+L=ru.nsu.fit.oop.tetris.model.shapes.LShape
+J=ru.nsu.fit.oop.tetris.model.shapes.JShape
+S=ru.nsu.fit.oop.tetris.model.shapes.SShape
+Z=ru.nsu.fit.oop.tetris.model.shapes.ZShape

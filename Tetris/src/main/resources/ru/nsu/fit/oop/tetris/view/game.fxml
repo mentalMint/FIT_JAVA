@@ -6,10 +6,10 @@
       prefHeight="720" prefWidth="480"
       spacing="15.0"
       stylesheets="@css/styles.css"
-      fx:controller="ru.nsu.fit.oop.tetris.controllers.GameController">
+      fx:controller="ru.nsu.fit.oop.tetris.controllers.GameController"
+      onKeyReleased="#handleOnKeyReleased"
+      onKeyPressed="#handleOnKeyPressed">
 
-    <Rectangle width="480" height="40" styleClass="" translateX="-15" translateY="-15"/>
-    <padding>
-        <Insets topRightBottomLeft="15"/>
-    </padding>
+    <Rectangle width="480" height="40" fill="darkslateblue"/>
+    <GridPane fx:id="field" prefHeight="660" prefWidth="460" translateY="-100"/>
 </VBox>

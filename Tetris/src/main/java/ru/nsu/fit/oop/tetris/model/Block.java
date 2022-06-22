@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.tetris;
+package ru.nsu.fit.oop.tetris.model;
 
 import javafx.scene.paint.Color;
 

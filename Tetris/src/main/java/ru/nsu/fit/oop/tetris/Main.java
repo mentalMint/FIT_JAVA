@@ -18,11 +18,11 @@ public class Main extends Application {
     public void start(Stage stage) {
         try {
             stage.setTitle("Tetris");
-            stage.setResizable(false);
             stage.setWidth(480);
             stage.setHeight(720);
-            stage.show();
+            stage.setResizable(false);
             stage.setScene(SceneBuilder.getMenu());
+            stage.show();
         } catch (IOException e) {
             Platform.exit();
             e.printStackTrace();

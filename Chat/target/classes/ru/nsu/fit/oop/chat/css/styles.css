@@ -13,3 +13,7 @@
     -fx-font-family: "Helvetica";
     -fx-font-size: 15pt;
 }
+
+.button{
+    -fx-background-color: red;
+}

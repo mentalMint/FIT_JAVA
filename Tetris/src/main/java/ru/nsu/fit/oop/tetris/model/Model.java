@@ -1,9 +1,9 @@
-package ru.nsu.fit.oop.tetris;
+package ru.nsu.fit.oop.tetris.model;
 
 import javafx.fxml.LoadException;
 import ru.nsu.fit.oop.tetris.exceptions.ClassesRegistrationException;
 import ru.nsu.fit.oop.tetris.exceptions.ShapeCreationException;
-import ru.nsu.fit.oop.tetris.shapes.Shape;
+import ru.nsu.fit.oop.tetris.model.shapes.Shape;
 
 import javafx.scene.paint.Color;
 
@@ -30,7 +30,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
 
     public class Field {
         private final int width = 10;
-        private final int height = 17;
+        private final int height = 15;
         private final List<Block> blocks = new ArrayList<>();
 
         public Field() {

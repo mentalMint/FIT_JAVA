@@ -10,6 +10,7 @@ public class SceneBuilder {
     private static Scene game;
     private static Scene menu;
     private static Scene score;
+    private static Scene pause;
     private static Scene highScores;
     private static Scene about;
 
@@ -22,11 +23,21 @@ public class SceneBuilder {
         return menu;
     }
 
+    public static Scene getPause() throws IOException {
+        if (pause == null) {
+            FXMLLoader loader = new FXMLLoader(SceneBuilder.class.getResource("view/pause.fxml"));
+            Parent root = loader.load();
+            pause = new Scene(root);
+        }
+        return pause;
+    }
+
     public static Scene getGame() throws IOException {
         if (game == null) {
             FXMLLoader loader = new FXMLLoader(SceneBuilder.class.getResource("view/game.fxml"));
             Parent root = loader.load();
             game = new Scene(root);
+            game.getRoot().requestFocus();
         }
         return game;
     }

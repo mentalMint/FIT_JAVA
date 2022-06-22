@@ -1,7 +1,7 @@
-package ru.nsu.fit.oop.tetris.shapes;
+package ru.nsu.fit.oop.tetris.model.shapes;
 
 import javafx.scene.paint.Color;
-import ru.nsu.fit.oop.tetris.Block;
+import ru.nsu.fit.oop.tetris.model.Block;
 
 public class TShape extends Shape {
     public TShape(Color color, int x, int y) {

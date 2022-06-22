@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.shape.Rectangle?>
+<VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+      prefHeight="720" prefWidth="480"
+      spacing="15.0"
+      stylesheets="@css/styles.css"
+      styleClass="root"
+      alignment="CENTER"
+      fx:controller="ru.nsu.fit.oop.tetris.controllers.PauseController">
+
+    <Rectangle width="480" height="40" fill="darkslateblue"/>
+    <GridPane fx:id="field" prefHeight="660" prefWidth="460" translateY="-100"/>
+    <Button fx:id="resume" styleClass="button" text="Resume" onAction="#handleResume" translateY="-150"/>
+    <Button fx:id="menu" styleClass="button" text="Menu" onAction="#handleMenu" translateY="-125"/>
+    <Button fx:id="highScores" styleClass="button" text="High scores" onAction="#handleHighScores" translateY="-100"/>
+
+</VBox>

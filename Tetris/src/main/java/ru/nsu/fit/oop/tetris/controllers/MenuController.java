@@ -5,7 +5,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import ru.nsu.fit.oop.tetris.Model;
+import ru.nsu.fit.oop.tetris.model.Model;
 import ru.nsu.fit.oop.tetris.ModelBuilder;
 import ru.nsu.fit.oop.tetris.SceneBuilder;
 import ru.nsu.fit.oop.tetris.exceptions.ClassesRegistrationException;
@@ -53,6 +53,13 @@ public class MenuController {
 //        } catch (IOException e) {
 //            Platform.exit();
 //        }
+    }
+
+    public void initialize() {
+//        Stage stage = (Stage) start.getScene().getWindow();
+//        stage.setOnCloseRequest(e -> {
+//            model.exit();
+//        });
     }
 
 }

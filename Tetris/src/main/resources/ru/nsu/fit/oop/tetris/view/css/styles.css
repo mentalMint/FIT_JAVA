@@ -1,8 +1,7 @@
 .title{
-    -fx-background-color: #fcc200;
+    -fx-text-fill: mediumturquoise;
     -fx-font-weight: 900;
-    -fx-padding: 10px;
-    -fx-font-size: 18pt;
+    -fx-font-size: 48pt;
 }
 
 .bold{
@@ -10,8 +9,16 @@
 }
 
 .root{
+    -fx-background-color: darkslateblue;
     -fx-font-family: "Helvetica";
     -fx-font-size: 15pt;
 }
 
-
+.button{
+    -fx-background-color: mediumturquoise;
+    -fx-font-size: 18pt;
+    -fx-font-weight: 900;
+    -fx-pref-width: 170;
+    -fx-pref-height: 70;
+    -fx-min-height: 70;
+}

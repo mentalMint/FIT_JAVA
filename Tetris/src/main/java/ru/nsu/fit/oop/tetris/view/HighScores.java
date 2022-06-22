@@ -23,7 +23,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import ru.nsu.fit.oop.tetris.Model;
+import ru.nsu.fit.oop.tetris.model.Model;
 
 public class HighScores {
     public class Score {
