@@ -16,6 +16,4 @@
     <GridPane fx:id="field" prefHeight="660" prefWidth="460" translateY="-100"/>
     <Button fx:id="resume" styleClass="button" text="Resume" onAction="#handleResume" translateY="-150"/>
     <Button fx:id="menu" styleClass="button" text="Menu" onAction="#handleMenu" translateY="-125"/>
-    <Button fx:id="highScores" styleClass="button" text="High scores" onAction="#handleHighScores" translateY="-100"/>
-
 </VBox>

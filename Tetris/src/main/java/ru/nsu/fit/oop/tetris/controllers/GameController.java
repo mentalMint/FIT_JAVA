@@ -2,6 +2,7 @@ package ru.nsu.fit.oop.tetris.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -23,6 +24,8 @@ public class GameController implements Flow.Subscriber<Object> {
 
     @FXML
     private GridPane field;
+    @FXML
+    private Label score;
 
     @FXML
     private void handleOnKeyReleased(KeyEvent event) {
@@ -82,32 +85,39 @@ public class GameController implements Flow.Subscriber<Object> {
 
     @Override
     public void onNext(Object item) {
-        if (model.getGameState() == Model.GameState.SCORE) {
-            Stage stage = (Stage) field.getScene().getWindow();
-            try {
-                stage.setScene(SceneBuilder.getScore());
-            } catch (IOException e) {
-                Platform.exit();
-                e.printStackTrace();
-            }
-        }
+        Platform.runLater(() -> {
+            if (model.getGameState() == Model.GameState.SCORE) {
+                Stage stage = (Stage) field.getScene().getWindow();
+                if (stage != null) {
+                    try {
+                        stage.setScene(SceneBuilder.getScore());
+                    } catch (IOException e) {
+                        Platform.exit();
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                score.setText(Integer.toString(model.getScore()));
+
 //        if (model.getGameState() == Model.GameState.GAME) {
 //            if (!sound.isPlaying()) {
 //                sound.play();
 //            }
-        List<Block> blocks = model.getField().getBlocks();
-        for (int i = 2; i < model.getField().getHeight(); i++) {
-            for (int j = 0; j < model.getField().getWidth(); j++) {
-                int index = i * model.getField().getWidth() + j;
-                Rectangle rectangle = (Rectangle) field.getChildren().get(index);
-                rectangle.setFill(blocks.get(index).color);
-            }
-        }
+                List<Block> blocks = model.getField().getBlocks();
+                for (int i = 2; i < model.getField().getHeight(); i++) {
+                    for (int j = 0; j < model.getField().getWidth(); j++) {
+                        int index = i * model.getField().getWidth() + j;
+                        Rectangle rectangle = (Rectangle) field.getChildren().get(index);
+                        rectangle.setFill(blocks.get(index).color);
+                    }
+                }
 
 //            field.getScene().getWindow().set
 //        } else {
 //            sound.stop();
 //        }
+            }
+        });
     }
 
     @Override

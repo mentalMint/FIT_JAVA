@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+      prefHeight="720" prefWidth="480"
+      spacing="15.0"
+      stylesheets="@css/styles.css"
+      styleClass="root"
+      alignment="CENTER"
+      fx:controller="ru.nsu.fit.oop.tetris.controllers.ScoreController">
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.nsu.fit.oop.tetris.Score"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+        <Label text="Your score" styleClass="my-label" textFill="mediumturquoise" translateX="-70"/>
+        <Label fx:id="score" styleClass="my-label" translateX="40" translateY="-60"/>
+        <TextField fx:id="nameField" styleClass="text-field" promptText="Enter your name" maxWidth="300" translateY="-30" onKeyPressed="#handleOnKeyPressed"/>
+        <Button fx:id="submit" styleClass="button" text="Submit" onAction="#handleSubmit" translateY="30"/>
+        <Button fx:id="skip" styleClass="button" text="Skip" onAction="#handleSkip" translateY="50"/>
+</VBox>

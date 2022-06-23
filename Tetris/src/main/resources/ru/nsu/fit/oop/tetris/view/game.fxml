@@ -2,14 +2,17 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.control.Label?>
 <VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
       prefHeight="720" prefWidth="480"
       spacing="15.0"
       stylesheets="@css/styles.css"
       fx:controller="ru.nsu.fit.oop.tetris.controllers.GameController"
+      alignment="CENTER"
       onKeyReleased="#handleOnKeyReleased"
       onKeyPressed="#handleOnKeyPressed">
 
     <Rectangle width="480" height="40" fill="darkslateblue"/>
-    <GridPane fx:id="field" prefHeight="660" prefWidth="460" translateY="-100"/>
+    <Label fx:id="score" styleClass="score" textFill="mediumturquoise" translateY="-50"/>
+    <GridPane fx:id="field" prefHeight="660" prefWidth="460" translateY="-150"/>
 </VBox>

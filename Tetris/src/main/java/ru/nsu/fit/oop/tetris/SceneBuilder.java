@@ -13,6 +13,29 @@ public class SceneBuilder {
     private static Scene pause;
     private static Scene highScores;
     private static Scene about;
+    private static FXMLLoader highScoresLoader;
+
+    public static FXMLLoader getHighScoresLoader() {
+        return highScoresLoader;
+    }
+
+    public static Scene getAbout() throws IOException {
+        if (about == null) {
+            highScoresLoader = new FXMLLoader(SceneBuilder.class.getResource("view/about.fxml"));
+            Parent root = highScoresLoader.load();
+            about = new Scene(root);
+        }
+        return about;
+    }
+
+    public static Scene getHighScores() throws IOException {
+        if (highScores == null) {
+            highScoresLoader = new FXMLLoader(SceneBuilder.class.getResource("view/high-scores.fxml"));
+            Parent root = highScoresLoader.load();
+            highScores = new Scene(root);
+        }
+        return highScores;
+    }
 
     public static Scene getMenu() throws IOException {
         if (menu == null) {

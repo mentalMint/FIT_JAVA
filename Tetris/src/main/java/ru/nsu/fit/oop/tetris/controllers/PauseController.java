@@ -26,8 +26,6 @@ public class PauseController implements Flow.Subscriber<Object> {
     @FXML
     private Button resume;
     @FXML
-    private Button highScores;
-    @FXML
     private Button menu;
 
     @FXML
@@ -40,16 +38,6 @@ public class PauseController implements Flow.Subscriber<Object> {
             Platform.exit();
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void handleHighScores(Event event) {
-//        Stage stage = (Stage) start.getScene().getWindow();
-//        try {
-//            stage.setScene(SceneBuilder.get());
-//        } catch (IOException e) {
-//            Platform.exit();
-//        }
     }
 
     @FXML
@@ -71,7 +59,7 @@ public class PauseController implements Flow.Subscriber<Object> {
 
         for (int i = 2; i < model.getField().getHeight(); i++) {
             for (int j = 0; j < model.getField().getWidth(); j++) {
-                int index = i * model.getField().getWidth() + j;sss
+                int index = i * model.getField().getWidth() + j;
                 Rectangle rectangle = new Rectangle();
                 rectangle.setTranslateY(i * shift);
                 rectangle.setTranslateX(j * shift);
@@ -92,14 +80,17 @@ public class PauseController implements Flow.Subscriber<Object> {
 
     @Override
     public void onNext(Object item) {
-        List<Block> blocks = model.getField().getBlocks();
-
-        for (int i = 2; i < model.getField().getHeight(); i++) {
-            for (int j = 0; j < model.getField().getWidth(); j++) {
-                int index = i * model.getField().getWidth() + j;
-                Rectangle rectangle = (Rectangle) field.getChildren().get((i - 2) * model.getField().getWidth() + j);
-                rectangle.setFill(blocks.get(index).color);
-            }
+        if (model.getGameState() == Model.GameState.PAUSE) {
+            Platform.runLater(() -> {
+                List<Block> blocks = model.getField().getBlocks();
+                for (int i = 2; i < model.getField().getHeight(); i++) {
+                    for (int j = 0; j < model.getField().getWidth(); j++) {
+                        int index = i * model.getField().getWidth() + j;
+                        Rectangle rectangle = (Rectangle) field.getChildren().get((i - 2) * model.getField().getWidth() + j);
+                        rectangle.setFill(blocks.get(index).color);
+                    }
+                }
+            });
         }
     }
 

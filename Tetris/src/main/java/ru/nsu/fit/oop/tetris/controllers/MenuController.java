@@ -3,6 +3,7 @@ package ru.nsu.fit.oop.tetris.controllers;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.tetris.model.Model;
@@ -21,7 +22,7 @@ public class MenuController {
     @FXML
     private Button highScores;
     @FXML
-    private Button About;
+    private Button about;
 
     @FXML
     private void handleStart(Event event) {
@@ -29,6 +30,9 @@ public class MenuController {
         try {
             stage.setScene(SceneBuilder.getGame());
             model.start();
+            stage.setOnCloseRequest(e -> {
+                model.exit();
+            });
         } catch (IOException | ClassesRegistrationException | ShapeCreationException e) {
             Platform.exit();
             e.printStackTrace();
@@ -37,29 +41,24 @@ public class MenuController {
 
     @FXML
     private void handleHighScores(Event event) {
-//        Stage stage = (Stage) start.getScene().getWindow();
-//        try {
-//            stage.setScene(SceneBuilder.get());
-//        } catch (IOException e) {
-//            Platform.exit();
-//        }
+        Stage stage = (Stage) highScores.getScene().getWindow();
+        try {
+            stage.setScene(SceneBuilder.getHighScores());
+            SceneBuilder.getHighScoresLoader().<HighScoresController>getController().show();
+        } catch (IOException e) {
+            Platform.exit();
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handleAbout(Event event) {
-//        Stage stage = (Stage) start.getScene().getWindow();
-//        try {
-//            stage.setScene(SceneBuilder.getGame());
-//        } catch (IOException e) {
-//            Platform.exit();
-//        }
-    }
-
-    public void initialize() {
-//        Stage stage = (Stage) start.getScene().getWindow();
-//        stage.setOnCloseRequest(e -> {
-//            model.exit();
-//        });
+        Stage stage = (Stage) about.getScene().getWindow();
+        try {
+            stage.setScene(SceneBuilder.getAbout());
+        } catch (IOException e) {
+            Platform.exit();
+        }
     }
 
 }

@@ -11,7 +11,8 @@
 .root{
     -fx-background-color: darkslateblue;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 15pt;
+    -fx-font-weight: 900;
+    -fx-font-size: 18pt;
 }
 
 .button{
@@ -21,4 +22,21 @@
     -fx-pref-width: 170;
     -fx-pref-height: 70;
     -fx-min-height: 70;
+}
+
+.text-field{
+    -fx-background-color: mediumturquoise;
+    -fx-prompt-text-fill: darkslategray;
+}
+
+.my-label{
+   -fx-text-fill: mediumturquoise;
+   -fx-font-weight: 900;
+   -fx-font-size: 24pt;
+}
+
+.my-text{
+    -fx-text-fill: mediumturquoise;
+    -fx-font-weight: 700;
+    -fx-font-size: 18pt;
 }

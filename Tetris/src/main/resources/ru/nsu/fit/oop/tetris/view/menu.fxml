@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,4 +12,7 @@
 
     <Label text="Tetris" styleClass="title" translateY="-100"/>
     <Button fx:id="start" styleClass="button" text="Start" onAction="#handleStart"/>
+    <Button fx:id="highScores" styleClass="button" text="High scores" onAction="#handleHighScores" translateY="20"/>
+    <Button fx:id="about" styleClass="button" text="About" onAction="#handleAbout" translateY="40"/>
+
 </VBox>

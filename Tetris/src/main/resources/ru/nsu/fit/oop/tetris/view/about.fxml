@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+      prefHeight="720" prefWidth="480"
+      spacing="15.0"
+      stylesheets="@css/styles.css"
+      styleClass="root"
+      alignment="CENTER"
+      fx:controller="ru.nsu.fit.oop.tetris.controllers.AboutController">
+
+    <Label text="Tetris" styleClass="title" textFill="mediumturquoise"/>
+    <Label fx:id="text" styleClass="my-text"/>
+    <Button fx:id="back" styleClass="button" text="Back" onAction="#handleBack"/>
+</VBox>
