@@ -14,6 +14,7 @@ import ru.nsu.fit.oop.tetris.SceneBuilder;
 import ru.nsu.fit.oop.tetris.model.Model;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.concurrent.Flow;
 
 public class ScoreController implements Flow.Subscriber<Object> {
@@ -30,8 +31,11 @@ public class ScoreController implements Flow.Subscriber<Object> {
     @FXML
     private void handleSubmit(Event event) {
         String name = nameField.getText();
-        model.addScore(name);
-        toMenu();
+        if (name.trim().length() > 0) {
+            model.addScore(name);
+            toMenu();
+        }
+        nameField.setText("");
     }
 
     @FXML
@@ -59,7 +63,7 @@ public class ScoreController implements Flow.Subscriber<Object> {
 
     public void initialize() {
         model.subscribe(this);
-        score.setText(Integer.toString(model.getScore()));
+        score.setText("Your score " +model.getScore());
     }
 
     @Override
@@ -70,9 +74,7 @@ public class ScoreController implements Flow.Subscriber<Object> {
     @Override
     public void onNext(Object item) {
         if (model.getGameState() == Model.GameState.SCORE) {
-            Platform.runLater(() -> {
-                score.setText(Integer.toString(model.getScore()));
-            });
+            Platform.runLater(() -> score.setText("Your score " +model.getScore()));
         }
     }
 

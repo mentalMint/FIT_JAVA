@@ -2,6 +2,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
 <VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
       prefHeight="720" prefWidth="480"
       spacing="15.0"
@@ -10,7 +12,17 @@
       alignment="CENTER"
       fx:controller="ru.nsu.fit.oop.tetris.controllers.HighScoresController">
 
-    <Label text="High scores" styleClass="my-label" translateY="-100"/>
-    <GridPane fx:id="pane" alignment="CENTER" maxWidth="410" translateY="-50"/>
+    <Label text="High scores" styleClass="my-label" translateY="-50"/>
+    <GridPane alignment="CENTER" maxWidth="410" translateY="-30">
+        <TableView fx:id="table" prefHeight="350">
+            <columns>
+                <TableColumn fx:id="nameColumn" text="Name" prefWidth="200"/>
+                <TableColumn fx:id="scoreColumn" text="Score" prefWidth="200"/>
+            </columns>
+            <placeholder>
+                <Label text="It's quite empty here..."/>
+            </placeholder>
+        </TableView>
+    </GridPane>
     <Button fx:id="back" styleClass="button" text="Back" onAction="#handleBack"/>
 </VBox>

@@ -11,6 +11,6 @@
       fx:controller="ru.nsu.fit.oop.tetris.controllers.AboutController">
 
     <Label text="Tetris" styleClass="title" textFill="mediumturquoise"/>
-    <Label fx:id="text" styleClass="my-text"/>
+    <Label fx:id="text" styleClass="my-text" translateY="-20"/>
     <Button fx:id="back" styleClass="button" text="Back" onAction="#handleBack"/>
 </VBox>

@@ -1,10 +1,10 @@
 package ru.nsu.fit.oop.tetris.observer;
 
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.concurrent.Flow;
 
 public class Observable implements Flow.Publisher<Object> {
-    private final Vector<Flow.Subscriber<? super Object>> observers = new Vector<>();
+    private final ArrayList<Flow.Subscriber<? super Object>> observers = new ArrayList<>();
 
     public void addObserver(Flow.Subscriber<? super Object> observer) {
         observers.add(observer);

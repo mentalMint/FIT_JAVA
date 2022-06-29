@@ -1,5 +1,7 @@
 package ru.nsu.fit.oop.tetris.model;
 
+import ru.nsu.fit.oop.tetris.utilities.MapSorter;
+
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -53,6 +55,6 @@ public class HighScores {
     }
 
     public Map<String, Integer> getHighScores() {
-        return MapUtil.sortByValue(highScores);
+        return MapSorter.sortByValue(highScores);
     }
 }

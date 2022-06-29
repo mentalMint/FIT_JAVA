@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -17,10 +19,12 @@ import ru.nsu.fit.oop.tetris.exceptions.ShapeCreationException;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.Flow;
 
 public class GameController implements Flow.Subscriber<Object> {
     private final Model model = ModelBuilder.getModel();
+    private MediaPlayer player;
 
     @FXML
     private GridPane field;
@@ -62,11 +66,13 @@ public class GameController implements Flow.Subscriber<Object> {
 
     public void initialize() {
         model.subscribe(this);
+        player = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("TetrisBeat-box.mp3")).toExternalForm()));
+        player.setCycleCount(MediaPlayer.INDEFINITE);
         double shift = field.getPrefWidth() / model.getField().getWidth();
         for (int i = 0; i < model.getField().getHeight(); i++) {
             for (int j = 0; j < model.getField().getWidth(); j++) {
                 Rectangle rectangle = new Rectangle();
-                rectangle.setTranslateY(i * shift);
+                rectangle.setTranslateY(i * shift + 60);
                 rectangle.setTranslateX(j * shift);
                 rectangle.setHeight(shift);
                 rectangle.setWidth(48);
@@ -99,23 +105,22 @@ public class GameController implements Flow.Subscriber<Object> {
             } else {
                 score.setText(Integer.toString(model.getScore()));
 
-//        if (model.getGameState() == Model.GameState.GAME) {
-//            if (!sound.isPlaying()) {
-//                sound.play();
-//            }
-                List<Block> blocks = model.getField().getBlocks();
-                for (int i = 2; i < model.getField().getHeight(); i++) {
-                    for (int j = 0; j < model.getField().getWidth(); j++) {
-                        int index = i * model.getField().getWidth() + j;
-                        Rectangle rectangle = (Rectangle) field.getChildren().get(index);
-                        rectangle.setFill(blocks.get(index).color);
+                if (model.getGameState() == Model.GameState.GAME) {
+                    player.play();
+                    List<Block> blocks = model.getField().getBlocks();
+                    for (int i = 1; i < model.getField().getHeight(); i++) {
+                        for (int j = 0; j < model.getField().getWidth(); j++) {
+                            int index = i * model.getField().getWidth() + j;
+                            Rectangle rectangle = (Rectangle) field.getChildren().get(index);
+                            rectangle.setFill(blocks.get(index).color);
+                        }
                     }
-                }
 
-//            field.getScene().getWindow().set
-//        } else {
-//            sound.stop();
-//        }
+                } else if (model.getGameState() == Model.GameState.PAUSE) {
+                    player.pause();
+                } else {
+                    player.stop();
+                }
             }
         });
     }

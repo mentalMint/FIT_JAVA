@@ -21,8 +21,8 @@ public class SceneBuilder {
 
     public static Scene getAbout() throws IOException {
         if (about == null) {
-            highScoresLoader = new FXMLLoader(SceneBuilder.class.getResource("view/about.fxml"));
-            Parent root = highScoresLoader.load();
+            FXMLLoader loader = new FXMLLoader(SceneBuilder.class.getResource("view/about.fxml"));
+            Parent root = loader.load();
             about = new Scene(root);
         }
         return about;

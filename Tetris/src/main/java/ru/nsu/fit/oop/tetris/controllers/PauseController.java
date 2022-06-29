@@ -57,11 +57,11 @@ public class PauseController implements Flow.Subscriber<Object> {
         double shift = field.getPrefWidth() / model.getField().getWidth();
         List<Block> blocks = model.getField().getBlocks();
 
-        for (int i = 2; i < model.getField().getHeight(); i++) {
+        for (int i = 1; i < model.getField().getHeight(); i++) {
             for (int j = 0; j < model.getField().getWidth(); j++) {
                 int index = i * model.getField().getWidth() + j;
                 Rectangle rectangle = new Rectangle();
-                rectangle.setTranslateY(i * shift);
+                rectangle.setTranslateY(i * shift + 60);
                 rectangle.setTranslateX(j * shift);
                 rectangle.setHeight(shift);
                 rectangle.setWidth(48);
@@ -83,10 +83,10 @@ public class PauseController implements Flow.Subscriber<Object> {
         if (model.getGameState() == Model.GameState.PAUSE) {
             Platform.runLater(() -> {
                 List<Block> blocks = model.getField().getBlocks();
-                for (int i = 2; i < model.getField().getHeight(); i++) {
+                for (int i = 1; i < model.getField().getHeight(); i++) {
                     for (int j = 0; j < model.getField().getWidth(); j++) {
                         int index = i * model.getField().getWidth() + j;
-                        Rectangle rectangle = (Rectangle) field.getChildren().get((i - 2) * model.getField().getWidth() + j);
+                        Rectangle rectangle = (Rectangle) field.getChildren().get((i - 1) * model.getField().getWidth() + j);
                         rectangle.setFill(blocks.get(index).color);
                     }
                 }

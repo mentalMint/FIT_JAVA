@@ -3,7 +3,6 @@ package ru.nsu.fit.oop.tetris.controllers;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.tetris.model.Model;
@@ -30,9 +29,7 @@ public class MenuController {
         try {
             stage.setScene(SceneBuilder.getGame());
             model.start();
-            stage.setOnCloseRequest(e -> {
-                model.exit();
-            });
+            stage.setOnCloseRequest(e -> model.exit());
         } catch (IOException | ClassesRegistrationException | ShapeCreationException e) {
             Platform.exit();
             e.printStackTrace();
@@ -58,6 +55,7 @@ public class MenuController {
             stage.setScene(SceneBuilder.getAbout());
         } catch (IOException e) {
             Platform.exit();
+            e.printStackTrace();
         }
     }
 
