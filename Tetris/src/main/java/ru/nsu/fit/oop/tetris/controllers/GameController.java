@@ -69,10 +69,10 @@ public class GameController implements Flow.Subscriber<Object> {
         player = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("TetrisBeat-box.mp3")).toExternalForm()));
         player.setCycleCount(MediaPlayer.INDEFINITE);
         double shift = field.getPrefWidth() / model.getField().getWidth();
-        for (int i = 0; i < model.getField().getHeight(); i++) {
+        for (int i = 2; i < model.getField().getHeight(); i++) {
             for (int j = 0; j < model.getField().getWidth(); j++) {
                 Rectangle rectangle = new Rectangle();
-                rectangle.setTranslateY(i * shift + 60);
+                rectangle.setTranslateY(i * shift);
                 rectangle.setTranslateX(j * shift);
                 rectangle.setHeight(shift);
                 rectangle.setWidth(48);
@@ -108,14 +108,13 @@ public class GameController implements Flow.Subscriber<Object> {
                 if (model.getGameState() == Model.GameState.GAME) {
                     player.play();
                     List<Block> blocks = model.getField().getBlocks();
-                    for (int i = 1; i < model.getField().getHeight(); i++) {
+                    for (int i = 0; i < model.getField().getHeight() - 2; i++) {
                         for (int j = 0; j < model.getField().getWidth(); j++) {
-                            int index = i * model.getField().getWidth() + j;
-                            Rectangle rectangle = (Rectangle) field.getChildren().get(index);
+                            int index = (i + 2) * model.getField().getWidth() + j;
+                            Rectangle rectangle = (Rectangle) field.getChildren().get(i * model.getField().getWidth() + j);
                             rectangle.setFill(blocks.get(index).color);
                         }
                     }
-
                 } else if (model.getGameState() == Model.GameState.PAUSE) {
                     player.pause();
                 } else {

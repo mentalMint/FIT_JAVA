@@ -23,7 +23,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
     private final Set<Color> shapeColors = new HashSet<>(Arrays.asList(Color.DODGERBLUE,
             Color.MEDIUMAQUAMARINE, Color.PALEVIOLETRED, Color.GOLD));
     private final int fieldWidth = 10;
-    private final int fieldHeight = 14;
+    private final int fieldHeight = 15;
     private final Field field = new Field(fieldWidth, fieldHeight);
     private final TetrisTimer tetrisTimer = new TetrisTimer();
 
@@ -38,7 +38,11 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
 
     private void nextTick() throws ShapeCreationException {
         if (field.noWayDown(currentShape)) {
-            updateScore(field.cleanFullLines());
+            int fullLinesCount = field.cleanFullLines();
+            updateScore(fullLinesCount);
+            if (fullLinesCount > 0) {
+                tetrisTimer.increaseNormalSpeed();
+            }
             if (isOver()) {
                 complete();
             }
@@ -405,8 +409,9 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
     private class TetrisTimer {
         private Timer timer = null;
         private TimerTask timerTask;
-        private final int timerSpeed = 700;
+        private int timerSpeed = 10;
         private final int delay = 1000;
+        private int period = 10000 / timerSpeed;
 
         public TetrisTimer() {
 
@@ -415,7 +420,7 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         public void start() {
             timer = new Timer();
             timerTask = new TickTask();
-            timer.schedule(timerTask, delay, timerSpeed);
+            timer.schedule(timerTask, delay, period);
         }
 
         public void cancel() {
@@ -427,23 +432,29 @@ public class Model extends ru.nsu.fit.oop.tetris.observer.Observable {
         public void resume() {
             timer = new Timer();
             timerTask = new TickTask();
-            timer.schedule(timerTask, 0, timerSpeed);
+            timer.schedule(timerTask, 0, period);
         }
 
         public void increaseSpeed() {
-            changeSpeed(delay);
+            changeSpeed(timerSpeed * 2);
         }
 
         public void decreaseSpeed() {
             changeSpeed(timerSpeed);
         }
 
+        private void increaseNormalSpeed() {
+            timerSpeed += 4;
+            changeSpeed(timerSpeed);
+        }
+
         private void changeSpeed(int newSpeed) {
-            if (timer != null && timerSpeed != newSpeed) {
+            if (timer != null && timerSpeed != newSpeed && timerSpeed != 0) {
+                period = 10000 / timerSpeed;
                 timer.cancel();
                 timer = new Timer();
                 timerTask = new TickTask();
-                timer.schedule(timerTask, 0, newSpeed);
+                timer.schedule(timerTask, 0, period);
             }
         }
     }
